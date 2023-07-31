@@ -2,10 +2,7 @@ import './globals.css'
 import { Nunito } from 'next/font/google'
 import Header from './components/Header'
 
-const nunito = Nunito({
-  weight: ['400' , '700'],
-  subsets: ['latin'],
-})
+const nunito = Nunito({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'PODCAST APP',
