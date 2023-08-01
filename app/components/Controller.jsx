@@ -95,7 +95,7 @@ const Controller = ({ url , podcast }) => {
                 <p className='md:text-md text-sm mt-3 md:mt-auto md:mx-3'> {showTime(duration)} </p></div>
             </div>
         </div>
-        <Sections data={audio.current}/>
+        <Sections data={audio.current} podcasts={podcast}/>
 
     </div>
   )

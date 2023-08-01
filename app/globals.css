@@ -84,3 +84,7 @@ body{
 .overflow-x-scroll::-webkit-scrollbar-thumb:hover{
     background-color: #b9b9b9 ;
 }
+
+#section-btn{
+    border: 1px solid #696ec4;
+}
