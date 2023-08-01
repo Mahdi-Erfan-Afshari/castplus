@@ -5,7 +5,7 @@ import {PiPauseDuotone} from 'react-icons/pi'
 import Sections from './Sections'
 
 const Controller = ({ url , podcast }) => {
-    const [play, setPlay] = useState(true)
+    const [play, setPlay] = useState(false)
     const [currentTime, setCurrentTime] = useState(0)
     const [duration, setDuration] = useState(0)
     const audio = useRef();
@@ -21,6 +21,7 @@ const Controller = ({ url , podcast }) => {
             setDuration(event.target.duration)
         }
     }
+
 
     const showTime = (time) => {
         if(time > 60 ){
@@ -85,11 +86,11 @@ const Controller = ({ url , podcast }) => {
                 </span>
             </div>
             <audio ref={audio} src={url} onTimeUpdate={(e) =>{changeCurrentTime(e)}
-            } onEnded={togglePlay} autoPlay></audio>
+            } onEnded={togglePlay}></audio>
 
             <div className='flex flex-col md:flex-row mt-3 md:mt-auto md:items-center justify-center w-full'>
                 <p className='hidden md:inline-block md:text-md text-sm mt-3 md:mt-auto md:mx-3'> {showTime(currentTime)} </p>
-                    <input type="range" min="0" max="1000" onChange={(e) => controllerHandler(e)} value={valueProgress()} className="controller-input mx-3"/>
+                    <input id='progressBar' type="range" min="0" max="1000" onChange={(e) => controllerHandler(e)} value={valueProgress()} className="controller-input mx-3"/>
                 
                 <div className='flex justify-between w-full md:w-auto'><p className='inline-block md:hidden md:text-md text-sm mt-3 md:mt-auto md:mx-3 ps-6'> {showTime(currentTime)} </p>
                 <p className='md:text-md text-sm mt-3 md:mt-auto md:mx-3'> {showTime(duration)} </p></div>

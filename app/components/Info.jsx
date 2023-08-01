@@ -2,7 +2,7 @@
 import Link from "next/link"
 import { useState } from "react"
 
-const Info = ({ text , title , currentTime , duration  }) => {
+const Info = ({ title , summary , transcript , refrences }) => {
   const [displaySummery, setDisplaySummary] = useState(false)
   const [displayTranscript, setDisplayTranscript] = useState(false)
   const [displayRefrences, setDisplayRefrences] = useState(false)
@@ -14,7 +14,7 @@ const Info = ({ text , title , currentTime , duration  }) => {
       }
       e.target.classList.add('btn-active');
     }
-
+    
   return (
     <div className="">
       <div className="md:my-6 md:w-auto my-3 py-2 px-3 shadow-lg rounded-md flex flex-col justify-center items-center bg-white w-full">
@@ -42,34 +42,28 @@ const Info = ({ text , title , currentTime , duration  }) => {
           </Link>
         </div>
         <div className="w-full h-auto rounded-md p-3"  style={{display: displaySummery ? "block" : 'none'}} >
-          <h1 className="text-center font-bold text-2xl mb-2">{!text ? 'Summary' :text ? text : title }</h1>
+          <h1 className="text-center font-bold text-2xl mb-2">{ title }</h1>
           <span className="text-gray-800 text-justify">
             <p className="text-center">
-              {
-               !text ? 'This is Summary' : text ? `This is a Summary for ${text}` : !text ? title : time / 60 < 30 ? `This is a Summary for ${title}` : time /60 < 60 ? `This is a Summary for ${title}` : time /60 > 60 ? `This is a Summary for ${title}` : 'This is Summary'
-              }
+              {summary}
             </p>
           </span>
         </div>
 
         <div className="w-full h-auto rounded-md p-3"  style={{display: displayTranscript ? "block" : 'none'}} >
-          <h1 className="text-center font-bold text-2xl mb-2">{!text ? 'Transcript' :text ? text : title }</h1>
+          <h1 className="text-center font-bold text-2xl mb-2">{ title }</h1>
           <span className="text-gray-800 text-justify">
             <p className="text-center">
-              {
-               !text ? 'This is Transcript' : text ? `This is a Transcript for ${text}` : !text ? title : time / 60 < 30 ? `This is a Transcript for ${title}` : time /60 < 60 ? `This is a Transcript for ${title}` : time /60 > 60 ? `This is a Transcript for ${title}` : 'This is Transcript'
-              }
+              {transcript}
             </p>
           </span>
         </div>
 
         <div className="w-full h-auto rounded-md p-3"  style={{display: displayRefrences ? "block" : 'none'}} >
-          <h1 className="text-center font-bold text-2xl mb-2">{!text ? 'Refrences' :text ? text : title }</h1>
+          <h1 className="text-center font-bold text-2xl mb-2">{ title }</h1>
           <span className="text-gray-800 text-justify">
             <p className="text-center">
-              {
-               !text ? 'This is Refrences' : text ? `This is a Refrences for ${title}` : !text ? title : time / 60 < 30 ? `This is a Refrences for ${title}` : time /60 < 60 ? `This is a Refrences for ${title}` : time /60 > 60 ? `This is a Refrences for ${title}` : 'This is Refrences'
-              }
+              {refrences}
             </p>
           </span>
         </div>
