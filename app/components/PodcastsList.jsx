@@ -5,6 +5,7 @@ import img1 from '@/app/img/podcast.png';
 import {server} from '../api/podcasts/route';
 
 async function fetchPodcasts() {
+'use server'
   const response = await fetch(`${server}/api/podcasts`, { cache: 'no-store' }, {
 	next: {
 	  revalidate: 60
@@ -24,7 +25,7 @@ const PodcastPage = async () => {
 	  </div>
 	  {
 		podcasts.map((podcast) => (
-		  <Link href={`/podcasts/${podcast.id}`}>
+		  <Link href={`/podcasts/${podcast.id}`} key={podcast.id}>
 			<div className='grid grid-cols-1 gap-3 mt-5'>
 			  <div className='md:flex md:items-center bg-white p-5 rounded-lg shadow-xl shadow-gray-100'>
 				<div className='flex'>

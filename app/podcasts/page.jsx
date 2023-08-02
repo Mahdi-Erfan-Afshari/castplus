@@ -1,4 +1,3 @@
-'use client'
 import PodcastsList from '@/app/components/PodcastsList'
 
 const PodcastsPage = () => {
