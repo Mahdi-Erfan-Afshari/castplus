@@ -2,6 +2,7 @@ import {server} from '../api/podcasts/route';
 import Controller from '@/app/components/Controller'
 
 async function fetchPodcast() {
+//   'use server'
   const response = await fetch(`${server}/api/podcasts`, { cache: 'no-store' });
   const podcasts = await response.json();
   return podcasts;
