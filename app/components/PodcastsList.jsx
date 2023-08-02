@@ -5,7 +5,6 @@ import img1 from '@/app/img/podcast.png';
 import {server} from '../api/podcasts/route';
 
 async function fetchPodcasts() {
-'use server'
   const response = await fetch(`${server}/api/podcasts`, { cache: 'no-store' }, {
 	next: {
 	  revalidate: 60

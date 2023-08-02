@@ -1,4 +1,3 @@
-'use server'
 import Podcast from '@/app/components/Podcast'
 
 const PodcastPage = ({params: { id }}) => {

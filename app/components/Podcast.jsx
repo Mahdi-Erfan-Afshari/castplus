@@ -1,4 +1,3 @@
-'use server'
 import {server} from '../api/podcasts/route';
 import Controller from '@/app/components/Controller'
 
