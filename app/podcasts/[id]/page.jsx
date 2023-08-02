@@ -2,9 +2,9 @@ import Podcast from '@/app/components/Podcast'
 
 const PodcastPage = ({params: { id }}) => {
   return (
-    <div>
-      <Podcast id={id} />
-    </div>
+	<div>
+	  <Podcast id={id} />
+	</div>
   )
 }
 
