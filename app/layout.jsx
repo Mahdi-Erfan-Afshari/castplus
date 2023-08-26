@@ -1,8 +1,5 @@
 import './globals.css'
-import { Nunito } from 'next/font/google'
 import Header from './components/Header'
-
-const nunito = Nunito({ subsets: ['latin'] })
 
 export const metadata = {
 	title: 'PODCAST APP',
@@ -12,9 +9,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
-			<body className={nunito.className}>
+			<body>
 				<Header />
-				<main className=''>{children}</main>
+				<main>{children}</main>
 			</body>
 		</html>
 	)

@@ -12,9 +12,9 @@ const Podcast = async ({ id }) => {
   const podcast = await podcasts.filter((podcast) => podcast.id == id);
 
   return (
-	<div className='container mx-auto p-3'>
+	<div>
 	  {podcast.map((podcast) => (
-		<div className='md:p-5 p-2'>
+		<div className='mt-5'>
 		  <Controller podcast={podcast} url={podcast.url} />
 		</div>
 	   ))}

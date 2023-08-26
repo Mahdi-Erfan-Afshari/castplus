@@ -2,141 +2,86 @@
 import { useState } from "react"
 import Info from "./Info"
 
-const Sections = ({ data , podcasts }) => {
-  const audio = data
-  const Podcasts = podcasts.sections
-  const count = podcasts.count
-  const [firstActive, setFirstActive] = useState(true)
+const Sections = ({data, podcasts}) => {
+	var audio = data;
+	var podcastSections = podcasts.sections;
+	const sectionBtn = document.querySelectorAll('#section-btn');
+	const [isAudioAvailable, setIsAudioAvailable] = useState(false)
 
-  const getCurrentTime = () => {
+	var btnIndex = 0;
+
+	const changeCurrentTime = (e) => {
+		if(audio) {
+			var timeStart = Number(e.target.getAttribute('timeStart'));
+			audio.currentTime = timeStart;
+			sectionBtn.forEach((button) => {
+				button.classList.remove('btn-active')
+			})
+			e.target.classList.add('btn-active')
+		}
+	}
+
+	const changeActiveBtn = () => {
+		var i = 0;
+		while(i < sectionBtn.length) {
+			var timeStart = Number(sectionBtn[btnIndex].getAttribute('timeStart'));
+			var latestTimeStart = Number(sectionBtn[(sectionBtn.length - 1)].getAttribute('timeStart'));
+			var nextTimeStart;
+			if(btnIndex == (sectionBtn.length - 1)) {
+				nextTimeStart = Number(sectionBtn[btnIndex].getAttribute('timeStart'));
+			} else {
+				nextTimeStart = Number(sectionBtn[btnIndex + 1].getAttribute('timeStart'));
+			}
+			
+			if(audio.currentTime > latestTimeStart && audio.currentTime <= audio.duration) {
+				sectionBtn[i].classList.remove('btn-active')
+				sectionBtn[(sectionBtn.length - 1)].classList.add('btn-active');
+			} else if (audio.currentTime >= timeStart && audio.currentTime < nextTimeStart) {
+				sectionBtn[i].classList.remove('btn-active')
+				sectionBtn[btnIndex].classList.add('btn-active');
+			} else {
+				sectionBtn[i].classList.remove('btn-active')
+				btnIndex++;
+			}
+			i++
+		}
+	}
+
 	if(audio) {
-	  const currentTime = parseInt(audio.currentTime / 60 , 10)
-	  return currentTime
+		changeActiveBtn();
 	}
-  }
 
-  const getSectionTime = () => {
-	if(audio) {
-	  const sectionTime = parseInt(audio.duration / 60 / count , 10)
-	  return sectionTime
+	const getTitle = () => {
+		return podcastSections[btnIndex].title
 	}
-  }
+	var title = getTitle();
 
-  const sectionTime = getSectionTime()
-
-  const currentTime = getCurrentTime()
-  const getSectionBtn = () => {
-	if(typeof window == "object"){
-	  const btn = document.querySelectorAll('#section-btn')
-	  return btn
+	const getSummary = () => {
+		return podcastSections[btnIndex].summary
 	}
-  }
+	var summary = getSummary();
 
-  const sectionBtn = getSectionBtn()
-
-  const getInfoBtn = () => {
-	if(typeof window == "object"){
-	  const btn = document.querySelectorAll('#info-btn')
-	  return btn
+	const getTranscript = () => {
+		return podcastSections[btnIndex].transcript
 	}
-  }
+	var transcript = getTranscript();
 
-  const infoBtn = getInfoBtn()
-
-  const activeIndex = () => {
-	if(currentTime !== undefined  && sectionTime !== NaN) {
-	  let index = parseInt(currentTime / sectionTime , 10)
-	  if(index == sectionBtn.length){
-		index = index - 1
-	  }
-	  return index
+	const getRefrences = () => {
+		return podcastSections[btnIndex].refrences
 	}
-  }
-
-  let btnActiveIndex = activeIndex()
-
-  const autoFirstActive = () => {
-	if(audio){
-	  if(firstActive){
-		sectionBtn[0].classList.add('btn-active')
-		infoBtn[0].classList.add('info-active')
-		setFirstActive(false)
-	  }
-	  return audio.currentTime
-	}
-  }
-  autoFirstActive()
-
-  const getDuration = () => {
-	if(audio){
-	  const audioDuraion = audio.duration
-	  return parseInt( audioDuraion / 60 / 5 , 10)
-	}
-  }
-  const duration = getDuration()
-
-  const inputValue = document.querySelector('#progressBar')
-  const changeLable = (e) => {
-	const time = Number(e.target.getAttribute('index')) * audio.duration / count
-	inputValue.value = time /60 / count * 1000 / duration
-	audio.currentTime = time
-	for (let index = 0; index < sectionBtn.length; index++) {
-	  sectionBtn[index].classList.remove('btn-active');
-	}
-	e.target.classList.add('btn-active');
-  }
-
-  const autoChangeLable = () => {
-	if(btnActiveIndex !== undefined){
-	  for (let index = 0; index < sectionBtn.length; index++) {
-		sectionBtn[index].setAttribute('index', index)
-	  }
-	  for (let index = 0; index < sectionBtn.length; index++) {
-		sectionBtn[index].classList.remove('btn-active');
-	  }
-	  sectionBtn[btnActiveIndex].classList.add('btn-active')
-	}
-  }
-
-  const getTitle = () => {
-	if(btnActiveIndex !== undefined){
-	  return Podcasts[btnActiveIndex].title
-	}
-  }
-  const title = getTitle()
-
-  const getSummary = () => {
-	if(btnActiveIndex !== undefined){
-	  return Podcasts[btnActiveIndex].summary
-	}
-  }
-  const summary = getSummary()
-
-  const getTranscript = () => {
-	if(btnActiveIndex !== undefined){
-	  return Podcasts[btnActiveIndex].transcript
-	}
-  }
-  const transcript = getTranscript()
-
-  const getRefrences = () => {
-	if(btnActiveIndex !== undefined){
-	  return Podcasts[btnActiveIndex].refrences
-	}
-  }
-  const refrences = getRefrences()
-
-  autoChangeLable()
-
-  return (
-	<>
-	  <div className="md:my-6 md:w-auto my-3 py-4 px-3 bg-white shadow-lg rounded-md flex lg:justify-center justify-between items-center btn-info md:overflow-auto overflow-x-scroll relative">
-		{Podcasts.map((section) => (
-			<button id="section-btn" className="font-semibold rounded-md md:py-4 py-3 px-3 w-44 mx-1 duration-150 block relative" onClick={(e) =>{ changeLable(e)}}>{section.title}</button>
-		))}
-	  </div>
-	  <Info title={title} summary={summary} transcript={transcript} refrences={refrences} />
-	</>
+	var refrences = getRefrences();
+	
+	return (
+		<>
+			<div className="py-4 border-4 border-b-0 border-white mt-5 bg-white shadow-md rounded-xl overflow-x-auto scroll-smooth">
+				<div className="inline-flex px-2">
+ 					{podcastSections.map((section) => (
+						<button id="section-btn" timeStart={section.timeStart} sectionNumber={podcastSections.indexOf(section)} className="rounded-lg bg-White md:py-4 py-3 px-3 md:w-44 sm:w-36 w-28 sm:text-md md:text-[16px] text-sm mx-1 duration-150 inline-block" onClick={(e) => changeCurrentTime(e)}>{section.title}</button>
+					))}
+				</div>
+			</div>
+			<Info title={title} summary={summary} transcript={transcript} refrences={refrences}/>
+		</>
   )
 }
 

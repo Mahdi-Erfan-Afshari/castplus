@@ -2,7 +2,9 @@
 import { useState, useRef } from 'react'
 import {PiPlayDuotone} from 'react-icons/pi'
 import {PiPauseDuotone} from 'react-icons/pi'
+import {vazir} from '@/app/utils/fonts'
 import Sections from './Sections'
+import Image from 'next/image'
 
 const Controller = ({ url , podcast }) => {
 	const [play, setPlay] = useState(false)
@@ -72,13 +74,18 @@ const Controller = ({ url , podcast }) => {
 		audio.current.currentTime = (e.target.value * duration) / 1000
 		audio.current.play()
 		setPlay(true)
-		// togglePlay()
 	}
 
   return (
-	<div className='container mx-auto md:px-6 lg:px-12 xl:px-24'>
-		<h1 className='text-4xl font-bold mb-3 text-center'>{podcast.title}</h1>
-		<div className="controller w-full flex flex-row justify-center bg-white rounded-md p-4 shadow-lg md:px-32 pe-10 md:pe-32">
+	<div className={`${vazir.className} ${'container mx-auto'}`}>
+		<div className='flex w-full justify-center '>
+			<div className='rounded-full overflow-hidden'>
+				<Image width='80' height='80' className='object-cover sm:w-40 sm:h-40 w-24 h-24' src={podcast.thumbnail}/>
+			</div>
+		</div>
+		<h1 className='md:text-3xl sm:text-2xl text-xl font-bold mt-6 text-center'>{podcast.title}</h1>
+
+		<div className="controller w-full flex flex-row justify-center bg-white rounded-xl px-4 py-6 shadow-md mt-12 px-2">
 			<div className="flex justify-center">
 				<span className='flex justify-center md:me-auto me-2' onClick={togglePlay}>
 					{!play ? <PiPlayDuotone className='text-Blue text-3xl' /> : <PiPauseDuotone  className='text-Blue text-3xl'/>}
