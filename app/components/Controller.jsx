@@ -85,7 +85,7 @@ const Controller = ({ url , podcast }) => {
 		</div>
 		<h1 className='md:text-3xl sm:text-2xl text-xl font-bold mt-6 text-center'>{podcast.title}</h1>
 
-		<div className="controller w-full flex flex-row justify-center bg-white rounded-xl px-4 py-6 shadow-md mt-12 px-2">
+		<div className="controller w-full flex flex-row justify-center bg-white rounded-xl px-4 py-6 shadow-md mt-12">
 			<div className="flex justify-center">
 				<span className='flex justify-center md:me-auto me-2' onClick={togglePlay}>
 					{!play ? <PiPlayDuotone className='text-Blue text-3xl' /> : <PiPauseDuotone  className='text-Blue text-3xl'/>}
@@ -94,12 +94,13 @@ const Controller = ({ url , podcast }) => {
 			<audio ref={audio} src={url} onTimeUpdate={(e) =>{changeCurrentTime(e)}
 			} onEnded={togglePlay}></audio>
 
-			<div className='flex flex-col md:flex-row mt-3 md:mt-auto md:items-center justify-center w-full'>
-				<p className='hidden md:inline-block md:text-md text-sm mt-3 md:mt-auto md:mx-3'> {showTime(currentTime)} </p>
-					<input id='progressBar' type="range" min="0" max="1000" onChange={(e) => controllerHandler(e)} value={valueProgress()} className="controller-input mx-3"/>
-
-				<div className='flex justify-between w-full md:w-auto'><p className='inline-block md:hidden md:text-md text-sm mt-3 md:mt-auto md:mx-3 ps-6'> {showTime(currentTime)} </p>
-				<p className='md:text-md text-sm mt-3 md:mt-auto md:mx-3'> {showTime(duration)} </p></div>
+			<div className='flex flex-col md:flex-row justify-center items-center mt-[15px] md:mt-1 w-full me-4 md:me-0'>
+				<p className='hidden md:inline-block md:text-md text-sm md:mx-3'> {showTime(currentTime)} </p>
+				<input id='progressBar' type="range" min="0" max="1000" onChange={(e) => controllerHandler(e)} value={valueProgress()} className="controller-input mx-3"/>
+				<div className='flex justify-between w-full md:w-auto'>
+					<p className='inline-block md:hidden md:text-md text-sm mt-3 md:mt-auto md:mx-3 ps-6'> {showTime(currentTime)} </p>
+					<p className='md:text-md text-sm mt-3 md:mt-auto md:mx-3'> {showTime(duration)} </p>
+				</div>
 			</div>
 		</div>
 		<Sections data={audio.current} podcasts={podcast}/>

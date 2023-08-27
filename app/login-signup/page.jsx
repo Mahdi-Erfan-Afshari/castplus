@@ -32,7 +32,7 @@ const LoginSignUpPage = () => {
 
   return (
 	<div className={`${nunito.className} ${"flex justify-center"}`}>
-		<div className="flex flex-col justify-center items-center p-8 md:w-[600px] sm:w-[550px] w-[450px] shadow-lg h-full bg-white rounded-2xl my-10">
+		<div className="flex flex-col justify-center items-center p-8 md:w-[600px] sm:w-[550px] w-[340px] shadow-lg h-full bg-white rounded-2xl my-10">
 			<div className='bg-Blue shadow-md shadow-LightBlue rounded-full py-4 px-5 mb-4'>
 				<Image className='w-14 h-auto' src={Logo} />
 			</div>
@@ -41,7 +41,7 @@ const LoginSignUpPage = () => {
 				<button id="login-btn" className="form-btn-active text-xl rounded-xl w-1/2 p-3" onClick={changeToLoginForm}>Log In</button>
 				<button id="signup-btn" className="text-xl rounded-xl w-1/2 p-3" onClick={changeToSignUpForm}>Sign Up</button>
 			</div>
-			<div id="login-form" className="remove w-full mt-8 mb-5">
+			<div id="login-form" className="w-full mt-8 mb-5">
 				<input id="input-form" type="text" className="text-xl border-b-2 border-[#ddd] w-full py-4 px-5" placeholder="Email Address" />
 				<input id="input-form" type="password" className="text-xl border-b-2 border-[#ddd] w-full py-4 px-5 mt-10" placeholder="Password" />
 				<p className="hover:underline text-Blue text-lg cursor-pointer mt-6 ms-2 duration-150">Forgot password?</p>
@@ -51,7 +51,7 @@ const LoginSignUpPage = () => {
 					<p className="hover:underline text-Blue text-lg cursor-pointer duration-150" onClick={changeToSignUpForm}>Sign Up now</p>
 				</span>
 			</div>
-			<div id="signup-form" className="w-full mt-8 mb-5">
+			<div id="signup-form" className="remove w-full mt-8 mb-5">
 				<input id="input-form" type="text" className="text-xl border-b-2 border-[#ddd] w-full py-2 px-3" placeholder="Email Address" />
 				<input id="input-form" type="password" className="text-xl border-b-2 border-[#ddd] w-full py-2 px-3 mt-10" placeholder="Password" />
 				<input id="input-form" type="password" className="text-xl border-b-2 border-[#ddd] w-full py-2 px-3 mt-10" placeholder="Confrim Password" />

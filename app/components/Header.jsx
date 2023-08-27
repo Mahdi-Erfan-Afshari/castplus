@@ -40,11 +40,15 @@ const Header = () => {
 					</button>
 				</div>
 				<div id="mobile-menu" class="absolute pt-14 top-0 left-0 lg:hidden flex flex-col bg-white w-full mx-auto shadow-xl rounded-s-xl rounded-e-xl p-6 duration-200 hamburger-button-toggle z-40">
-					<a href="#" class="hover:text-black hover:bg-BrightSupLightOrange text-Gray p-4 rounded-lg text-center duration-300 my-1">Home</a>
+					{/* <a href="#" class="hover:text-black hover:bg-BrightSupLightOrange text-Gray p-4 rounded-lg text-center duration-300 my-1">Home</a>
 					<a href="#" class="hover:text-black hover:bg-BrightSupLightOrange text-Gray p-4 rounded-lg text-center duration-300 my-1">Services</a>
 					<a href="#" class="hover:text-black hover:bg-BrightSupLightOrange text-Gray p-4 rounded-lg text-center duration-300 my-1">Portfolio</a>
-					<a href="#" class="hover:text-black hover:bg-BrightSupLightOrange text-Gray p-4 rounded-lg text-center duration-300 my-1">Contact Us</a>
-					<button class="hover:text-Blue hover:bg-SupLightBlue hover:shadow-none bg-Blue text-white border-2 border-Blue rounded-lg font-semibold shadow-lg shadow-LigthBlue mx-1 py-3 px-5 duration-150 mt-5">Log In / Sign Up</button>
+					<a href="#" class="hover:text-black hover:bg-BrightSupLightOrange text-Gray p-4 rounded-lg text-center duration-300 my-1">Contact Us</a> */}
+					<Link href='/' onClick={toggleHamburgerMenu}><button className='hover:text-black text-Gray p-4 text-center w-full duration-150 my-1'>Home</button></Link>
+					<Link href='/services' onClick={toggleHamburgerMenu}><button className='hover:text-black text-Gray p-4 text-center w-full duration-150 my-1'>Services</button></Link>
+					<Link href='/portfolio' onClick={toggleHamburgerMenu}><button className='hover:text-black text-Gray p-4 text-center w-full duration-150 my-1'>Portfolio</button></Link>
+					<Link href='/contactus' onClick={toggleHamburgerMenu}><button className='hover:text-black text-Gray p-4 text-center w-full duration-150 my-1'>Contact Us</button></Link>
+					<Link href='/login-signup' onClick={toggleHamburgerMenu}><button class="hover:text-Blue hover:bg-SupLightBlue hover:shadow-none bg-Blue text-white w-full border-2 border-Blue rounded-lg font-semibold shadow-lg shadow-LigthBlue mx-1 py-3 px-5 duration-150 mt-5">Log In / Sign Up</button></Link>
 				</div>
 
 			</nav>
