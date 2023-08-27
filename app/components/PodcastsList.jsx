@@ -30,7 +30,7 @@ const PodcastPage = async () => {
 				<figure class="sm:flex bg-white rounded-xl p-5 sm:p-0">
 				  	<Image class="hidden sm:block w-32 h-32 sm:w-48 sm:h-auto object-cover border-e-[1px] border-gray" src={podcast.thumbnail} alt="" width="0" height="0" />
 					<div className='flex items-center'>
-				  		<Image class="w-20 h-20 sm:w-48 sm:h-auto sm:rounded-none object-cover rounded-lg block sm:hidden" src={podcast.thumbnail} alt="" width="0" height="0" />
+				  		<Image class="w-20 h-20 sm:rounded-none object-cover rounded-lg block sm:hidden" src={podcast.thumbnail} alt="" width="0" height="0" />
 				  		<h1 className='text-md ms-4 block sm:hidden'>{podcast.title}</h1>
 					</div>
 				  <div class="sm:pt-6 pt-1 sm:p-5 text-center sm:text-left space-y-4">
