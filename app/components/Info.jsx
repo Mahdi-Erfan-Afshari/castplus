@@ -1,5 +1,6 @@
 'use client'
 import { useState } from "react"
+import { vazir } from "../utils/fonts"
 
 const Info = ({title, summary, transcript, refrences}) => {
 	const [displaySummery, setDisplaySummary] = useState(false)
@@ -13,6 +14,8 @@ const Info = ({title, summary, transcript, refrences}) => {
 		})
 		e.target.classList.add('info-active');
 	}
+
+	console.log(summary);
 
   return (
 	<div>
@@ -39,30 +42,30 @@ const Info = ({title, summary, transcript, refrences}) => {
 		</div>
 
 		<hr className="w-full" />
-		<div className="w-full h-auto rounded-md py-3 px-6 mt-8 mb-4 max-h-[650px] overflow-y-auto"  style={{display: displaySummery ? "block" : 'none'}} >
+		<div className="w-full h-auto rounded-md py-3 px-6 mt-8 mb-4 max-h-[500px] overflow-y-auto"  style={{display: displaySummery ? "block" : 'none'}} >
 		  <h1 className="text-center font-bold text-2xl mb-2">{title}</h1>
-		  <span className="flex justify-center text-gray-800">
-			<p className="text-center text-justify">
+		  <span className="flex justify-end text-gray-800">
+			<pre className={`${vazir.className} ${"leading-loose"}`}>
 				{summary}
-			</p>
+			</pre>
 		  </span>
 		</div>
 
-		<div className="w-full h-auto rounded-md py-3 px-6 mt-8 mb-4 max-h-[650px] overflow-y-auto"  style={{display: displayTranscript ? "block" : 'none'}} >
+		<div className="w-full h-auto rounded-md py-3 px-6 mt-8 mb-4 max-h-[500px] overflow-y-auto"  style={{display: displayTranscript ? "block" : 'none'}} >
 		  <h1 className="text-center font-bold text-2xl mb-2">{title}</h1>
-		  <span className="flex justify-center text-gray-800">
-			<p className="text-center text-justify">
+		  <span className="flex justify-end text-gray-800">
+		  <pre className={`${vazir.className} ${"leading-loose w-full "}`}>
 				{transcript}
-			</p>
+			</pre>
 		  </span>
 		</div>
 
-		<div className="w-full h-auto rounded-md py-3 px-6 mt-8 mb-4 max-h-[650px] overflow-y-auto"  style={{display: displayRefrences ? "block" : 'none'}} >
+		<div className="w-full h-auto rounded-md py-3 px-6 mt-8 mb-4 max-h-[500px] overflow-y-auto"  style={{display: displayRefrences ? "block" : 'none'}} >
 		  <h1 className="text-center font-bold text-2xl mb-2">{title}</h1>
-		  <span className="flex justify-center text-gray-800">
-			<p className="text-center text-justify">
+		  <span className="flex justify-end text-gray-800">
+		  <pre className={`${vazir.className} ${"leading-loose"}`}>
 				{refrences}
-			</p>
+			</pre>
 		  </span>
 		</div>
 	  </div>

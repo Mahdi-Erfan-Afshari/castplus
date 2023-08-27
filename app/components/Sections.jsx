@@ -2,23 +2,23 @@
 import { useState } from "react"
 import Info from "./Info"
 
-const Sections = ({data, podcasts}) => {
+const Sections = ({data, podcasts, isAudioPlay}) => {
 	var audio = data;
 	var podcastSections = podcasts.sections;
 	const sectionBtn = document.querySelectorAll('#section-btn');
-	const [isAudioAvailable, setIsAudioAvailable] = useState(false)
 
 	var btnIndex = 0;
-
+	
 	const changeCurrentTime = (e) => {
-		if(audio) {
-			var timeStart = Number(e.target.getAttribute('timeStart'));
-			audio.currentTime = timeStart;
-			sectionBtn.forEach((button) => {
-				button.classList.remove('btn-active')
-			})
-			e.target.classList.add('btn-active')
-		}
+		var timeStart = Number(e.target.getAttribute('timeStart'));
+		var audioTag = document.getElementsByTagName('audio')[0];
+		audioTag.currentTime = timeStart;
+		audioTag.play();
+		isAudioPlay(true);
+		sectionBtn.forEach((button) => {
+			button.classList.remove('btn-active')
+		})
+		e.target.classList.add('btn-active')
 	}
 
 	const changeActiveBtn = () => {
@@ -34,15 +34,20 @@ const Sections = ({data, podcasts}) => {
 			}
 			
 			if(audio.currentTime > latestTimeStart && audio.currentTime <= audio.duration) {
-				sectionBtn[i].classList.remove('btn-active')
+				sectionBtn[i].classList.remove('btn-active');
 				sectionBtn[(sectionBtn.length - 1)].classList.add('btn-active');
+				btnIndex = (sectionBtn.length - 1);
 			} else if (audio.currentTime >= timeStart && audio.currentTime < nextTimeStart) {
-				sectionBtn[i].classList.remove('btn-active')
+				sectionBtn[i].classList.remove('btn-active');
 				sectionBtn[btnIndex].classList.add('btn-active');
 			} else {
-				sectionBtn[i].classList.remove('btn-active')
+				sectionBtn[i].classList.remove('btn-active');
 				btnIndex++;
 			}
+			console.log('latestTimeStart' ,latestTimeStart);
+			console.log('timeStart' ,timeStart);
+			console.log('duration' ,audio.duration);
+			console.log('btnIndex' ,btnIndex);
 			i++
 		}
 	}
@@ -52,22 +57,22 @@ const Sections = ({data, podcasts}) => {
 	}
 
 	const getTitle = () => {
-		return podcastSections[btnIndex].title
+		return podcastSections[btnIndex].title;
 	}
 	var title = getTitle();
 
 	const getSummary = () => {
-		return podcastSections[btnIndex].summary
+		return podcastSections[btnIndex].summary;
 	}
 	var summary = getSummary();
 
 	const getTranscript = () => {
-		return podcastSections[btnIndex].transcript
+		return podcastSections[btnIndex].transcript;
 	}
 	var transcript = getTranscript();
 
 	const getRefrences = () => {
-		return podcastSections[btnIndex].refrences
+		return podcastSections[btnIndex].refrences;
 	}
 	var refrences = getRefrences();
 	

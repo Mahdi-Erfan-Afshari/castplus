@@ -177,10 +177,17 @@ body{
     display: none;
 }
 
-.text-justify{
-    text-justify: auto;
+pre{
+    white-space: break-spaces;
     direction: rtl;
+    text-align: justify;
+    text-justify: inter-word;
 }
+
+/* .text-justify{
+    /* text-justify:; */
+    /* direction: rtl; */
+/* }  */
 
 @keyframes spin {
     to {

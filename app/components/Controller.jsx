@@ -98,12 +98,12 @@ const Controller = ({ url , podcast }) => {
 				<p className='hidden md:inline-block md:text-md text-sm md:mx-3'> {showTime(currentTime)} </p>
 				<input id='progressBar' type="range" min="0" max="1000" onChange={(e) => controllerHandler(e)} value={valueProgress()} className="controller-input mx-3"/>
 				<div className='flex justify-between w-full md:w-auto'>
-					<p className='inline-block md:hidden md:text-md text-sm mt-3 md:mt-auto md:mx-3 ps-6'> {showTime(currentTime)} </p>
+					<p className='inline-block md:hidden md:text-md text-sm mt-3 md:mt-auto md:mx-3'> {showTime(currentTime)} </p>
 					<p className='md:text-md text-sm mt-3 md:mt-auto md:mx-3'> {showTime(duration)} </p>
 				</div>
 			</div>
 		</div>
-		<Sections data={audio.current} podcasts={podcast}/>
+		<Sections isAudioPlay={setPlay} data={audio.current} podcasts={podcast}/>
 
 	</div>
   )
