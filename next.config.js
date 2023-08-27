@@ -3,7 +3,7 @@
  */
 const nextConfig = {
     /* config options here */
-    serverActions: true,
+    // serverActions: true,
   }
    
   module.exports = nextConfig
