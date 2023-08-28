@@ -15,7 +15,6 @@ const Info = ({title, summary, transcript, refrences}) => {
 		e.target.classList.add('info-active');
 	}
 
-	console.log(summary);
 
   return (
 	<div>

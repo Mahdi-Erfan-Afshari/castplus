@@ -46,7 +46,6 @@ body{
 
 .controller span{
     position: relative;
-    width: 100%;
 }
 
 .controller-input{
@@ -71,7 +70,22 @@ body{
     transition: .2s;
 }
 
+.controller-input::-moz-range-thumb{
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 100%;
+    background: #fff;
+    border: #2e56f3 2px solid;
+    margin-bottom: 1px;
+    transition: .2s;
+}
+
 .controller-input:active::-webkit-slider-thumb{
+    background: #5eabdf;
+}
+
+.controller-input:active::-moz-range-thumb{
     background: #5eabdf;
 }
 
@@ -183,6 +197,47 @@ pre{
     text-align: justify;
     text-justify: inter-word;
 }
+
+#volume-range{
+    appearance: none;
+    outline: none;
+    background-color: #d3d3d3;
+    height: 2px;
+    border-radius: 5px;
+    transition: .2s;
+    cursor: pointer;
+}
+
+#volume-range::-webkit-slider-thumb{
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    background: #fff;
+    border: #2e56f3 2px solid;
+    margin-bottom: 1px;
+    transition: .2s;
+}
+
+#volume-range::-moz-range-thumb{
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    background: #fff;
+    border: #2e56f3 2px solid;
+    margin-bottom: 1px;
+    transition: .2s;
+}
+
+#volume-range:active::-webkit-slider-thumb{
+    background: #5eabdf;
+}
+
+#volume-range:active::-moz-range-thumb{
+    background: #5eabdf;
+}
+
 
 /* .text-justify{
     /* text-justify:; */

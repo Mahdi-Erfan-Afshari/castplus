@@ -1,36 +1,23 @@
-'use client'
-import { useState } from "react"
 import Info from "./Info"
 
 const Sections = ({data, podcasts, isAudioPlay}) => {
 	var audio = data;
 	var podcastSections = podcasts.sections;
 	const sectionBtn = document.querySelectorAll('#section-btn');
-
+	
 	var btnIndex = 0;
 	
-	const changeCurrentTime = (e) => {
-		var timeStart = Number(e.target.getAttribute('timeStart'));
-		var audioTag = document.getElementsByTagName('audio')[0];
-		audioTag.currentTime = timeStart;
-		audioTag.play();
-		isAudioPlay(true);
-		sectionBtn.forEach((button) => {
-			button.classList.remove('btn-active')
-		})
-		e.target.classList.add('btn-active')
-	}
-
 	const changeActiveBtn = () => {
+		var timeStart = Number(sectionBtn[btnIndex].getAttribute('timeStart'));
+		var latestTimeStart = Number(sectionBtn[(sectionBtn.length - 1)].getAttribute('timeStart'));
+		var nextTimeStart;
 		var i = 0;
-		while(i < sectionBtn.length) {
-			var timeStart = Number(sectionBtn[btnIndex].getAttribute('timeStart'));
-			var latestTimeStart = Number(sectionBtn[(sectionBtn.length - 1)].getAttribute('timeStart'));
-			var nextTimeStart;
-			if(btnIndex == (sectionBtn.length - 1)) {
-				nextTimeStart = Number(sectionBtn[btnIndex].getAttribute('timeStart'));
-			} else {
+		while(i < sectionBtn.length) {			
+			if(btnIndex < (sectionBtn.length - 1)) {
 				nextTimeStart = Number(sectionBtn[btnIndex + 1].getAttribute('timeStart'));
+			} else if(btnIndex == (sectionBtn.length - 1)) {
+				btnIndex--;
+				nextTimeStart = Number(sectionBtn[btnIndex].getAttribute('timeStart'));
 			}
 			
 			if(audio.currentTime > latestTimeStart && audio.currentTime <= audio.duration) {
@@ -44,12 +31,19 @@ const Sections = ({data, podcasts, isAudioPlay}) => {
 				sectionBtn[i].classList.remove('btn-active');
 				btnIndex++;
 			}
-			console.log('latestTimeStart' ,latestTimeStart);
-			console.log('timeStart' ,timeStart);
-			console.log('duration' ,audio.duration);
-			console.log('btnIndex' ,btnIndex);
 			i++
 		}
+	}
+	const changeCurrentTime = (e) => {
+		var timeStart = Number(e.target.getAttribute('timeStart'));
+		var audioTag = document.getElementsByTagName('audio')[0];
+		audioTag.currentTime = timeStart;
+		audioTag.play();
+		isAudioPlay(true);
+		sectionBtn.forEach((button) => {
+			button.classList.remove('btn-active')
+		})
+		e.target.classList.add('btn-active')
 	}
 
 	if(audio) {

@@ -1,15 +1,19 @@
 'use client'
 import { useState, useRef } from 'react'
-import {PiPlayDuotone} from 'react-icons/pi'
-import {PiPauseDuotone} from 'react-icons/pi'
-import {vazir} from '@/app/utils/fonts'
+import {BsPlayFill, BsPauseFill, BsVolumeDownFill, BsVolumeUpFill, BsVolumeMuteFill} from 'react-icons/bs'
+import {ImVolumeHigh, ImVolumeMedium, ImVolumeLow, ImVolumeMute2} from 'react-icons/im'
+import {vazir , lalezar} from '@/app/utils/fonts'
 import Sections from './Sections'
 import Image from 'next/image'
 
 const Controller = ({ url , podcast }) => {
-	const [play, setPlay] = useState(false)
-	const [currentTime, setCurrentTime] = useState(0)
-	const [duration, setDuration] = useState(0)
+	const [play, setPlay] = useState(false);
+	const [currentTime, setCurrentTime] = useState(0);
+	const [duration, setDuration] = useState(0);
+	const [volume, setVolume] = useState(0.7);
+	const [volumeToggle, setVolumeToggle] = useState(false);
+	const [previousVolume, setPreviousVolume] = useState(0);
+
 	const audio = useRef();
 	const togglePlay = () => {
 		const audio = document.querySelector('audio');
@@ -66,7 +70,11 @@ const Controller = ({ url , podcast }) => {
 	}
 
 	const valueProgress = () => {
-		return (currentTime * 1000) / duration
+		var value = (currentTime * 1000) / duration;
+		if(isNaN(value)) {
+			value = 0;
+		}
+		return value
 	}
 
 	const controllerHandler = (e) => {
@@ -76,6 +84,35 @@ const Controller = ({ url , podcast }) => {
 		setPlay(true)
 	}
 
+	const volumeValueProgress = () => {
+		var value = volume * 100;
+		if(isNaN(value)) {
+			value = 100;
+		}
+		return value
+	}
+
+	const volumeHandler = (e) => {
+		setVolume((e.target.value / 100));
+		audio.current.volume = (e.target.value / 100);
+		volumeValueProgress();
+	}
+
+	const toggleVolume = () => {
+		if(!volumeToggle) {
+			setPreviousVolume(volume);
+			setVolumeToggle(true);
+			setVolume(0)
+			audio.current.volume = 0;
+		} else {
+			setVolumeToggle(false);
+			setVolume(previousVolume);
+			audio.current.volume = previousVolume;
+		}
+	}
+
+	
+
   return (
 	<div className={`${vazir.className} ${'container mx-auto'}`}>
 		<div className='flex w-full justify-center '>
@@ -84,27 +121,41 @@ const Controller = ({ url , podcast }) => {
 			</div>
 		</div>
 		<h1 className='md:text-3xl sm:text-2xl text-xl font-bold mt-6 text-center'>{podcast.title}</h1>
+		<span className={`${lalezar.className} ${'flex justify-center'}`}><p className='bg-SupLightBlue shadow-md w-fit px-1 rounded-md pt-1 text-[#666] text-sm md:mt-2 sm:mt-2 '>{`${podcast.published_date} | ${podcast.published_time}`}</p></span>
 
-		<div className="controller w-full flex flex-row justify-center bg-white rounded-xl px-4 py-6 shadow-md mt-12">
-			<div className="flex justify-center">
-				<span className='flex justify-center md:me-auto me-2' onClick={togglePlay}>
-					{!play ? <PiPlayDuotone className='text-Blue text-3xl' /> : <PiPauseDuotone  className='text-Blue text-3xl'/>}
-				</span>
-			</div>
+		<div className="controller w-full flex flex-row justify-center bg-white rounded-xl p-6 shadow-md mt-12">
 			<audio ref={audio} src={url} onTimeUpdate={(e) =>{changeCurrentTime(e)}
 			} onEnded={togglePlay}></audio>
 
-			<div className='flex flex-col md:flex-row justify-center items-center mt-[15px] md:mt-1 w-full me-4 md:me-0'>
-				<p className='hidden md:inline-block md:text-md text-sm md:mx-3'> {showTime(currentTime)} </p>
-				<input id='progressBar' type="range" min="0" max="1000" onChange={(e) => controllerHandler(e)} value={valueProgress()} className="controller-input mx-3"/>
-				<div className='flex justify-between w-full md:w-auto'>
-					<p className='inline-block md:hidden md:text-md text-sm mt-3 md:mt-auto md:mx-3'> {showTime(currentTime)} </p>
-					<p className='md:text-md text-sm mt-3 md:mt-auto md:mx-3'> {showTime(duration)} </p>
+			<div className='flex flex-col w-full'>
+				<div className="flex items-center w-full">
+					<p className='hidden md:block md:text-md text-sm mt-3 md:mt-auto'> {showTime(currentTime)} </p>
+					<input id='progressBar' className="controller-input md:mx-3" type="range" min="0" max="1000" onChange={(e) => controllerHandler(e)} value={valueProgress()}/>
+					<p className='hidden md:block md:text-md text-sm mt-3 md:mt-auto'> {showTime(duration)} </p>
+				</div>
+				<div className="grid grid-cols-1 md:grid-cols-3 justify-center items-center w-full mt-3">
+					<div className='col-span-1'>
+						<div className="flex justify-between md:hidden mt-1">
+							<p className='md:text-md text-sm md:mt-auto'> {showTime(currentTime)} </p>
+							<p className='md:text-md text-sm md:mt-auto'> {showTime(duration)} </p>
+						</div>
+						<div className='flex items-center volume-handler sm:w-full md:w-fit mt-3 md:mt-0'>
+							<span className='hover:bg-[#eee] bg-none w-fit rounded-full p-2 duration-150 me-2' onClick={toggleVolume}>
+								{volume == 0 ? <ImVolumeMute2 className='text-lg text-[#333444]'/> : volume > 0 && volume <= .33 ? <ImVolumeLow className='text-lg text-[#333444]'/> : volume > .33 && volume <= .66 ? <ImVolumeMedium className='text-lg text-[#333444]'/> : <ImVolumeHigh className='text-lg text-[#333444]' />}
+							</span>
+							<input id='volume-range' className='lg:w-60 md:48 w-full' type="range" min='0' max='100' onChange={(e) => volumeHandler(e)} value={volumeValueProgress()} />
+							<p className='ms-2 mt-[2px]'>{(volume * 100).toFixed() + '%'}</p>
+						</div>
+					</div>
+					<div className='flex justify-center col-span-1'>
+						<div className='bg-Blue rounded-full w-fit p-2 shadow-md shadow-LightBlue hover:bg-[#382ef3] mt-2 md:mt-0 duration-150' onClick={togglePlay}>
+							{!play ? <BsPlayFill className='text-white text-3xl' /> : <BsPauseFill  className='text-white text-3xl'/>}
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 		<Sections isAudioPlay={setPlay} data={audio.current} podcasts={podcast}/>
-
 	</div>
   )
 }
