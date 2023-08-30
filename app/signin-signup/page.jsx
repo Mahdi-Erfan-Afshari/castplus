@@ -1,15 +1,14 @@
 'use client'
+import { useRouter } from 'next/navigation'
 import Image from 'next/image';
 import Logo from '@/app/img/Group1.svg'
-import LogoBlack from '@/app/img/Group.svg'
 import { nunito } from '../utils/fonts';
-import Link from 'next/link';
 import { useState , useEffect} from 'react';
 import {VscEye, VscEyeClosed} from 'react-icons/vsc'
 
 const LoginSignUpPage = () => {
-	var [url, setUrl] = useState('');
-
+	const router = useRouter()
+	
 	const changeToLoginForm = () => {
 		let signUpBtn = document.getElementById('signup-btn');
 		let loginBtn = document.getElementById('login-btn');
@@ -33,16 +32,12 @@ const LoginSignUpPage = () => {
 		signupForm.classList.remove('remove');
 		loginForm.classList.add('remove');
 	}
-	
 	const checkPasswordAndUserName = () => {
 		let username = document.getElementById('signin-username-input');
 		let password = document.getElementById('signin-password-input');
 		let loginError = document.getElementById('login-error')
-		let loginLink = document.getElementById('login-link')
 		if(username.value === 'admin' && password.value === 'admin') {
-			username.classList.remove('input-form-red')
-			password.parentElement.classList.remove('red-border-b')
-			setUrl('/podcasts')
+			router.push('/podcasts', { scroll: false })
 		} else {
 			loginError.classList.remove('hidden');
 			username.style.borderColor = '#f32e2e'
@@ -50,6 +45,7 @@ const LoginSignUpPage = () => {
 			password.style.borderColor = '#f32e2e'
 			password.style.color = '#f32e2e'
 			username.classList.add('input-form-red')
+			password.classList.add('input-form-red')
 			password.parentElement.classList.add('red-border-b')
 		}
 	}
@@ -58,9 +54,6 @@ const LoginSignUpPage = () => {
 		let username = document.getElementById('signin-username-input');
 		let password = document.getElementById('signin-password-input');
 		let loginLink = document.getElementById('login-link')
-		if(username.value !== '' && password.value !== '') {
-			loginLink.click()
-		}
 		password.addEventListener('focus', () => {
 			password.parentElement.classList.add('blue-border-b')
 		})
@@ -82,7 +75,7 @@ const LoginSignUpPage = () => {
 	})
 
 	const [isSignInEyeToggle, setIsSignInEyeToggle] = useState(false)
-	const toggleEye = () => {
+	const toggleSigninEye = () => {
 		let password = document.getElementById('signin-password-input');
 		if(isSignInEyeToggle) {
 			password.setAttribute('type', 'password')
@@ -119,10 +112,10 @@ const LoginSignUpPage = () => {
 				<input id="signin-username-input" type="text" className="input-form text-xl border-b-2 border-[#ddd] w-full py-2 px-5" placeholder="User Name" />
 				<div className='input-form flex items-center border-b-2 border-[#ddd] mt-10 duration-150'>
 					<input id="signin-password-input" type="password" className="text-xl w-full py-2 px-5" placeholder="Password" />
-					<span className='text-2xl cursor-pointer text-[#666]' onClick={toggleEye}>{!isSignInEyeToggle ?<VscEye /> : <VscEyeClosed/>}</span>
+					<span className='text-2xl cursor-pointer text-[#666]' onClick={toggleSigninEye}>{!isSignInEyeToggle ?<VscEye /> : <VscEyeClosed/>}</span>
 				</div>
-				<p className="hover:underline text-Blue text-lg cursor-pointer mt-6 ms-2 duration-150">Forgot password?</p>
-				<Link id='login-link' onClick={checkPasswordAndUserName} href={url}><button href='/podcasts' className="hover:text-Blue hover:bg-white hover:shadow-none border-2 border-Blue text-xl rounded-2xl bg-Blue text-white shadow-lg shadow-LightBlue w-full px-3 py-4 mt-5 duration-150">Log In</button></Link>
+				<p className="hover:underline text-Blue text-lg cursor-pointer mt-6 ms-2 duration-150 select-none">Forgot password?</p>
+				<button id='login-link' onClick={checkPasswordAndUserName} type='submit' className="hover:text-Blue hover:bg-white hover:shadow-none border-2 border-Blue text-xl rounded-2xl bg-Blue text-white shadow-lg shadow-LightBlue w-full px-3 py-4 mt-5 duration-150">Log In</button>
 				<span className="flex justify-center space-x-2 mt-8">
 					<p className="text-lg ">Not a member?</p>
 					<p className="hover:underline text-Blue text-lg cursor-pointer duration-150" onClick={changeToSignUpForm}>Sign Up now</p>

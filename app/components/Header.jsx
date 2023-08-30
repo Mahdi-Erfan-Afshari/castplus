@@ -23,7 +23,7 @@ const Header = () => {
 						<Link href='/contactus'><button className='hover:text-black text-Gray mx-1 py-2 px-4 duration-150'>Contact Us</button></Link>
 					</div>
 					<div className='flex justify-end'>
-						<Link href='/login-signup'><button className='hover:text-Blue hover:bg-SupLightBlue hover:shadow-none bg-Blue text-white border-2 border-Blue rounded-lg font-semibold shadow-lg shadow-LightBlue mx-1 py-3 px-5 duration-150 col-span-1'>Log In / Sign Up</button></Link>
+						<Link href='/signin-signup'><button className='hover:text-Blue hover:bg-SupLightBlue hover:shadow-none bg-Blue text-white border-2 border-Blue rounded-lg font-semibold shadow-lg shadow-LightBlue mx-1 py-3 px-5 duration-150 col-span-1'>Log In / Sign Up</button></Link>
 					</div>
 				</div>
 				
@@ -44,7 +44,7 @@ const Header = () => {
 					<a href="#" class="hover:text-black hover:bg-BrightSupLightOrange text-Gray p-4 rounded-lg text-center duration-300 my-1">Contact Us</a> */}
 					<Link href='/' onClick={toggleHamburgerMenu}><button className='hover:text-black text-Gray p-4 text-center w-full duration-150 my-1'>Home</button></Link>
 					<Link href='/contactus' onClick={toggleHamburgerMenu}><button className='hover:text-black text-Gray p-4 text-center w-full duration-150 my-1'>Contact Us</button></Link>
-					<Link href='/login-signup' onClick={toggleHamburgerMenu}><button className="hover:text-Blue hover:bg-SupLightBlue hover:shadow-none bg-Blue text-white w-full border-2 border-Blue rounded-lg font-semibold shadow-lg shadow-LigthBlue mx-1 py-3 px-5 duration-150 mt-5">Log In / Sign Up</button></Link>
+					<Link href='/signin-signup' onClick={toggleHamburgerMenu}><button className="hover:text-Blue hover:bg-SupLightBlue hover:shadow-none bg-Blue text-white w-full border-2 border-Blue rounded-lg font-semibold shadow-lg shadow-LigthBlue mx-1 py-3 px-5 duration-150 mt-5">Log In / Sign Up</button></Link>
 				</div>
 
 			</nav>
