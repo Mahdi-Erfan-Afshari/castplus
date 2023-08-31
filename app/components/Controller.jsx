@@ -10,7 +10,7 @@ import Image from 'next/image'
 import AudioLoading from './AudioLoading'
 
 const Controller = ({ url , podcast }) => {
-	const [play, setPlay] = useState(false);
+	const [play, setPlay] = useState(true);
 	const [autoPlay, setAutoPlay] = useState(true)
 	const [currentTime, setCurrentTime] = useState(0);
 	const [duration, setDuration] = useState(0);
@@ -19,19 +19,19 @@ const Controller = ({ url , podcast }) => {
 	const [previousVolume, setPreviousVolume] = useState(0);
 
 	const audio = useRef();
-	if(typeof document !== 'undefined' && !!document.cookie) {
-		if(audio.current !== undefined && autoPlay){
-			audio.current.pause()
-			setAutoPlay(false)
-		}
-	}
-
+	
 	const togglePlay = () => {
 		const audio = document.querySelector('audio');
 		!play ? audio.play() : audio.pause();
 		setPlay(!play)
 	}
-
+	
+	if(typeof document !== 'undefined') {
+		if(audio.current !== undefined && autoPlay == true){
+			togglePlay()
+			setAutoPlay(false)
+		}
+	}
 	const changeCurrentTime = (event) => {
 		if(event.target.duration && event.target.currentTime){
 			setCurrentTime(event.target.currentTime)
@@ -162,7 +162,7 @@ const Controller = ({ url , podcast }) => {
 
 		<div className="controller w-full flex flex-row justify-center bg-white rounded-xl p-6 shadow-md mt-12">
 
-			{audio.current !== undefined ? <div className='flex flex-col w-full'>
+			{audio.current == undefined ? <AudioLoading /> : <div className='flex flex-col w-full'>
 				<div className="flex items-center w-full">
 					<div className='lg:flex hidden items-center volume-handler sm:w-full md:w-24 mt-3 md:mt-0'>
 						<div className='volume-body flex relative'>
@@ -198,7 +198,7 @@ const Controller = ({ url , podcast }) => {
 						<span onClick={forwardCurrentTime} className='bg-white p-2 rounded-full shadow-md text-2xl text-[#555]'><RiForward30Line /></span>
 					</div>
 				</div>
-			</div>: <AudioLoading />}
+			</div>}
 		</div>
 		
 		<Sections isAudioPlay={setPlay} data={audio.current} podcasts={podcast}/>
