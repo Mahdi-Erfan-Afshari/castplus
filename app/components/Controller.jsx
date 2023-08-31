@@ -1,5 +1,5 @@
 'use client'
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import {BsPlayFill, BsPauseFill, BsVolumeDownFill, BsVolumeUpFill, BsVolumeMuteFill} from 'react-icons/bs'
 import {ImVolumeHigh, ImVolumeMedium, ImVolumeLow, ImVolumeMute2} from 'react-icons/im'
 import {RiForward30Line, RiReplay10Line} from 'react-icons/ri'
@@ -19,14 +19,12 @@ const Controller = ({ url , podcast }) => {
 	const [previousVolume, setPreviousVolume] = useState(0);
 
 	const audio = useRef();
-	// if(typeof document !== 'undefined' && !!document.cookie) {
-	// useEffect(() => {
+	if(typeof document !== 'undefined' && !!document.cookie) {
 		if(audio.current !== undefined && autoPlay){
 			audio.current.pause()
 			setAutoPlay(false)
 		}
-	// })
-	// }
+	}
 
 	const togglePlay = () => {
 		const audio = document.querySelector('audio');
