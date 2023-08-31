@@ -20,12 +20,12 @@ const Controller = ({ url , podcast }) => {
 
 	const audio = useRef();
 	// if(typeof document !== 'undefined' && !!document.cookie) {
-		useEffect(() => {
-			if(audio.current !== undefined && autoPlay){
-				audio.current.pause()
-				setAutoPlay(false)
-			}
-		})
+	// useEffect(() => {
+		if(audio.current !== undefined && autoPlay){
+			audio.current.pause()
+			setAutoPlay(false)
+		}
+	// })
 	// }
 
 	const togglePlay = () => {
@@ -164,7 +164,7 @@ const Controller = ({ url , podcast }) => {
 
 		<div className="controller w-full flex flex-row justify-center bg-white rounded-xl p-6 shadow-md mt-12">
 
-			{audio.current !== undefined ? ` ${audio.current.pause()} ${<div className='flex flex-col w-full'>
+			{audio.current !== undefined ? <div className='flex flex-col w-full'>
 				<div className="flex items-center w-full">
 					<div className='lg:flex hidden items-center volume-handler sm:w-full md:w-24 mt-3 md:mt-0'>
 						<div className='volume-body flex relative'>
@@ -200,7 +200,7 @@ const Controller = ({ url , podcast }) => {
 						<span onClick={forwardCurrentTime} className='bg-white p-2 rounded-full shadow-md text-2xl text-[#555]'><RiForward30Line /></span>
 					</div>
 				</div>
-			</div>}`: <AudioLoading />}
+			</div>: <AudioLoading />}
 		</div>
 		
 		<Sections isAudioPlay={setPlay} data={audio.current} podcasts={podcast}/>
