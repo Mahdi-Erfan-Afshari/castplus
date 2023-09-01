@@ -7,7 +7,6 @@ import SearchPodcasts from './SearchPodcasts';
 const PodcastPage = () => {
 	const [podcasts, setPodcast] = useState([]);
 	const [loading, setLoading] = useState(false);
-	console.log(loading);
 
 	useEffect(() => {
 		const fetchPodcasts = async () => {

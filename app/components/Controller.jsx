@@ -9,7 +9,7 @@ import Sections from './Sections'
 import Image from 'next/image'
 import AudioLoading from './AudioLoading'
 
-const Controller = ({ url , podcast }) => {
+const Controller = ({ url , episode }) => {
 	const [play, setPlay] = useState(true);
 	const [autoPlay, setAutoPlay] = useState(true)
 	const [currentTime, setCurrentTime] = useState(0);
@@ -150,16 +150,16 @@ const Controller = ({ url , podcast }) => {
 	}
 
   return (
-	<div className={`${vazir.className} ${'container mx-auto'}`}>
+	<div className={`${vazir.className}`}>
 			<audio ref={audio} src={url} onTimeUpdate={(e) =>{changeCurrentTime(e)}
 			} onEnded={togglePlay} autoPlay></audio>
-		<div className='flex w-full justify-center '>
+		{/* <div className='flex w-full justify-center '>
 			<div className='rounded-full overflow-hidden'>
 				<Image width='80' height='80' className='object-cover sm:w-40 sm:h-40 w-24 h-24' alt='podcast thumbnail' src={podcast.thumbnail}/>
 			</div>
 		</div>
-		<h1 className='md:text-3xl sm:text-2xl text-xl font-bold mt-6 text-center'>{podcast.title}</h1>
-		<span className={`${lalezar.className} ${'flex justify-center'}`}><p className='bg-SupLightBlue shadow-md w-fit px-1 rounded-md pt-1 text-[#666] text-sm md:mt-2 sm:mt-2 '>{`${podcast.published_date} | ${podcast.published_time}`}</p></span>
+		<h1 className='md:text-3xl sm:text-2xl text-xl font-bold mt-6 text-center'>{podcast.title}</h1> */}
+		{/* <span className={`${lalezar.className} ${'flex justify-center'}`}><p className='bg-SupLightBlue shadow-md w-fit px-1 rounded-md pt-1 text-[#666] text-sm md:mt-2 sm:mt-2 '>{`${podcast.published_date} | ${podcast.published_time}`}</p></span> */}
 
 		<div className="controller w-full flex flex-row justify-center bg-white rounded-xl p-6 shadow-md mt-12">
 
@@ -202,7 +202,7 @@ const Controller = ({ url , podcast }) => {
 			</div>}
 		</div>
 		
-		<Sections isAudioPlay={setPlay} data={audio.current} podcasts={podcast}/>
+		<Sections isAudioPlay={setPlay} data={audio.current} episodes={episode}/>
 	</div>
   )
 }

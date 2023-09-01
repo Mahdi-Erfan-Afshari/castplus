@@ -4,9 +4,9 @@ import Info from "./Info"
 import {IoIosArrowForward, IoIosArrowBack} from 'react-icons/io'
 import { useEffect, useState } from "react";
 
-const Sections = ({data, podcasts, isAudioPlay}) => {
+const Sections = ({data, episodes, isAudioPlay}) => {
 	var audio = data;
-	var podcastSections = podcasts.sections;
+	var episodeSections = episodes.sections;
 	const sectionBtn = document.querySelectorAll('#section-btn');
 	var btnIndex = 0;
 
@@ -154,22 +154,22 @@ const Sections = ({data, podcasts, isAudioPlay}) => {
 	}, [activeBtnIndex])
 	
 	const getTitle = () => {
-		return podcastSections[btnIndex].title;
+		return episodeSections[btnIndex].title;
 	}
 	var title = getTitle();
 	
 	const getSummary = () => {
-		return podcastSections[btnIndex].summary;
+		return episodeSections[btnIndex].summary;
 	}
 	var summary = getSummary();
 	
 	const getTranscript = () => {
-		return podcastSections[btnIndex].transcript;
+		return episodeSections[btnIndex].transcript;
 	}
 	var transcript = getTranscript();
 	
 	const getRefrences = () => {
-		return podcastSections[btnIndex].refrences;
+		return episodeSections[btnIndex].refrences;
 	}
 	var refrences = getRefrences();
 
@@ -181,17 +181,17 @@ const Sections = ({data, podcasts, isAudioPlay}) => {
 				<div className="relative ms-8 me-8">
 					<div id="section-body" className="snap-x relative bg-white overflow-x-auto px-2 py-4 scroll-smooth">
 						<div className="section-child inline-flex relative">
- 							{podcastSections.map((section) => (
+ 							{episodeSections.map((section) => (
 								 <div className="snap-end relative">
-									<button id="section-btn" className="overflow-hidden relative rounded-lg bg-White md:py-8 py-7 px-3 md:w-[210px] w-[170px] sm:text-md md:text-[16px] text-sm mx-1 duration-150 inline-block select-none" timeStart={section.timeStart} sectionNumber={podcastSections.indexOf(section)} onClick={(e) => changeCurrentTime(e)}>
+									<button id="section-btn" className="overflow-hidden relative rounded-lg bg-White md:py-8 py-7 px-3 md:w-[210px] w-[170px] sm:text-md md:text-[16px] text-sm mx-1 duration-150 inline-block select-none" timeStart={section.timeStart} sectionNumber={episodeSections.indexOf(section)} onClick={(e) => changeCurrentTime(e)}>
 										<span className="inline-block absolute top-0 left-0 w-full h-full z-20">
-											<span className="flex items-center justify-center w-full h-full" timeStart={section.timeStart} sectionNumber={podcastSections.indexOf(section)} onClick={(e) => changeCurrentTime(e)}>
+											<span className="flex items-center justify-center w-full h-full" timeStart={section.timeStart} sectionNumber={episodeSections.indexOf(section)} onClick={(e) => changeCurrentTime(e)}>
 												{section.title}
 											</span>
 										</span>
 										<span className="inline-block absolute top-0 left-0 bg-[#b8c7ff26] w-0 h-full z-10" ></span>
 									</button>
-									<p className={`${lalezar.className} ${"section-duration absolute top-[4px] left-[12px] text-sm text-[#bbb] select-none"}`}>{sectionDurations[podcastSections.indexOf(section)]}</p>
+									<p className={`${lalezar.className} ${"section-duration absolute top-[4px] left-[12px] text-sm text-[#bbb] select-none"}`}>{sectionDurations[episodeSections.indexOf(section)]}</p>
 								</div>
 							))}
 						</div>
