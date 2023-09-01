@@ -32,6 +32,7 @@ const Controller = ({ url , podcast }) => {
 			setAutoPlay(false)
 		}
 	}
+	
 	const changeCurrentTime = (event) => {
 		if(event.target.duration && event.target.currentTime){
 			setCurrentTime(event.target.currentTime)
@@ -166,10 +167,10 @@ const Controller = ({ url , podcast }) => {
 				<div className="flex items-center w-full">
 					<div className='lg:flex hidden items-center volume-handler sm:w-full md:w-24 mt-3 md:mt-0'>
 						<div className='volume-body flex relative'>
-							<div className='volume-input flex items-center absolute bottom-[110px] right-[-62px] w-48 bg-white rotate-[-90deg] h-10 p-4 rounded-md shadow-md duration-100' onMouseEnter={volumeFadeIn} onMouseLeave={volumeFadeOut}>
+							<div className='volume-input flex items-center absolute bottom-[110px] right-[-85px] w-48 bg-white rotate-[-90deg] h-10 p-4 rounded-md shadow-md duration-100' onMouseEnter={volumeFadeIn} onMouseLeave={volumeFadeOut}>
 								<input id='volume-range' className='w-full' type="range" min='0' max='100' onChange={(e) => volumeHandler(e)} value={volumeValueProgress()} onMouseEnter={volumeFadeIn}/>
 							</div>
-							<span className='volume-icon w-fit h-fit rounded-full p-2 duration-150 me-[15px]' onMouseEnter={volumeFadeIn} onMouseLeave={volumeFadeOut} onClick={toggleVolume}>
+							<span className='volume-icon w-fit h-fit rounded-full p-2 duration-150 me-[-10px]' onMouseEnter={volumeFadeIn} onMouseLeave={volumeFadeOut} onClick={toggleVolume}>
 								{volume == 0 ? <ImVolumeMute2 className='text-lg text-[#333444]'/> : volume > 0 && volume <= .33 ? <ImVolumeLow className='text-lg text-[#333444]'/> : volume > .33 && volume <= .66 ? <ImVolumeMedium className='text-lg text-[#333444]'/> : <ImVolumeHigh className='text-lg text-[#333444]' />}
 							</span>
 						</div>
