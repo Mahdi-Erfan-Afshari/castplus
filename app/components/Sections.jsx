@@ -96,6 +96,7 @@ const Sections = ({data, episodes, isAudioPlay}) => {
 	const [sectionScrollLeft, setSectionScrollLeft] = useState(0)
 	const removeScrollBtn = () => {
 		var sectionBody = document.getElementById('section-body')
+		var scrollWidth = document.getElementById('section-btn').scrollWidth
 		var scrollForwardBtn = document.getElementById('scroll-forward-btn')
 		var scrollBackwardBtn = document.getElementById('scroll-backward-btn')
 		if(sectionScrollLeft <= 0) {
@@ -104,7 +105,7 @@ const Sections = ({data, episodes, isAudioPlay}) => {
 			scrollBackwardBtn.style.color = '#2e56f3'
 		}
 		
-		if((sectionScrollLeft + 20) >= (sectionBody.scrollWidth - sectionBody.clientWidth)) {
+		if(sectionScrollLeft >= (sectionBody.scrollWidth - sectionBody.clientWidth - scrollWidth)) {
 			scrollForwardBtn.style.color = '#ededed'
 		} else {
 			scrollForwardBtn.style.color = '#2e56f3'
@@ -128,12 +129,12 @@ const Sections = ({data, episodes, isAudioPlay}) => {
 		var sectionBody = document.getElementById('section-body')
 		sectionBody.scrollLeft -= scrollWidth
 		setSectionScrollLeft(sectionBody.scrollLeft -= (scrollWidth + 10))
-		removeScrollBtn()
+		removeScrollBtn();
 	}
 	
 	if(audio) {
 		changeActiveBtn();
-		sectionDuration()
+		sectionDuration();
 		var activeButton;
 		var activeBtnIndex;
 
@@ -146,11 +147,11 @@ const Sections = ({data, episodes, isAudioPlay}) => {
 	}
 
 	useEffect(() => {
-		var scrollWidth = document.getElementById('section-btn').scrollWidth
-		var sectionBody = document.getElementById('section-body')
+		var scrollWidth = document.getElementById('section-btn').scrollWidth;
+		var sectionBody = document.getElementById('section-body');
 
-		sectionBody.scrollTo(Number((activeBtnIndex - Math.trunc((sectionBody.clientWidth / scrollWidth) - 2)) * scrollWidth) , 0)
-		setSectionScrollLeft(sectionBody.scrollLeft)
+		sectionBody.scrollTo(Number((activeBtnIndex - Math.trunc((sectionBody.clientWidth / scrollWidth) - 2)) * scrollWidth) , 0);
+		setSectionScrollLeft(Number((activeBtnIndex - Math.trunc((sectionBody.clientWidth / scrollWidth) - 2)) * scrollWidth));
 	}, [activeBtnIndex])
 	
 	const getTitle = () => {
