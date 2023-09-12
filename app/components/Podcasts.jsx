@@ -1,18 +1,21 @@
 'use client'
-import {vazir , lalezar} from '@/app/utils/fonts'
+import {vazir , lalezar, nunito} from '@/app/utils/fonts'
 import { AiFillStar } from 'react-icons/ai';
 import Link from 'next/link';
 import Image from 'next/image';
 import SearchPodcasts from './SearchPodcasts';
 import { useState } from 'react';
+import SearchLoading from "@/app/components/SearchLoading"
+import NoResult from '@/app/img/NoResult.svg'
 
 const Podcasts = ({data}) => {
 	const [podcasts, setPodcasts] = useState(data);
+	const [loading, setLoading] = useState(false);
 
   return (
 	<>
-		<SearchPodcasts getSearchResults={(results) => setPodcasts(results)}/>
-		{podcasts.length === 0 ? <p className='text-center'>This Podcast Is Not Found</p> : <div className='grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 sm:mx-0 mx-4 gap-x-6 gap-y-10 mt-16'>
+		<SearchPodcasts setLoading={setLoading} getSearchResults={(results) => setPodcasts(results)}/>
+		{ loading ? <SearchLoading /> : podcasts.length === 0 ? <div className={`${nunito.className} ${'flex items-center justify-center h-[60vh] w-full text-lg'}`}><Image src={NoResult} /></div> : <div className='grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 sm:mx-0 mx-4 gap-x-6 gap-y-10 mt-16'>
 			{podcasts.map((podcast) => (
 				<>
 			  	<Link href={`/podcasts/${podcast.id}`} key={podcast.id} className={vazir.className}>
