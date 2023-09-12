@@ -1,7 +1,7 @@
 const AudioLoading = () => {
   return (
 	<div className="audio-loading flex flex-col justify-center items-center">
-		<div className="flex space-x-[5px] w-full h-[40px] items-center justify-center">
+		<div className="flex space-x-1 w-full h-[40px] items-center justify-center">
 			<span className="loading-item loading-item1"></span>
 			<span className="loading-item loading-item2"></span>
 			<span className="loading-item loading-item3"></span>
