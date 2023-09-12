@@ -12,6 +12,7 @@
   "dependencies": {
     "@netlify/plugin-nextjs": "^4.39.2",
     "autoprefixer": "10.4.14",
+    "mongodb": "^6.0.0",
     "next": "13.4.9",
     "postcss": "8.4.27",
     "react": "18.2.0",

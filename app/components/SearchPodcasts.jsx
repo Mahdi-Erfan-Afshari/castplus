@@ -3,7 +3,7 @@ import { useState } from 'react';
 import {vazir } from '@/app/utils/fonts'
 import {CgSearch} from 'react-icons/cg';
 
-const SearchPodcasts = ({ getSearchResults, setLoading }) => {
+const SearchPodcasts = ({ getSearchResults }) => {
 	const [query, setQuery] = useState('');
 	const handleSubmit = async (e) => {
 		e.preventDefault();
