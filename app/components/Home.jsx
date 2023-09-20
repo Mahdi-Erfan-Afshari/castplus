@@ -18,7 +18,7 @@ const HomePage = () => {
 		</div>
 
 		<div className='flex justify-center mt-4'>
-			<Image className='md:block hidden xl:w-[1000px] lg:w-[850px] md:w-[700px] xl:top-48 lg:top-64 md:top-82 top-auto w-11/12 box-border absolute  z-0 mt-2' src={Home} alt='picture' />
+			<Image className='md:block hidden xl:w-[1000px] lg:w-[850px] md:w-[700px] xl:top-48 lg:top-64 md:top-82 top-auto w-11/12 box-border absolute  z-0 xl:mt-8 mt-2' src={Home} alt='picture' />
 			<Image className='md:hidden block xl:w-[1000px] lg:w-[850px] md:w-[700px] xl:top-48 lg:top-58 md:top-60 top-auto w-full box-border absolute  z-0 mt-2' src={MobileHome} alt='picture' />
 		</div>
 	</div>

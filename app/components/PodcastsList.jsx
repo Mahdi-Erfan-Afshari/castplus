@@ -15,7 +15,7 @@ const PodcastPage = async () => {
 	const podcasts = await fetchPodcasts();
 
   return (
-	<div className='xl:container xl:mx-auto container mx-auto p-6'>
+	<div className='xl:container xl:mx-auto container mx-auto  mt-6'>
 		<Podcasts data={podcasts} />
 	</div>
   )
