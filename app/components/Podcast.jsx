@@ -19,9 +19,9 @@ const Podcast = async ({ id }) => {
 	<div>
 	  	{podcast.map((podcast) => (
 			<div className='xl:container xl:mx-auto container mx-auto p-6'>
-				<div className='relative bg-white overflow-hidden rounded-xl mb-12 h-full'>
+				<div className='relative bg-white overflow-hidden rounded-xl sm:mb-6 md:mb-8 h-full'>
 					<div className='w-full'>
-						<Image className='object-cover w-full lg:h-full md:h-52 h-44' src={Banner} alt='Banner' />
+						<Image className='object-cover w-full lg:h-full md:h-52 sm:h-44 h-24' src={Banner} alt='Banner' />
 					</div>
 					<div className='lg:block hidden'>
 						<div className='relative flex flex-row pt-3 px-6'>
@@ -72,18 +72,18 @@ const Podcast = async ({ id }) => {
 									<div className='flex items-center w-full sm:ms-6 ms-2'>
 										<div className='relative flex items-center sm:space-x-5 space-x-3'>
 											<div className='flex flex-col justify-center items-center'>
-												<p className='font-semibold sm:text-md text-sm'>{podcast.episodes.length}</p>
-												<p className='sm:text-xs text-[10px] text-Gray'>episodes</p>
+												<p className='font-semibold text-md'>{podcast.episodes.length}</p>
+												<p className='text-xs text-Gray'>episodes</p>
 											</div>
 											<span className='w-[.8px] h-[30px] bg-[rgb(232,234,237)]'></span>
 											<div className='flex flex-col justify-center items-center'>
-												<p className='font-semibold sm:text-md text-sm'>24</p>
-												<p className='sm:text-xs text-[10px] text-Gray'>followers</p>
+												<p className='font-semibold text-md'>24</p>
+												<p className='text-xs text-Gray'>followers</p>
 											</div>
 											<span className='w-[.8px] h-[30px] bg-[rgb(232,234,237)]'></span>
 											<div className='flex flex-col justify-center items-center'>
-												<p className='font-semibold sm:text-md text-sm'>5</p>
-												<p className='sm:text-xs text-[10px] text-Gray'>following</p>
+												<p className='font-semibold text-md'>5</p>
+												<p className='text-xs text-Gray'>following</p>
 											</div>
 										</div>
 									</div>
@@ -92,7 +92,7 @@ const Podcast = async ({ id }) => {
 							<div className='sm:px-6 px-2'>
 								<div className='flex flex-col h-full'>
 									<h1 className={`${vazirBold.className} ${'md:text-2xl sm:text-xl font-black'}`}>{podcast.name}</h1>
-									<p className={`${vazir.className} ${'md:text-sm sm:text-xs text-[10px] text-Gray mt-1 w-full'}`}>{podcast.about}</p>
+									<p className={`${vazir.className} ${'md:text-sm text-xs text-Gray mt-1 w-full'}`}>{podcast.about}</p>
 								</div>
 
 								<div className='sm:my-6 my-3'>
@@ -101,6 +101,11 @@ const Podcast = async ({ id }) => {
 							</div>
 						</div>
 					</div>
+				</div>
+				<div className='flex items-center space-x-1'>
+					<span className='w-full h-[.8px] bg-Gray'></span>
+					<p className='mb-1 text-Gray text-sm font-semibold'>episodes</p>
+					<span className='w-full h-[.8px] bg-Gray'></span>
 				</div>
 				<EpisodeList data={podcast} />
 			</div>
