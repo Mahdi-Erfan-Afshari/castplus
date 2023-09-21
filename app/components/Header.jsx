@@ -3,6 +3,7 @@ import { nunito } from '../utils/fonts'
 import Link from 'next/link';
 import Image from 'next/image'
 import Group from '@/app/img/Group.svg'
+import SignInOrSignUpButton from '@/app/components/SignInOrSignUpButton'
 
 const Header = () => {
 	const toggleHamburgerMenu = (e) => {
@@ -23,7 +24,7 @@ const Header = () => {
 						<Link href='/contactus'><button className='hover:text-black text-Gray mx-1 py-2 px-4 duration-150'>Contact Us</button></Link>
 					</div>
 					<div className='flex justify-end col-span-1'>
-						<Link href='/signin-signup'><button className='hover:text-Blue hover:bg-SupLightBlue hover:shadow-none bg-Blue text-white border-2 border-Blue rounded-lg font-semibold shadow-lg shadow-LightBlue mx-1 py-3 px-5 duration-150 col-span-1'>Log In / Sign Up</button></Link>
+						<SignInOrSignUpButton />
 					</div>
 				</div>
 				
@@ -40,7 +41,8 @@ const Header = () => {
 				<div id="mobile-menu" className="absolute pt-14 top-0 left-0 lg:hidden flex flex-col bg-white w-full mx-auto shadow-xl rounded-s-xl rounded-e-xl p-6 duration-200 hamburger-button-toggle z-40">
 					<Link href='/' onClick={toggleHamburgerMenu}><button className='hover:text-black text-Gray p-4 text-center w-full duration-150 my-1'>Home</button></Link>
 					<Link href='/contactus' onClick={toggleHamburgerMenu}><button className='hover:text-black text-Gray p-4 text-center w-full duration-150 my-1'>Contact Us</button></Link>
-					<Link href='/signin-signup' onClick={toggleHamburgerMenu}><button className="hover:text-Blue hover:bg-SupLightBlue hover:shadow-none bg-Blue text-white w-full border-2 border-Blue rounded-lg font-semibold shadow-lg shadow-LigthBlue mx-1 py-3 px-5 duration-150 mt-5">Log In / Sign Up</button></Link>
+					{/* <Link href='/signin-signup' onClick={toggleHamburgerMenu}><button className="hover:text-Blue hover:bg-SupLightBlue hover:shadow-none bg-Blue text-white w-full border-2 border-Blue rounded-lg font-semibold shadow-lg shadow-LigthBlue mx-1 py-3 px-5 duration-150 mt-5">Sign In / Sign Up</button></Link> */}
+					<SignInOrSignUpButton />
 				</div>
 
 			</nav>

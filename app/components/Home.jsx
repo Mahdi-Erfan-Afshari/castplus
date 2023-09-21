@@ -1,4 +1,4 @@
-import {lightRoboto, passionOne, roboto, vazir} from '../utils/fonts'
+import {lightRoboto, roboto} from '../utils/fonts'
 import { BsArrowRight } from "react-icons/bs";
 import Link from 'next/link'
 import Image from 'next/image'

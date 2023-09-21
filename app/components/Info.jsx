@@ -15,10 +15,9 @@ const Info = ({title, summary, transcript, refrences}) => {
 		e.target.classList.add('info-active');
 	}
 
-
   return (
 	<div>
- 	  <div className="md:my-6 md:w-auto my-3 shadow-lg rounded-xl flex flex-col justify-center items-center bg-white w-full">
+ 	  <div className="md:my-6 md:w-auto my-3 rounded-xl flex flex-col justify-center items-center bg-white w-full">
  		<div className="px-2 pt-2 md:pt-0 flex justify-center w-full">
  		  <button id="info-btn" className="md:pt-5 sm:text-md text-sm pb-2 md:px-8 sm:px-4 py-2 px-3 duration-150 border-b-[3px] border-transparent" onClick={(e) =>{
 			changeInfoLable(e)

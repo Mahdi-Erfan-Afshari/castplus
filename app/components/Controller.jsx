@@ -1,12 +1,10 @@
 'use client'
 import { useState, useRef } from 'react'
-import {BsPlayFill, BsPauseFill, BsVolumeDownFill, BsVolumeUpFill, BsVolumeMuteFill} from 'react-icons/bs'
+import {BsPlayFill, BsPauseFill} from 'react-icons/bs'
 import {ImVolumeHigh, ImVolumeMedium, ImVolumeLow, ImVolumeMute2} from 'react-icons/im'
 import {RiForward30Line, RiReplay10Line} from 'react-icons/ri'
-import {TbRewindForward30, TbRewindBackward10} from 'react-icons/tb'
 import {vazir , lalezar} from '@/app/utils/fonts'
 import Sections from './Sections'
-import Image from 'next/image'
 import AudioLoading from './AudioLoading'
 
 const Controller = ({ url , episode }) => {
@@ -132,7 +130,6 @@ const Controller = ({ url , episode }) => {
 	}
 
 	const volumeFadeIn = () => {
-		var icon = document.querySelector('.volume-icon');
 		var input = document.querySelector('.volume-input');
 		input.style.opacity = 1
 		setTimeout(() => {
@@ -141,7 +138,6 @@ const Controller = ({ url , episode }) => {
 	}
 
 	const volumeFadeOut = () => {
-		var icon = document.querySelector('.volume-icon');
 		var input = document.querySelector('.volume-input');
 		input.style.opacity = 0
 		setTimeout(() => {
@@ -151,18 +147,9 @@ const Controller = ({ url , episode }) => {
 
   return (
 	<div className={`${vazir.className}`}>
-			<audio ref={audio} src={url} onTimeUpdate={(e) =>{changeCurrentTime(e)}
-			} onEnded={togglePlay} autoPlay></audio>
-		{/* <div className='flex w-full justify-center '>
-			<div className='rounded-full overflow-hidden'>
-				<Image width='80' height='80' className='object-cover sm:w-40 sm:h-40 w-24 h-24' alt='podcast thumbnail' src={podcast.thumbnail}/>
-			</div>
-		</div>
-		<h1 className='md:text-3xl sm:text-2xl text-xl font-bold mt-6 text-center'>{podcast.title}</h1> */}
-		{/* <span className={`${lalezar.className} ${'flex justify-center'}`}><p className='bg-SupLightBlue shadow-md w-fit px-1 rounded-md pt-1 text-[#666] text-sm md:mt-2 sm:mt-2 '>{`${podcast.published_date} | ${podcast.published_time}`}</p></span> */}
+		<audio ref={audio} src={url} onTimeUpdate={(e) =>{changeCurrentTime(e)}} onEnded={togglePlay} autoPlay></audio>
 
-		<div className="controller w-full flex flex-row justify-center bg-white rounded-xl p-6 shadow-md mt-12">
-
+		<div className="controller w-full flex flex-row justify-center bg-white rounded-xl p-6 mt-12">
 			{audio.current == undefined ? <AudioLoading /> : <div className='flex flex-col w-full'>
 				<div className="flex items-center w-full">
 					<div className='lg:flex hidden items-center volume-handler sm:w-full md:w-24 mt-3 md:mt-0'>

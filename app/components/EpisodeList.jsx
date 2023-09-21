@@ -8,7 +8,7 @@ const EpisodeList = ({data}) => {
 	<>
 	  {episodes.map((episode) => (
 		  	<Link href={`/podcasts/${data.id}/${episode.id}`} key={episode.title} className={vazir.className}>
-				<div className="sm:mt-4 md:mt-5 lg:mt-6 rounded-2xl overflow-hidden border-gray-100">
+				<div className="mt-4 md:mt-5 lg:mt-6 rounded-2xl overflow-hidden border-gray-100">
 					<figure class="sm:flex bg-white rounded-xl p-3 sm:p-0 relative">
 					  	<Image class="hidden sm:block h-full w-32 sm:w-36 object-cover border-e-[1px] border-gray" src={episode.thumbnail} alt="episode thumbnail" width="0" height="0" />
 						<div className='flex items-center'>

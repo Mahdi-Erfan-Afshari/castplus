@@ -1,5 +1,4 @@
 import {server} from '../api/podcasts/route';
-import { AiFillStar } from 'react-icons/ai';
 import Image from 'next/image';
 import { vazir, vazirBold, lalezar, nunito } from '../utils/fonts';
 import EpisodeList from '@/app/components/EpisodeList'
@@ -19,7 +18,7 @@ const Podcast = async ({ id }) => {
 	<div>
 	  	{podcast.map((podcast) => (
 			<div className='xl:container xl:mx-auto container mx-auto p-6'>
-				<div className='relative bg-white overflow-hidden rounded-xl sm:mb-6 md:mb-8 h-full'>
+				<div className='relative bg-white overflow-hidden rounded-xl mb-6 md:mb-8 h-full'>
 					<div className='w-full'>
 						<Image className='object-cover w-full lg:h-full md:h-52 sm:h-44 h-24' src={Banner} alt='Banner' />
 					</div>
@@ -110,7 +109,6 @@ const Podcast = async ({ id }) => {
 				<EpisodeList data={podcast} />
 			</div>
 	  	))}
-
 	</div>
   )
 }

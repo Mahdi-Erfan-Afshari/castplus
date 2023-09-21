@@ -13,7 +13,6 @@ const SearchPodcasts = ({ getSearchResults, setLoading }) => {
 		getSearchResults(podcasts);
 		setLoading(false)
 	}
-
 	
 	return (
 		<>
