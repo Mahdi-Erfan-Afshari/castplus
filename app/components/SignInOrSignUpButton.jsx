@@ -4,8 +4,9 @@ import { useSession, signIn, signOut } from 'next-auth/react'
 import Image from 'next/image'
 import {IoIosArrowDown} from 'react-icons/io'
 import {RxDashboard} from 'react-icons/rx'
-import {MdOutlinePodcasts} from 'react-icons/md'
+import {MdOutlinePodcasts,MdFavoriteBorder} from 'react-icons/md'
 import {IoLogOutOutline} from 'react-icons/io5'
+
 
 const SignInButton = () => {
 	const { data: session } = useSession()
@@ -15,13 +16,11 @@ const SignInButton = () => {
 		let dropDownArrow = document.getElementById('drop-down-arrow');
 		dropDown.classList.toggle('hidden');
 		dropDownArrow.classList.toggle('rotate-180');
-		// dropDownArrow.style.rotate = '180deg'
 	}
 
   return (
     <>
       {session ? (
-		// <Link href='/signin-signup' onClick={() => signOut()}><button className='hover:text-Blue hover:bg-SupLightBlue hover:shadow-none bg-Blue text-white border-2 border-Blue rounded-lg font-semibold shadow-lg shadow-LightBlue mx-1 py-3 px-5 duration-150 col-span-1'>Sign Out</button></Link>
 		<div>
 			<div className='hover:bg-blue-700 flex items-center space-x-2 bg-Blue shadow-lg shadow-LightBlue rounded-lg cursor-pointer px-4 py-2 duration-100 select-none' onClick={toggleDropDown}>
 				<div id='drop-down-arrow' className='duration-300'>
@@ -31,24 +30,24 @@ const SignInButton = () => {
 					<h1 className='text-white font-semibold'>{session.user.name}</h1>
 				</div>
 				<div className='w-8 h-8 rounded-full overflow-hidden border-[2px] border-white'>
-					<Image className='w-full h-full object-cover' src={session.user.image} width={25} height={25} alt='User Image'/>
+					<Image className='w-full h-full object-cover' src={session.user.image} width={100} height={100} alt='User Image'/>
 				</div>
 			</div>
 
 			{/* Drop Down */}
-			<div id='drop-down' className='hidden absolute right-[96px] flex flex-col bg-white  shadow-md rounded-xl space-y-4 py-4 z-50'>
+			<div id='drop-down' className='hidden absolute right-[96px] top-[80px] flex flex-col bg-white  shadow-md rounded-xl space-y-4 py-4 z-50'>
 				<div className='flex items-center space-x-2 duration-100 px-6'>
 					<div className='w-12 h-12 rounded-full overflow-hidden'>
-						<Image className='w-full h-full object-cover' src={session.user.image} width={25} height={25} alt='User Image'/>
+						<Image className='w-full h-full object-cover' src={session.user.image} width={100} height={100} alt='User Image'/>
 					</div>
-					<div className='leading-5'>
+					<div className='leading-5 truncate'>
 						<h1 className='text-black font-bold'>{session.user.name}</h1>
 						<p className='text-Gray text-[15px]'>{session.user.email}</p>
 					</div>
 				</div>
-					<div className='flex justify-center'>
-						<span className='w-full h-[.5px] bg-[rgba(0,0,0,.12)]'></span>
-					</div>
+				<div className='flex justify-center'>
+					<span className='w-full h-[.5px] bg-[rgba(0,0,0,.12)]'></span>
+				</div>
 				<div className='flex flex-col justify-center space-y-1 px-3'>
 					<div className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100'>
 						<RxDashboard className='text-xl' />
@@ -64,6 +63,13 @@ const SignInButton = () => {
 					<div className='flex justify-center'>
 						<span className='w-11/12 h-[.5px] bg-[rgba(0,0,0,.12)]'></span>
 					</div>
+					<div className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100'>
+						<MdFavoriteBorder className='text-xl' />
+						<Link href=''>Your Favorites</Link>
+					</div>
+					<div className='flex justify-center'>
+						<span className='w-11/12 h-[.5px] bg-[rgba(0,0,0,.12)]'></span>
+					</div>
 					<div className='hover:bg-[#ff1c1c1c] text-Red flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={() => signOut()}>
 						<IoLogOutOutline className='text-xl ms-[2px]' />
 						<Link href=''>Sign Out</Link>
@@ -73,7 +79,7 @@ const SignInButton = () => {
 		</div>
 
       ) : (
-		<Link href='/signin-signup' onClick={() => signIn()}><button className='hover:text-Blue hover:bg-SupLightBlue hover:shadow-none bg-Blue text-white border-2 border-Blue rounded-lg font-semibold shadow-lg shadow-LightBlue mx-1 py-3 px-5 duration-150 col-span-1'>Sign In / Sign Up</button></Link>
+		<Link href='/signin-signup'><button className='hover:text-Blue hover:bg-SupLightBlue hover:shadow-none bg-Blue text-white border-2 border-Blue rounded-lg font-semibold shadow-lg shadow-LightBlue mx-1 py-3 px-5 duration-150 col-span-1'>Sign In / Sign Up</button></Link>
       )}
     </>
   )

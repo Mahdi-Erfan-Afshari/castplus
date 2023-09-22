@@ -6,6 +6,7 @@ import {RiForward30Line, RiReplay10Line} from 'react-icons/ri'
 import {vazir , lalezar} from '@/app/utils/fonts'
 import Sections from './Sections'
 import AudioLoading from './AudioLoading'
+import Image from 'next/image'
 
 const Controller = ({ url , episode }) => {
 	const [play, setPlay] = useState(true);
@@ -151,41 +152,54 @@ const Controller = ({ url , episode }) => {
 
 		<div className="controller w-full flex flex-row justify-center bg-white rounded-xl p-6 mt-12">
 			{audio.current == undefined ? <AudioLoading /> : <div className='flex flex-col w-full'>
-				<div className="flex items-center w-full">
-					<div className='lg:flex hidden items-center volume-handler sm:w-full md:w-24 mt-3 md:mt-0'>
-						<div className='volume-body flex relative'>
-							<div className='volume-input flex items-center absolute bottom-[110px] right-[-85px] w-48 bg-white rotate-[-90deg] h-10 p-4 rounded-md shadow-md duration-100' onMouseEnter={volumeFadeIn} onMouseLeave={volumeFadeOut}>
-								<input id='volume-range' className='w-full' type="range" min='0' max='100' onChange={(e) => volumeHandler(e)} value={volumeValueProgress()} onMouseEnter={volumeFadeIn}/>
+				<div className="flex flex-col items-center w-full">
+					<div className='relative flex md:flex-row flex-col justify-center items-center md:space-x-4 w-full md:mb-4 mb-8'>
+						<div className='block justify-center mb-4'>
+							<div className='lg:w-28 lg:h-28 md:w-24 md:h-24 w-28 h-28'>
+								<Image className='rounded-2xl w-full h-full object-cover' src={episode.thumbnail} alt='podcast logo' width='25' height='25'/>
 							</div>
-							<span className='volume-icon w-fit h-fit rounded-full p-2 duration-150 me-[-10px]' onMouseEnter={volumeFadeIn} onMouseLeave={volumeFadeOut} onClick={toggleVolume}>
-								{volume == 0 ? <ImVolumeMute2 className='text-lg text-[#333444]'/> : volume > 0 && volume <= .33 ? <ImVolumeLow className='text-lg text-[#333444]'/> : volume > .33 && volume <= .66 ? <ImVolumeMedium className='text-lg text-[#333444]'/> : <ImVolumeHigh className='text-lg text-[#333444]' />}
-							</span>
 						</div>
-						<p className='mt-[3px] p-2'>{(volume * 100).toFixed() + '%'}</p>
-					</div>
-					<div className='flex justify-center items-center w-full mt-1'>
-						<p className='hidden md:block md:text-md text-sm mt-3 md:mt-0'> {showTime(currentTime)} </p>
-						<input id='progressBar' className="controller-input md:mx-3" type="range" min="0" max="1000" onChange={(e) => controllerHandler(e)} value={valueProgress()}/>
-						<p className='hidden md:block md:text-md text-sm mt-3 md:mt-0'> {showTime(duration)} </p>
-					</div>
-				</div>
-				<div className="grid grid-cols-1 md:grid-cols-3 justify-center items-center w-full mt-3">
-					
-					<div className='col-span-1'>
-						<div className="flex justify-between md:hidden mt-1">
-							<p className='md:text-md text-sm md:mt-auto'> {showTime(currentTime)} </p>
-							<p className='md:text-md text-sm md:mt-auto'> {showTime(duration)} </p>
+						<div>
+							<h1 className='lg:text-xl md:text-lg sm:text-md text-sm font-bold text-center'>{episode.title}</h1>
+							<span className={`${lalezar.className} ${'flex md:justify-start justify-center'}`}><p className='bg-SupLightBlue shadow-md w-fit px-1 rounded-md pt-1 text-[#666] md:text-xs text-[11px] md:mt-2 sm:mt-2'>{`${episode.published_date} | ${episode.published_time}`}</p></span>
 						</div>
-						
 					</div>
-					<div className='flex justify-center items-center col-span-1 space-x-2 mt-2'>
-						<span onClick={backwardCurrentTime} className='bg-white p-2 rounded-full shadow-md text-2xl text-[#555]'><RiReplay10Line /></span>
-						<div className='bg-Blue rounded-full w-fit p-2 shadow-md shadow-LightBlue hover:bg-[#382ef3] mt-2 md:mt-0 duration-150' onClick={togglePlay}>
-							{!play ? <BsPlayFill className='text-white text-3xl' /> : <BsPauseFill  className='text-white text-3xl'/>}
+					<div className="flex items-center w-full">
+						<div className='lg:flex hidden items-center volume-handler sm:w-full md:w-24 mt-3 md:mt-0'>
+							<div className='volume-body flex relative'>
+								<div className='volume-input flex items-center absolute bottom-[110px] right-[-85px] w-48 bg-white rotate-[-90deg] h-10 p-4 rounded-md shadow-md duration-100' onMouseEnter={volumeFadeIn} onMouseLeave={volumeFadeOut}>
+									<input id='volume-range' className='w-full' type="range" min='0' max='100' onChange={(e) => volumeHandler(e)} value={volumeValueProgress()} onMouseEnter={volumeFadeIn}/>
+								</div>
+								<span className='volume-icon w-fit h-fit rounded-full p-2 duration-150 me-[-10px]' onMouseEnter={volumeFadeIn} onMouseLeave={volumeFadeOut} onClick={toggleVolume}>
+									{volume == 0 ? <ImVolumeMute2 className='text-lg text-[#333444]'/> : volume > 0 && volume <= .33 ? <ImVolumeLow className='text-lg text-[#333444]'/> : volume > .33 && volume <= .66 ? <ImVolumeMedium className='text-lg text-[#333444]'/> : <ImVolumeHigh className='text-lg text-[#333444]' />}
+								</span>
+							</div>
+								<p className='mt-[3px] p-2'>{(volume * 100).toFixed() + '%'}</p>
+							</div>
+							<div className='flex justify-center items-center w-full mt-1'>
+								<p className='hidden md:block md:text-md text-sm mt-3 md:mt-0'> {showTime(currentTime)} </p>
+								<input id='progressBar' className="controller-input md:mx-3" type="range" min="0" max="1000" onChange={(e) => controllerHandler(e)} value={valueProgress()}/>
+								<p className='hidden md:block md:text-md text-sm mt-3 md:mt-0'> {showTime(duration)} </p>
+							</div>
 						</div>
-						<span onClick={forwardCurrentTime} className='bg-white p-2 rounded-full shadow-md text-2xl text-[#555]'><RiForward30Line /></span>
+						<div className="grid grid-cols-1 md:grid-cols-3 justify-center items-center w-full mt-3">
+
+							<div className='col-span-1'>
+								<div className="flex justify-between md:hidden mt-1">
+									<p className='md:text-md text-sm md:mt-auto'> {showTime(currentTime)} </p>
+									<p className='md:text-md text-sm md:mt-auto'> {showTime(duration)} </p>
+								</div>
+
+							</div>
+							<div className='flex justify-center items-center col-span-1 space-x-2 mt-2'>
+								<span onClick={backwardCurrentTime} className='bg-white p-2 rounded-full shadow-md text-2xl text-[#555]'><RiReplay10Line /></span>
+								<div className='bg-Blue rounded-full w-fit p-2 shadow-md shadow-LightBlue hover:bg-[#382ef3] mt-2 md:mt-0 duration-150' onClick={togglePlay}>
+									{!play ? <BsPlayFill className='text-white text-3xl' /> : <BsPauseFill  className='text-white text-3xl'/>}
+								</div>
+								<span onClick={forwardCurrentTime} className='bg-white p-2 rounded-full shadow-md text-2xl text-[#555]'><RiForward30Line /></span>
+							</div>
+						</div>
 					</div>
-				</div>
 			</div>}
 		</div>
 		

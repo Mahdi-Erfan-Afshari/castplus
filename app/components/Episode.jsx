@@ -18,19 +18,6 @@ const Episode = async ({ episodeRoute }) => {
 	<>
 		{episode.map((episode) => (
 			<div  className={`${vazir.className}`}>
-				<div className='flex w-full justify-center items-center mt-4'>
-					<div className='relative flex items-center'>
-						<div className='block justify-center'>
-							<div className='md:w-28 md:h-28 sm:w-28 sm:h-28 w-20 h-20'>
-								<Image className='rounded-full border-8 border-white w-full h-full object-cover' src={episode.thumbnail} alt='podcast logo' width='25' height='25'/>
-							</div>
-						</div>
-						<div className='ms-4'>
-							<h1 className='lg:text-2xl md:text-xl sm:text-lg text-sm font-bold text-start'>{episode.title}</h1>
-							<span className={`${lalezar.className} ${'flex justify-start'}`}><p className='bg-SupLightBlue shadow-md w-fit px-1 rounded-md pt-1 text-[#666] text-sm md:mt-2 sm:mt-2 '>{`${episode.published_date} | ${episode.published_time}`}</p></span>
-						</div>
-					</div>
-				</div>
 				<Controller url={episode.url} episode={episode} />
 			</div>
 	   ))}

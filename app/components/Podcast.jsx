@@ -3,6 +3,8 @@ import Image from 'next/image';
 import { vazir, vazirBold, lalezar, nunito } from '../utils/fonts';
 import EpisodeList from '@/app/components/EpisodeList'
 import Banner from '@/app/img/banner.svg'
+import { AiFillStar } from 'react-icons/ai'
+import { FavoriteDesktopButton, FavoriteMobileButton } from './FavoriteButton';
 
 async function fetchPodcast() {
   const response = await fetch(`${server}/api/podcasts`, { cache: 'no-store' });
@@ -42,17 +44,16 @@ const Podcast = async ({ id }) => {
 										</div>
 										<span className='w-[.8px] h-[30px] bg-[rgb(232,234,237)]'></span>
 										<div className='flex flex-col justify-center items-center'>
-											<p className='font-semibold'>24</p>
-											<p className='text-xs text-Gray'>followers</p>
-										</div>
-										<span className='w-[.8px] h-[30px] bg-[rgb(232,234,237)]'></span>
-										<div className='flex flex-col justify-center items-center'>
-											<p className='font-semibold'>5</p>
-											<p className='text-xs text-Gray'>following</p>
+											<span className='flex text-md font-semibold'>
+												<p>{podcast.stargazers_count}</p>
+												<AiFillStar className='text-sm mt-[5px]' />
+											</span>
+											<p className='text-xs text-Gray'>149 reviews</p>
 										</div>
 									</div>
-									<div className='my-6'>
-										<button className='hover:bg-blue-700 border-Blue bg-Blue text-white md:text-xl text-md rounded-xl shadow-lg shadow-LightBlue py-3 px-20 duration-150 w-full'>Follow</button>
+									<div className='flex space-x-3 my-6'>
+										<button className='hover:bg-blue-700 border-Blue bg-Blue text-white md:text-xl text-md rounded-xl shadow-lg shadow-LightBlue py-3 px-20 duration-150 w-full select-none'>Follow</button>
+										<FavoriteDesktopButton />
 									</div>
 								</div>
 							</div>
@@ -76,13 +77,11 @@ const Podcast = async ({ id }) => {
 											</div>
 											<span className='w-[.8px] h-[30px] bg-[rgb(232,234,237)]'></span>
 											<div className='flex flex-col justify-center items-center'>
-												<p className='font-semibold text-md'>24</p>
-												<p className='text-xs text-Gray'>followers</p>
-											</div>
-											<span className='w-[.8px] h-[30px] bg-[rgb(232,234,237)]'></span>
-											<div className='flex flex-col justify-center items-center'>
-												<p className='font-semibold text-md'>5</p>
-												<p className='text-xs text-Gray'>following</p>
+												<span className='flex text-md font-semibold'>
+													<p>{podcast.stargazers_count}</p>
+													<AiFillStar className='text-sm mt-[6px]' />
+												</span>
+												<p className='text-xs text-Gray'>149 reviews</p>
 											</div>
 										</div>
 									</div>
@@ -94,8 +93,9 @@ const Podcast = async ({ id }) => {
 									<p className={`${vazir.className} ${'md:text-sm text-xs text-Gray mt-1 w-full'}`}>{podcast.about}</p>
 								</div>
 
-								<div className='sm:my-6 my-3'>
-									<button className='hover:bg-blue-700 border-Blue bg-Blue text-white md:text-xl sm:text-md text-sm rounded-xl md:px-16 px-10 py-2 duration-150 w-full'>Follow</button>
+								<div className='flex space-x-2 sm:my-6 my-3'>
+									<button className='hover:bg-blue-700 border-Blue bg-Blue text-white md:text-xl sm:text-md text-sm rounded-xl md:px-16 px-10 py-2 duration-150 w-full select-none'>Follow</button>
+									<FavoriteMobileButton />
 								</div>
 							</div>
 						</div>

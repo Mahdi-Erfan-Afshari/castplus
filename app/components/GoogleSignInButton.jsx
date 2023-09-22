@@ -10,7 +10,7 @@ const GoogleSignInButton = () => {
 	const callbackUrl = searchParams.get('callbackUrl')
 
   return (
-	<Button className='w-full' onClick={() => signIn('google', { callbackUrl })}>
+	<Button className='w-full select-none' onClick={() => signIn('google', { callbackUrl })}>
 		<FaGoogle className='text-lg me-2' />
 		Continue with Google
     </Button>

@@ -119,22 +119,24 @@ const LoginSignUpPage = () => {
 		<div className="flex flex-col justify-center items-center md:w-[480px] sm:w-[550px] w-[340px] shadow-lg h-full overflow-hidden bg-white rounded-2xl my-10">
 			<div className="flex w-full bg-[#efefef] rounded-2xl">
 				<div className='w-1/2'>
-					<button id="login-btn" className="form-btn-active text-lg w-full rounded-t-xl p-3" onClick={changeToLoginForm}>Sign In</button>
+					<button id="login-btn" className="form-btn-active text-lg w-full rounded-t-xl p-3 select-none" onClick={changeToLoginForm}>Sign In</button>
 				</div>
 				<div className='bg-white w-1/2'>
-					<button id="signup-btn" className="text-lg bg-[#efefef] w-full rounded-es-xl p-3" onClick={changeToSignUpForm}>Sign Up</button>
+					<button id="signup-btn" className="text-lg bg-[#efefef] w-full rounded-es-xl p-3 select-none" onClick={changeToSignUpForm}>Sign Up</button>
 				</div>
 			</div>
-			<p id='login-error' className='bg-LightRed rounded-lg mt-4 hidden font-semibold text-center text-Red p-3 w-full'>The username or password is not correct</p>
 			<h1 className='text-2xl font-semibold mt-5'>CastPlus</h1>
 			<div id="login-form" className="w-full mt-2 mb-5 px-5 sm:px-10">
+				<div className='mb-2'>
+					<p id='login-error' className='bg-LightRed rounded-md mt-4 hidden font-semibold text-center text-Red p-2 sm:p-3 w-full'>The username or password is not correct</p>
+				</div>
 				<input id="signin-username-input" type="text" className="input-form text-md border-b-2 border-[#ddd] w-full py-2 px-5" placeholder="User Name" />
 				<div className='input-form flex items-center border-b-2 border-[#ddd] mt-8 duration-150'>
 					<input id="signin-password-input" type="password" className="text-md w-full py-2 px-5" placeholder="Password" />
 					<span className='text-2xl cursor-pointer text-[#666]' onClick={toggleSigninEye}>{!isSignInEyeToggle ?<VscEye /> : <VscEyeClosed/>}</span>
 				</div>
 				<p className="hover:underline text-Blue text-sm cursor-pointer mt-3 ms-2 duration-150 select-none">Forgot password?</p>
-				<button id='login-link' onClick={checkPasswordAndUserName} type='submit' className="hover:bg-blue-700 text-md rounded-xl bg-Blue text-white w-full px-3 py-2 mt-5 duration-150">Sign In</button>
+				<button id='login-link' onClick={checkPasswordAndUserName} type='submit' className="hover:bg-blue-700 text-md rounded-xl bg-Blue text-white w-full px-3 py-2 mt-5 select-none duration-150">Sign In</button>
 				<div className='flex items-center space-x-2 mt-3'>
 					<span className='w-full h-[1px] bg-Gray'></span>
 					<p className='text-Gray text-sm font-semibold'>Or</p>
@@ -146,9 +148,9 @@ const LoginSignUpPage = () => {
 					<p className="hover:underline text-Blue text-sm cursor-pointer duration-150" onClick={changeToSignUpForm}>Sign Up now</p>
 				</span>
 			</div>
-			<div id="signup-form" className="remove w-full mt-8 mb-3 px-10 +">
-				<input id="signin-username-input" type="text" className="input-form text-md border-b-2 border-[#ddd] w-full py-2 px-5" placeholder="example@gmail.com" />
-				<input id="signin-username-input" type="text" className="input-form text-md border-b-2 border-[#ddd] w-full my-8 py-2 px-5" placeholder="User Name" />
+			<div id="signup-form" className="remove w-full mt-8 mb-3 px-5 sm:px-10">
+				<input id="" type="text" className="input-form text-md border-b-2 border-[#ddd] w-full py-2 px-5" placeholder="example@gmail.com" />
+				<input id="" type="text" className="input-form text-md border-b-2 border-[#ddd] w-full my-8 py-2 px-5" placeholder="User Name" />
 				<div className='input-form flex items-center border-b-2 border-[#ddd] duration-150'>
 					<input id="signin-password-input" type="password" className="text-md w-full py-2 px-5" placeholder="Password" />
 					<span className='text-2xl cursor-pointer text-[#666]' onClick={toggleSigninEye}>{!isSignInEyeToggle ?<VscEye /> : <VscEyeClosed/>}</span>

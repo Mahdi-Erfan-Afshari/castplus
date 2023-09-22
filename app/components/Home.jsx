@@ -11,7 +11,7 @@ const HomePage = () => {
 		<div className='relative z-10 xl:mt-0 lg:mt-4 md:mt-20 mt-6'>
 			<div className={roboto.className}><h1 className="text-center text-darkBlue lg:text-5xl md:text-4xl text-3xl font-black"><span className=''>THE PODCAST</span> STREAM IS ENDLESS</h1></div>
 			<div className={lightRoboto.className}></div><p className="text-center md:text-xl text-md mt-4 text-Gray">Discover millions of well curated podcasts that connect with you.</p>
-			<div className='flex justify-center'><Link href='/podcasts'><button className="mt-8 flex justify-center items-center bg-Blue text-white border-2 border-Blue rounded-lg font-semibold shadow-lg shadow-LightBlue py-3 px-5 home-btn duration-150">
+			<div className='flex justify-center'><Link href='/podcasts'><button className="mt-8 flex justify-center items-center bg-Blue text-white border-2 border-Blue rounded-lg font-semibold shadow-lg shadow-LightBlue py-3 px-5 home-btn select-none duration-150">
 				<p className='pe-2 text-lg'>Get Started </p>
 				<span><BsArrowRight className="text-2xl"/></span>
 			</button></Link></div>
