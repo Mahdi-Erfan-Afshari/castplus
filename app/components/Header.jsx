@@ -106,7 +106,7 @@ const Header = () => {
 								<BsHeadset className='text-xl ms-[2px]' />
 								<Link href='/contactus' className='mt-1'>Contact Us</Link>
 							</div>
-							<Link href='/signin-signup' onClick={toggleHamburgerMenu}><button className='hover:bg-blue-700 bg-Blue text-white rounded-lg font-semibold shadow-lg shadow-LightBlue py-3 px-5 duration-150 w-full mt-2'>Sign In / Sign Up</button></Link>
+							<Link href='/signin-signup' onClick={() => signIn()}><button className='hover:bg-blue-700 bg-Blue text-white rounded-lg font-semibold shadow-lg shadow-LightBlue py-3 px-5 duration-150 w-full mt-2'>Sign In / Sign Up</button></Link>
 						</div>
 					</div>
 				}
