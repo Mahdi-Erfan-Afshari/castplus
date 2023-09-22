@@ -79,7 +79,7 @@ const SignInButton = () => {
 		</div>
 
       ) : (
-		<Link href='/signin-signup'><button className='hover:text-Blue hover:bg-SupLightBlue hover:shadow-none bg-Blue text-white border-2 border-Blue rounded-lg font-semibold shadow-lg shadow-LightBlue mx-1 py-3 px-5 duration-150 col-span-1'>Sign In / Sign Up</button></Link>
+		<Link href='/signin-signup' onClick={() => signIn()}><button className='hover:text-Blue hover:bg-SupLightBlue hover:shadow-none bg-Blue text-white border-2 border-Blue rounded-lg font-semibold shadow-lg shadow-LightBlue mx-1 py-3 px-5 duration-150 col-span-1'>Sign In / Sign Up</button></Link>
       )}
     </>
   )

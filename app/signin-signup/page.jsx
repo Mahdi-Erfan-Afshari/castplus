@@ -142,7 +142,7 @@ const LoginSignUpPage = () => {
 					<p className='text-Gray text-sm font-semibold'>Or</p>
 					<span className='w-full h-[1px] bg-Gray'></span>
 				</div>
-				<GoogleSignInButton />				
+				<GoogleSignInButton />
 				<span className="flex justify-center space-x-2 mt-4">
 					<p className="text-sm ">Not a member?</p>
 					<p className="hover:underline text-Blue text-sm cursor-pointer duration-150" onClick={changeToSignUpForm}>Sign Up now</p>
@@ -153,7 +153,7 @@ const LoginSignUpPage = () => {
 				<input id="" type="text" className="input-form text-md border-b-2 border-[#ddd] w-full my-8 py-2 px-5" placeholder="User Name" />
 				<div className='input-form flex items-center border-b-2 border-[#ddd] duration-150'>
 					<input id="signin-password-input" type="password" className="text-md w-full py-2 px-5" placeholder="Password" />
-					<span className='text-2xl cursor-pointer text-[#666]' onClick={toggleSigninEye}>{!isSignInEyeToggle ?<VscEye /> : <VscEyeClosed/>}</span>
+					<span className='text-2xl cursor-pointer text-[#666]' onClick={toggleSignUpEye}>{!isSignInEyeToggle ?<VscEye /> : <VscEyeClosed/>}</span>
 				</div>
 				<button id='login-link' type='submit' className="hover:bg-blue-700 text-md rounded-xl bg-Blue text-white w-full px-3 py-2 mt-8 duration-150">Sign Up</button>
 				<span className="flex justify-center space-x-2 mt-4">

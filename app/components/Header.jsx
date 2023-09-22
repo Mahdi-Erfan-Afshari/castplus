@@ -65,31 +65,31 @@ const Header = () => {
 						<div className='flex justify-center my-4'>
 							<span className='w-full h-[.5px] bg-[rgba(0,0,0,.12)]'></span>
 						</div>
-						<div className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100'>
+						<div className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={toggleHamburgerMenu}>
 							<BiHomeAlt2 className='text-xl ms-[2px]' />
-							<Link href='/' className='mt-1' onClick={toggleHamburgerMenu}>Home</Link>
+							<Link href='/' className='mt-1'>Home</Link>
 						</div>
-						<div className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100'>
+						<div className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={toggleHamburgerMenu}>
 							<BsHeadset className='text-xl ms-[2px]' />
-							<Link href='/contactus' className='mt-1' onClick={toggleHamburgerMenu}>Contact Us</Link>
+							<Link href='/contactus' className='mt-1'>Contact Us</Link>
 						</div>
 						<div className='flex justify-center my-4'>
 							<span className='w-full h-[.5px] bg-[rgba(0,0,0,.12)]'></span>
 						</div>
 						<div className='flex flex-col justify-center space-y-2'>
-							<div className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100'>
+							<div className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={toggleHamburgerMenu}>
 								<RxDashboard className='text-xl' />
 								<Link href=''>Dashboard</Link>
 							</div>
-							<div className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100'>
+							<div className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={toggleHamburgerMenu}>
 								<MdOutlinePodcasts className='text-xl' />
 								<Link href=''>Your Episodes</Link>
 							</div>
-							<div className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100'>
+							<div className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={toggleHamburgerMenu}>
 								<MdFavoriteBorder className='text-xl' />
 								<Link href=''>Your Favorites</Link>
 							</div>
-							<div className='hover:bg-[#ff1c1c1c] text-Red flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={() => signOut()}>
+							<div className='hover:bg-[#ff1c1c1c] text-Red flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={() => {signOut(); toggleHamburgerMenu()}}>
 								<IoLogOutOutline className='text-xl ms-[2px]' />
 								<Link href=''>Sign Out</Link>
 							</div>
@@ -97,15 +97,16 @@ const Header = () => {
 					</div>
 				</div> : 
 					<div id='mobile-menu-body' className='absolute top-0 right-0 lg:hidden w-0 h-full bg-white shadow-xl rounded-s-xl duration-300 z-40'>
-						<div id="mobile-menu" className="flex flex-col pt-14 p-3 duration-200 hamburger-button-toggle">						<div className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100'>
+						<div id="mobile-menu" className="flex flex-col pt-14 p-3 duration-200 hamburger-button-toggle">
+							<div className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={toggleHamburgerMenu}>
 								<BiHomeAlt2 className='text-xl ms-[2px]' />
-								<Link href='/' className='mt-1' onClick={toggleHamburgerMenu}>Home</Link>
+								<Link href='/' className='mt-1'>Home</Link>
 							</div>
-							<div className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100'>
+							<div className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={toggleHamburgerMenu}>
 								<BsHeadset className='text-xl ms-[2px]' />
-								<Link href='/contactus' className='mt-1' onClick={toggleHamburgerMenu}>Contact Us</Link>
+								<Link href='/contactus' className='mt-1'>Contact Us</Link>
 							</div>
-							<Link href='/signin-signup'><button className='hover:bg-blue-700 bg-Blue text-white rounded-lg font-semibold shadow-lg shadow-LightBlue py-3 px-5 duration-150 w-full mt-2'>Sign In / Sign Up</button></Link>
+							<Link href='/signin-signup' onClick={toggleHamburgerMenu}><button className='hover:bg-blue-700 bg-Blue text-white rounded-lg font-semibold shadow-lg shadow-LightBlue py-3 px-5 duration-150 w-full mt-2'>Sign In / Sign Up</button></Link>
 						</div>
 					</div>
 				}
