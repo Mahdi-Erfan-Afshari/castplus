@@ -9,6 +9,7 @@ export const FavoriteDesktopButton = ({ podcasts, id, users }) => {
 	const podcast = podcasts.filter((podcast) => podcast.id == id)[0];
 	const {data: session} = useSession()
 	const [favorite, setFavorite] = useState(false);
+	const [load, setLoad] = useState(true);
 
 	const checkIsThisPodcastInfavorites = () => {
 		if(session) {
@@ -22,17 +23,20 @@ export const FavoriteDesktopButton = ({ podcasts, id, users }) => {
 			return isInFavorites;
 		}
 	}
-
-	if(typeof document !== 'undefined' && !!document.cookie) {
-		if(session) {
-			checkIsThisPodcastInfavorites()
-		}
-	}
-
+	
 	const isThisPodcastfavorites = checkIsThisPodcastInfavorites()
 	const [isThisPodcastInfavorites, setIsThisPodcastInfavorites] = useState(isThisPodcastfavorites)
 	
-	
+	if(typeof document !== 'undefined' && !!document.cookie) {
+		if(session) {
+			let a = checkIsThisPodcastInfavorites()
+			if(a && load) {
+				setIsThisPodcastInfavorites(true)
+				setLoad(false)
+				console.log('asjfhkjashdfjk');
+			}
+		}
+	}
 	const changeFavorite = () => {
 		const addFavorite = async () => {
 			const res = await fetch(`${server}/api/user_profiles`)
@@ -117,8 +121,6 @@ export const FavoriteDesktopButton = ({ podcasts, id, users }) => {
 		}, 3000)
 	}
 
-	
-
   return (
 	<div className='relative flex flex-col justify-center items-center'>
 		<div id='favorite-modal' className='favorite-modal z-50 hidden justify-center fixed top-[24px] left-0 w-full'>
@@ -162,18 +164,21 @@ export const FavoriteMobileButton = ({ podcasts, id, users }) => {
 			return isInFavorites;
 		}
 	}
-
-	if(typeof document !== 'undefined' && !!document.cookie) {
-		if(session) {
-			checkIsThisPodcastInfavorites()
-		}
-	}
-
+	
 	const isThisPodcastfavorites = checkIsThisPodcastInfavorites()
 	const [isThisPodcastInfavorites, setIsThisPodcastInfavorites] = useState(isThisPodcastfavorites)
 	
-	
-	
+	if(typeof document !== 'undefined' && !!document.cookie) {
+		if(session) {
+			let a = checkIsThisPodcastInfavorites()
+			if(a && load) {
+				setIsThisPodcastInfavorites(true)
+				setLoad(false)
+				console.log('asjfhkjashdfjk');
+			}
+		}
+	}
+
 	const changeFavorite = () => {
 		const addFavorite = async () => {
 			const res = await fetch(`${server}/api/user_profiles`)
