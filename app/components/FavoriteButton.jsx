@@ -78,10 +78,10 @@ export const FavoriteDesktopButton = ({ podcasts, id, users }) => {
 					console.error(error);
 			});
 		}
+		setIsThisPodcastInfavorites(!isThisPodcastInfavorites)
 	}
 
 	const changeFavorite = () => {
-		setIsThisPodcastInfavorites(!isThisPodcastInfavorites)
 		addFavorite()
 		setFavorite(!favorite);
 		showModal();
@@ -219,10 +219,10 @@ export const FavoriteMobileButton = ({ podcasts, id, users }) => {
 					console.error(error);
 			});
 		}
+		setIsThisPodcastInfavorites(!isThisPodcastInfavorites)
 	}
 
 	const changeFavorite = () => {
-		setIsThisPodcastInfavorites(!isThisPodcastInfavorites)
 		addFavorite()
 		setFavorite(!favorite);
 		showModal();
@@ -260,7 +260,7 @@ export const FavoriteMobileButton = ({ podcasts, id, users }) => {
 		let a = checkIsThisPodcastInfavorites()
 		console.log('document load', a);
 	}
-	
+
   return (
 	<div className='relative flex flex-col justify-center items-center'>
 		<div id='favorite-mobile-modal' className='favorite-mobile-modal z-50 hidden justify-center fixed top-[24px] left-0 w-full'>
