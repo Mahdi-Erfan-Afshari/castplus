@@ -23,6 +23,19 @@ const Podcast = async ({ id, data }) => {
 	const podcast = await podcasts.filter((podcast) => podcast.id == id);
 	const users = await fetchUsers()
 
+	// if(typeof document !== 'undefined' && !!document.cookie) {
+	// 	if(session) {
+	// 		const usersData = users
+	// 		const user = usersData.filter((user) => user.email === session.user.email)[0];
+	// 		let favoriteList = user.favorites
+	
+	// 		const isInFavorites = favoriteList.some((favorite) => {
+	// 			return favorite === podcast.id
+	// 		})
+	// 		return isInFavorites;
+	// 	}
+	// }
+
   return (
 	<div>
 	  	{podcast.map((podcast) => (

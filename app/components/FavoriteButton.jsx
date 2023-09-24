@@ -24,7 +24,9 @@ export const FavoriteDesktopButton = ({ podcasts, id, users }) => {
 	}
 
 	if(typeof document !== 'undefined' && !!document.cookie) {
-		checkIsThisPodcastInfavorites()
+		if(session) {
+			checkIsThisPodcastInfavorites()
+		}
 	}
 
 	const isThisPodcastfavorites = checkIsThisPodcastInfavorites()
@@ -162,7 +164,9 @@ export const FavoriteMobileButton = ({ podcasts, id, users }) => {
 	}
 
 	if(typeof document !== 'undefined' && !!document.cookie) {
-		checkIsThisPodcastInfavorites()
+		if(session) {
+			checkIsThisPodcastInfavorites()
+		}
 	}
 
 	const isThisPodcastfavorites = checkIsThisPodcastInfavorites()
