@@ -25,12 +25,10 @@ export const FavoriteDesktopButton = ({ podcasts, id, users }) => {
 
 	if(typeof document !== 'undefined' && !!document.cookie) {
 		checkIsThisPodcastInfavorites()
-		// console.log('document load', a);
 	}
 
 	const isThisPodcastfavorites = checkIsThisPodcastInfavorites()
 	const [isThisPodcastInfavorites, setIsThisPodcastInfavorites] = useState(isThisPodcastfavorites)
-	console.log(isThisPodcastInfavorites);
 	
 	
 	const changeFavorite = () => {
@@ -42,7 +40,6 @@ export const FavoriteDesktopButton = ({ podcasts, id, users }) => {
 			const isInFavorites = favoriteList.some((favorite) => {
 				return favorite === podcast.id
 			})
-			console.log('favorite', favorite);
 			if (!favorite && !isInFavorites) {
 				favoriteList.push(podcast.id)
 				fetch(`${server}/api/editUser`, {
@@ -162,12 +159,14 @@ export const FavoriteMobileButton = ({ podcasts, id, users }) => {
 			})
 			return isInFavorites;
 		}
-		console.log('hello');
+	}
+
+	if(typeof document !== 'undefined' && !!document.cookie) {
+		checkIsThisPodcastInfavorites()
 	}
 
 	const isThisPodcastfavorites = checkIsThisPodcastInfavorites()
 	const [isThisPodcastInfavorites, setIsThisPodcastInfavorites] = useState(isThisPodcastfavorites)
-	console.log(isThisPodcastInfavorites);
 	
 	
 	
@@ -180,7 +179,6 @@ export const FavoriteMobileButton = ({ podcasts, id, users }) => {
 			const isInFavorites = favoriteList.some((favorite) => {
 				return favorite === podcast.id
 			})
-			console.log('favorite', favorite);
 			if (!favorite && !isInFavorites) {
 				favoriteList.push(podcast.id)
 				fetch(`${server}/api/editUser`, {
@@ -254,11 +252,6 @@ export const FavoriteMobileButton = ({ podcasts, id, users }) => {
 		setTimeout(() => {
 			hideModal()
 		}, 3000)
-	}
-
-	if(typeof document !== 'undefined' && !!document.cookie) {
-		let a = checkIsThisPodcastInfavorites()
-		console.log('document load', a);
 	}
 
   return (
