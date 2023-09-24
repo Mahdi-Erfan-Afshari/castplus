@@ -44,7 +44,7 @@ const Podcasts = ({data}) => {
 					<div className="sm:hidden block mt-5 rounded-xl overflow-hidden border-[1px] border-gray-100">
 						<div class="flex bg-white rounded-xl">
 								<Image className="w-24 h-full object-cover border-e-[1px] border-gray" src={podcast.thumbnail} alt="podcast thumbnail" width="0" height="0" />
-						  <div class="flex items-center p-[6px] text-left space-y-1">
+						  <div className="flex items-center p-[6px] text-left space-y-1">
 							<div className='flex flex-col w-full h-full justify-around'>
 									<h1 className='text-sm font-semibold'>{podcast.name}</h1>
 						    		<p class="h-[30px] overflow-hidden text-xs text-Gray font-medium">{podcast.about}</p>
