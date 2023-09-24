@@ -151,6 +151,7 @@ export const FavoriteMobileButton = ({ podcasts, id, users }) => {
 	const podcast = podcasts.filter((podcast) => podcast.id == id)[0];
 	const {data: session} = useSession()
 	const [favorite, setFavorite] = useState(false);
+	const [load, setLoad] = useState(true);
 
 	const checkIsThisPodcastInfavorites = () => {
 		if(session) {
@@ -164,7 +165,7 @@ export const FavoriteMobileButton = ({ podcasts, id, users }) => {
 			return isInFavorites;
 		}
 	}
-	
+
 	const isThisPodcastfavorites = checkIsThisPodcastInfavorites()
 	const [isThisPodcastInfavorites, setIsThisPodcastInfavorites] = useState(isThisPodcastfavorites)
 	
