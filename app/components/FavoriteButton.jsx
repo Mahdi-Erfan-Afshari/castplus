@@ -21,13 +21,16 @@ export const FavoriteDesktopButton = ({ podcasts, id, users }) => {
 			})
 			return isInFavorites;
 		}
-		console.log('hello');
+	}
+
+	if(typeof document !== 'undefined' && !!document.cookie) {
+		checkIsThisPodcastInfavorites()
+		// console.log('document load', a);
 	}
 
 	const isThisPodcastfavorites = checkIsThisPodcastInfavorites()
 	const [isThisPodcastInfavorites, setIsThisPodcastInfavorites] = useState(isThisPodcastfavorites)
 	console.log(isThisPodcastInfavorites);
-	
 	
 	
 	const changeFavorite = () => {
@@ -115,10 +118,7 @@ export const FavoriteDesktopButton = ({ podcasts, id, users }) => {
 		}, 3000)
 	}
 
-	if(typeof document !== 'undefined' && !!document.cookie) {
-		let a = checkIsThisPodcastInfavorites()
-		console.log('document load', a);
-	}
+	
 
   return (
 	<div className='relative flex flex-col justify-center items-center'>
