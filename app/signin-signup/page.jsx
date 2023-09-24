@@ -1,7 +1,5 @@
 'use client'
 import { useRouter } from 'next/navigation'
-import Image from 'next/image';
-import Logo from '@/app/img/Group1.svg'
 import { nunito } from '../utils/fonts';
 import { useState , useEffect} from 'react';
 import {VscEye, VscEyeClosed} from 'react-icons/vsc'
@@ -9,7 +7,6 @@ import GoogleSignInButton from '../components/GoogleSignInButton';
 
 const LoginSignUpPage = () => {
 	const router = useRouter()
-	
 	const changeToLoginForm = () => {
 		let signUpBtn = document.getElementById('signup-btn');
 		let loginBtn = document.getElementById('login-btn');

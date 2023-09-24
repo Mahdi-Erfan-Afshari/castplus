@@ -1,4 +1,4 @@
-import {server} from '../api/podcasts/route';
+import {server} from '@/app/api/podcasts/route';
 import Image from 'next/image';
 import { vazir, vazirBold, lalezar, nunito } from '../utils/fonts';
 import EpisodeList from '@/app/components/EpisodeList'
@@ -7,14 +7,21 @@ import { AiFillStar } from 'react-icons/ai'
 import { FavoriteDesktopButton, FavoriteMobileButton } from './FavoriteButton';
 
 async function fetchPodcast() {
-  const response = await fetch(`${server}/api/podcasts`, { cache: 'no-store' });
-  const podcasts = await response.json();
-  return podcasts;
+	const response = await fetch(`${server}/api/podcasts`, { cache: 'no-store' });
+	const podcasts = await response.json();
+	return podcasts;
 }
 
-const Podcast = async ({ id }) => {
-  const podcasts = await fetchPodcast();
-  const podcast = await podcasts.filter((podcast) => podcast.id == id);
+async function fetchUsers() {
+	const response = await fetch(`${server}/api/user_profiles`);
+	const users = await response.json();
+	return users;
+}
+
+const Podcast = async ({ id, data }) => {
+	const podcasts = await fetchPodcast();
+	const podcast = await podcasts.filter((podcast) => podcast.id == id);
+	const users = await fetchUsers()
 
   return (
 	<div>
@@ -53,7 +60,7 @@ const Podcast = async ({ id }) => {
 									</div>
 									<div className='flex space-x-3 my-6'>
 										<button className='hover:bg-blue-700 border-Blue bg-Blue text-white md:text-xl text-md rounded-xl shadow-lg shadow-LightBlue py-3 px-20 duration-150 w-full select-none'>Follow</button>
-										<FavoriteDesktopButton />
+										<FavoriteDesktopButton podcasts={data} id={id} users={users} />
 									</div>
 								</div>
 							</div>
@@ -95,7 +102,7 @@ const Podcast = async ({ id }) => {
 
 								<div className='flex space-x-2 sm:my-6 my-3'>
 									<button className='hover:bg-blue-700 border-Blue bg-Blue text-white md:text-xl sm:text-md text-sm rounded-xl md:px-16 px-10 py-2 duration-150 w-full select-none'>Follow</button>
-									<FavoriteMobileButton />
+									<FavoriteMobileButton podcasts={data} id={id} users={users} />
 								</div>
 							</div>
 						</div>

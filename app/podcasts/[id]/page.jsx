@@ -1,9 +1,21 @@
 import Podcast from '@/app/components/Podcast'
-import LoadingPage from '../../loading'
-const PodcastPage = ({params: { id }}) => {
+import { server } from '@/app/api/podcasts/route';
+
+const PodcastPage = async ({params: { id }}) => {
+	const fetchPodcasts = async () => {
+		const res = await fetch(`${server}/api/podcasts`, { cache: 'no-store' }, {
+			next: {
+			  revalidate: 60
+			}
+		});
+		const data = await res.json();
+		return data
+	}
+	
+	const podcasts = await fetchPodcasts();
   return (
 	<div>
-	 	 <Podcast id={id} />
+	 	<Podcast data={podcasts} id={id} />
 	</div>
   )
 }

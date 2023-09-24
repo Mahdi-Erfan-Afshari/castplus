@@ -1,4 +1,5 @@
 'use client'
+import { server } from '@/app/lib/server'
 import Link from 'next/link'
 import { useSession, signIn, signOut } from 'next-auth/react'
 import Image from 'next/image'
@@ -18,7 +19,49 @@ const SignInButton = () => {
 		dropDownArrow.classList.toggle('rotate-180');
 	}
 
-  return (
+	const fetchUsers = async () => {
+		const res = await fetch(`${server}/api/user_profiles`);
+		const data = await res.json();
+		return data;
+	}
+
+	const addUser = async () => {
+		const checkIsUserAlreadyExist = async () => {
+			const users = await fetchUsers()
+			let isUserAlreadyExist = users.some((user) => {
+				return session.user.email === user.email
+			})
+			return isUserAlreadyExist;
+		}
+	
+		const isUserAlreadyExist = await checkIsUserAlreadyExist()
+		if(session && !isUserAlreadyExist) {
+			fetch(`${server}/api/addUser`, {
+				method: 'POST',
+				headers: {
+					'Content-type': 'application/json',
+				},
+				body: JSON.stringify({
+					email : session.user.email,
+					name : session.user.name,
+					favorites : [],
+				}),
+			   })
+				.then((response) => response.json())
+				.then((data) => {
+				console.log(data);
+				})
+				.catch((error) => {
+					console.error(error);
+			});
+		}
+	}
+
+	if(session) {
+		addUser()
+	}
+	
+	return (
     <>
       {session ? (
 		<div>
@@ -77,9 +120,8 @@ const SignInButton = () => {
 				</div>
 			</div>
 		</div>
-
       ) : (
-		<Link href='/signin-signup' onClick={() => signIn()}><button className='hover:text-Blue hover:bg-SupLightBlue hover:shadow-none bg-Blue text-white border-2 border-Blue rounded-lg font-semibold shadow-lg shadow-LightBlue mx-1 py-3 px-5 duration-150 col-span-1'>Sign In / Sign Up</button></Link>
+		<Link href='/signin-signup' onClick={() =>signIn()}><button className='hover:text-Blue hover:bg-SupLightBlue hover:shadow-none bg-Blue text-white border-2 border-Blue rounded-lg font-semibold shadow-lg shadow-LightBlue mx-1 py-3 px-5 duration-150 col-span-1'>Sign In / Sign Up</button></Link>
       )}
     </>
   )
