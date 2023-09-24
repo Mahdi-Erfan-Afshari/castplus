@@ -1,5 +1,5 @@
 'use client'
-import { server } from '@/app/api/podcasts/route'
+import { server } from '@/app/lib/server'
 import Link from 'next/link'
 import { useSession, signIn, signOut } from 'next-auth/react'
 import Image from 'next/image'
@@ -36,7 +36,7 @@ const SignInButton = () => {
 	
 		const isUserAlreadyExist = await checkIsUserAlreadyExist()
 		if(session && !isUserAlreadyExist) {
-			fetch(`${server}/api/addUser`, {
+			fetch(`${server}/api/user_profiles`, {
 				method: 'POST',
 				headers: {
 					'Content-type': 'application/json',

@@ -1,5 +1,5 @@
 'use client'
-import { server } from '@/app/api/podcasts/route'
+import { server } from '@/app/lib/server'
 import { useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
