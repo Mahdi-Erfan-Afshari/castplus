@@ -29,59 +29,59 @@ export const FavoriteDesktopButton = ({ podcasts, id, users }) => {
 	console.log(isThisPodcastInfavorites);
 	
 	
-	const addFavorite = async () => {
-		const res = await fetch(`${server}/api/user_profiles`)
-		const users = await res.json()
-		const user = users.filter((user) => user.email === session.user.email)[0];
-		let favoriteList = user.favorites
-		const isInFavorites = favoriteList.some((favorite) => {
-			return favorite === podcast.id
-		})
-		console.log('favorite', favorite);
-		if (!favorite && !isInFavorites) {
-			favoriteList.push(podcast.id)
-			fetch(`${server}/api/editUser`, {
-				method: 'POST',
-				headers: {
-					'Content-type': 'application/json',
-				},
-				body: JSON.stringify({
-					email : session.user.email,
-					favorites : favoriteList,
-				}),
-			   })
-				.then((response) => response.json())
-				.then((data) => {
-					console.log(data);
-				})
-				.catch((error) => {
-					console.error(error);
-			});
-		} else {
-			let favoritIndex = favoriteList.indexOf(podcast.id)
-			favoriteList.splice(favoritIndex, 1)
-			fetch(`${server}/api/editUser`, {
-				method: 'POST',
-				headers: {
-					'Content-type': 'application/json',
-				},
-				body: JSON.stringify({
-					email : session.user.email,
-					favorites : favoriteList,
-				}),
-			   })
-				.then((response) => response.json())
-				.then((data) => {
-					console.log(data);
-				})
-				.catch((error) => {
-					console.error(error);
-			});
+	
+	const changeFavorite = () => {
+		const addFavorite = async () => {
+			const res = await fetch(`${server}/api/user_profiles`)
+			const users = await res.json()
+			const user = users.filter((user) => user.email === session.user.email)[0];
+			let favoriteList = user.favorites
+			const isInFavorites = favoriteList.some((favorite) => {
+				return favorite === podcast.id
+			})
+			console.log('favorite', favorite);
+			if (!favorite && !isInFavorites) {
+				favoriteList.push(podcast.id)
+				fetch(`${server}/api/editUser`, {
+					method: 'POST',
+					headers: {
+						'Content-type': 'application/json',
+					},
+					body: JSON.stringify({
+						email : session.user.email,
+						favorites : favoriteList,
+					}),
+				   })
+					.then((response) => response.json())
+					.then((data) => {
+						console.log(data);
+					})
+					.catch((error) => {
+						console.error(error);
+				});
+			} else {
+				let favoritIndex = favoriteList.indexOf(podcast.id)
+				favoriteList.splice(favoritIndex, 1)
+				fetch(`${server}/api/editUser`, {
+					method: 'POST',
+					headers: {
+						'Content-type': 'application/json',
+					},
+					body: JSON.stringify({
+						email : session.user.email,
+						favorites : favoriteList,
+					}),
+				   })
+					.then((response) => response.json())
+					.then((data) => {
+						console.log(data);
+					})
+					.catch((error) => {
+						console.error(error);
+				});
+			}
 		}
 		setIsThisPodcastInfavorites(!isThisPodcastInfavorites)
-	}
-
-	const changeFavorite = () => {
 		addFavorite()
 		setFavorite(!favorite);
 		showModal();
@@ -170,59 +170,59 @@ export const FavoriteMobileButton = ({ podcasts, id, users }) => {
 	console.log(isThisPodcastInfavorites);
 	
 	
-	const addFavorite = async () => {
-		const res = await fetch(`${server}/api/user_profiles`)
-		const users = await res.json()
-		const user = users.filter((user) => user.email === session.user.email)[0];
-		let favoriteList = user.favorites
-		const isInFavorites = favoriteList.some((favorite) => {
-			return favorite === podcast.id
-		})
-		console.log('favorite', favorite);
-		if (!favorite && !isInFavorites) {
-			favoriteList.push(podcast.id)
-			fetch(`${server}/api/editUser`, {
-				method: 'POST',
-				headers: {
-					'Content-type': 'application/json',
-				},
-				body: JSON.stringify({
-					email : session.user.email,
-					favorites : favoriteList,
-				}),
-			   })
-				.then((response) => response.json())
-				.then((data) => {
-					console.log(data);
-				})
-				.catch((error) => {
-					console.error(error);
-			});
-		} else {
-			let favoritIndex = favoriteList.indexOf(podcast.id)
-			favoriteList.splice(favoritIndex, 1)
-			fetch(`${server}/api/editUser`, {
-				method: 'POST',
-				headers: {
-					'Content-type': 'application/json',
-				},
-				body: JSON.stringify({
-					email : session.user.email,
-					favorites : favoriteList,
-				}),
-			   })
-				.then((response) => response.json())
-				.then((data) => {
-					console.log(data);
-				})
-				.catch((error) => {
-					console.error(error);
-			});
+	
+	const changeFavorite = () => {
+		const addFavorite = async () => {
+			const res = await fetch(`${server}/api/user_profiles`)
+			const users = await res.json()
+			const user = users.filter((user) => user.email === session.user.email)[0];
+			let favoriteList = user.favorites
+			const isInFavorites = favoriteList.some((favorite) => {
+				return favorite === podcast.id
+			})
+			console.log('favorite', favorite);
+			if (!favorite && !isInFavorites) {
+				favoriteList.push(podcast.id)
+				fetch(`${server}/api/editUser`, {
+					method: 'POST',
+					headers: {
+						'Content-type': 'application/json',
+					},
+					body: JSON.stringify({
+						email : session.user.email,
+						favorites : favoriteList,
+					}),
+				   })
+					.then((response) => response.json())
+					.then((data) => {
+						console.log(data);
+					})
+					.catch((error) => {
+						console.error(error);
+				});
+			} else {
+				let favoritIndex = favoriteList.indexOf(podcast.id)
+				favoriteList.splice(favoritIndex, 1)
+				fetch(`${server}/api/editUser`, {
+					method: 'POST',
+					headers: {
+						'Content-type': 'application/json',
+					},
+					body: JSON.stringify({
+						email : session.user.email,
+						favorites : favoriteList,
+					}),
+				   })
+					.then((response) => response.json())
+					.then((data) => {
+						console.log(data);
+					})
+					.catch((error) => {
+						console.error(error);
+				});
+			}
 		}
 		setIsThisPodcastInfavorites(!isThisPodcastInfavorites)
-	}
-
-	const changeFavorite = () => {
 		addFavorite()
 		setFavorite(!favorite);
 		showModal();
