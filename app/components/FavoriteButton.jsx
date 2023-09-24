@@ -12,14 +12,17 @@ export const FavoriteDesktopButton = ({ podcasts, id, users }) => {
 
 	const checkIsThisPodcastInfavorites = () => {
 		if(session) {
+			let podcastId = podcast.id
 			const usersData = users
 			const user = usersData.filter((user) => user.email === session.user.email)[0];
 			let favoriteList = user.favorites
-	
-			const isInFavorites = favoriteList.some((favorite) => {
-				return favorite === podcast.id
-			})
-			return isInFavorites;
+			console.log(favoriteList[0].podcastId);
+			// const isInFavorites = favoriteList.some((favorite) => {
+			// 	return favorite === podcast.id
+			// })
+			// return isInFavorites;
+			let isInFavorites = favoriteList[0].podcastId
+			return isInFavorites
 		}
 	}
 
@@ -37,7 +40,12 @@ export const FavoriteDesktopButton = ({ podcasts, id, users }) => {
 			})
 
 			if (!favorite && !isInFavorites) {
-				favoriteList.push(podcast.id)
+				let podcastId = podcast.id
+				console.log(podcastId);
+				let newFavorite = {
+					podcastId : true
+				}
+				favoriteList.push(newFavorite)
 				fetch(`${server}/api/editUser`, {
 					method: 'POST',
 					headers: {
