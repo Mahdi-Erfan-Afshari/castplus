@@ -51,16 +51,10 @@ const Podcast = async ({ id, data }) => {
 										</div>
 										<span className='w-[.8px] h-[30px] bg-[rgb(232,234,237)]'></span>
 										<div className='flex flex-col justify-center items-center'>
-											<span className='flex text-md font-semibold'>
-												<p>{podcast.stargazers_count}</p>
-												<AiFillStar className='text-sm mt-[5px]' />
-											</span>
-											<p className='text-xs text-Gray'>149 reviews</p>
+											<FavoriteDesktopButton podcasts={data} id={id} users={users} />
 										</div>
 									</div>
 									<div className='flex space-x-3 my-6'>
-										<button className='hover:bg-blue-700 border-Blue bg-Blue text-white md:text-xl text-md rounded-xl shadow-lg shadow-LightBlue py-3 px-20 duration-150 w-full select-none'>Follow</button>
-										<FavoriteDesktopButton podcasts={data} id={id} users={users} />
 									</div>
 								</div>
 							</div>
@@ -84,11 +78,7 @@ const Podcast = async ({ id, data }) => {
 											</div>
 											<span className='w-[.8px] h-[30px] bg-[rgb(232,234,237)]'></span>
 											<div className='flex flex-col justify-center items-center'>
-												<span className='flex text-md font-semibold'>
-													<p>{podcast.stargazers_count}</p>
-													<AiFillStar className='text-sm mt-[6px]' />
-												</span>
-												<p className='text-xs text-Gray'>149 reviews</p>
+												<FavoriteMobileButton podcasts={data} id={id} users={users} />
 											</div>
 										</div>
 									</div>
@@ -98,11 +88,6 @@ const Podcast = async ({ id, data }) => {
 								<div className='flex flex-col h-full'>
 									<h1 className={`${vazirBold.className} ${'md:text-2xl sm:text-xl font-black'}`}>{podcast.name}</h1>
 									<p className={`${vazir.className} ${'md:text-sm text-xs text-Gray mt-1 w-full'}`}>{podcast.about}</p>
-								</div>
-
-								<div className='flex space-x-2 sm:my-6 my-3'>
-									<button className='hover:bg-blue-700 border-Blue bg-Blue text-white md:text-xl sm:text-md text-sm rounded-xl md:px-16 px-10 py-2 duration-150 w-full select-none'>Follow</button>
-									<FavoriteMobileButton podcasts={data} id={id} users={users} />
 								</div>
 							</div>
 						</div>
