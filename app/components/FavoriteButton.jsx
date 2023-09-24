@@ -30,6 +30,7 @@ export const FavoriteDesktopButton = ({ podcasts, id, users }) => {
 	const [isThisPodcastInfavorites, setIsThisPodcastInfavorites] = useState(isThisPodcastfavorites)
 
 	const changeFavorite = () => {
+		checkIsThisPodcastInfavorites()
 		const addFavorite = async () => {
 			const res = await fetch(`${server}/api/user_profiles`)
 			const users = await res.json()
