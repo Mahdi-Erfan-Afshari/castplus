@@ -160,7 +160,7 @@ export const FavoriteMobileButton = ({ podcasts, id, users }) => {
 
 	const changeFavorite = () => {
 		const addFavorite = async () => {
-			const res = await fetch(`${server}/api/user_profile`)
+			const res = await fetch(`${server}/api/user_profiles`)
 			const users = await res.json()
 			const user = users.filter((user) => user.email === session.user.email)[0];
 			let favoriteList = user.favorites
