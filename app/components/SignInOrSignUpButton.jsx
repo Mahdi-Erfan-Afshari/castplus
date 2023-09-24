@@ -1,5 +1,5 @@
 'use client'
-import { server } from '@/app/lib/server'
+import { server } from '@/app/api/podcasts/route'
 import Link from 'next/link'
 import { useSession, signIn, signOut } from 'next-auth/react'
 import Image from 'next/image'
