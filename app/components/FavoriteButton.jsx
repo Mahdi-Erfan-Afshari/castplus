@@ -1,6 +1,6 @@
 'use client'
 import { server } from '@/app/lib/server'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { BsStar, BsStarFill } from 'react-icons/bs'
 import { IoClose } from 'react-icons/io5'
@@ -27,15 +27,25 @@ export const FavoriteDesktopButton = ({ podcasts, id, users }) => {
 	const isThisPodcastfavorites = checkIsThisPodcastInfavorites()
 	const [isThisPodcastInfavorites, setIsThisPodcastInfavorites] = useState(isThisPodcastfavorites)
 	
-	if(typeof document !== 'undefined' && !!document.cookie) {
-		if(session) {
-			let a = checkIsThisPodcastInfavorites()
-			if(a && load) {
-				setIsThisPodcastInfavorites(true)
-				setLoad(false)
-			}
-		}
+	// if(typeof document !== 'undefined' && !!document.cookie) {
+	// 	if(session) {
+	// 		let a = checkIsThisPodcastInfavorites()
+	// 		if(a && load) {
+	// 			setIsThisPodcastInfavorites(true)
+	// 			setLoad(false)
+	// 		}
+	// 	}
+	// }
+
+	// useEffect(() => {
+	// 	console.log('reload');
+	// },[isThisPodcastInfavorites])
+
+	
+	if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
+		console.info( "This page is reloaded" );
 	}
+
 	const changeFavorite = () => {
 		const addFavorite = async () => {
 			const res = await fetch(`${server}/api/user_profiles`)
@@ -167,7 +177,7 @@ export const FavoriteMobileButton = ({ podcasts, id, users }) => {
 			return isInFavorites;
 		}
 	}
-
+	
 	const isThisPodcastfavorites = checkIsThisPodcastInfavorites()
 	const [isThisPodcastInfavorites, setIsThisPodcastInfavorites] = useState(isThisPodcastfavorites)
 	
@@ -179,6 +189,10 @@ export const FavoriteMobileButton = ({ podcasts, id, users }) => {
 				setLoad(false)
 			}
 		}
+	}
+
+	if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
+		console.info( "This page is reloaded" );
 	}
 
 	const changeFavorite = () => {
