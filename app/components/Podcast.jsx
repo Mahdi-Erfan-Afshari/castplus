@@ -84,7 +84,7 @@ const Podcast = async ({ id, data }) => {
 									</div>
 								</div>
 							</div>
-							<div className='sm:px-6 px-2'>
+							<div className='sm:px-6 px-2 mb-2'>
 								<div className='flex flex-col h-full'>
 									<h1 className={`${vazirBold.className} ${'md:text-2xl sm:text-xl font-black'}`}>{podcast.name}</h1>
 									<p className={`${vazir.className} ${'md:text-sm text-xs text-Gray mt-1 w-full'}`}>{podcast.about}</p>

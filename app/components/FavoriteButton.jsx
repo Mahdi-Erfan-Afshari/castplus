@@ -1,6 +1,6 @@
 'use client'
 import { server } from '@/app/lib/server'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { BsStar, BsStarFill } from 'react-icons/bs'
 import { IoClose } from 'react-icons/io5'
@@ -26,22 +26,7 @@ export const FavoriteDesktopButton = ({ podcasts, id, users }) => {
 	
 	const isThisPodcastfavorites = checkIsThisPodcastInfavorites()
 	const [isThisPodcastInfavorites, setIsThisPodcastInfavorites] = useState(isThisPodcastfavorites)
-	
-	// if(typeof document !== 'undefined' && !!document.cookie) {
-	// 	if(session) {
-	// 		let a = checkIsThisPodcastInfavorites()
-	// 		if(a && load) {
-	// 			setIsThisPodcastInfavorites(true)
-	// 			setLoad(false)
-	// 		}
-	// 	}
-	// }
 
-	// useEffect(() => {
-	// 	console.log('reload');
-	// },[isThisPodcastInfavorites])
-
-	
 	if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
 		if(session) {
 			let isFavorite = checkIsThisPodcastInfavorites()
@@ -50,7 +35,6 @@ export const FavoriteDesktopButton = ({ podcasts, id, users }) => {
 				setLoad(false)
 			}
 		}
-		console.info( "This page is reloaded" );
 	}
 
 	const changeFavorite = () => {
@@ -150,15 +134,11 @@ export const FavoriteDesktopButton = ({ podcasts, id, users }) => {
 		</div>
 		{session ? 
 			<div className='favorite-body'>
-				{/* <div className='tooltip flex flex-col absolute top-[-52px] right-[-37px] items-center'>
-					<div className='flex items-center justify-center w-32 h-10 rounded-lg bg-Gray'><p className='text-white'>add to favorite</p></div>
-					<div className='absolute top-[28px] w-4 h-4 bg-Gray rotate-45'></div>
-				</div> */}
 				<div className='flex flex-col justify-center items-center'>
 					<button id='favorite' className='text-xl duration-150 select-none' onClick={changeFavorite}>
 						{isThisPodcastInfavorites ? <BsStarFill className='text-amber-500 sm:text-2xl text-xl'/> : <BsStar className='sm:text-2xl text-xl'/>}
 					</button>
-					<p className='text-xs text-Gray'>add to favorite</p>
+					<p className='text-xs text-Gray mt-[2px]'>add to favorite</p>
 				</div>
 			</div>
 		: ''}
@@ -187,21 +167,7 @@ export const FavoriteMobileButton = ({ podcasts, id, users }) => {
 	
 	const isThisPodcastfavorites = checkIsThisPodcastInfavorites()
 	const [isThisPodcastInfavorites, setIsThisPodcastInfavorites] = useState(isThisPodcastfavorites)
-	
-	// if(typeof document !== 'undefined' && !!document.cookie) {
-	// 	if(session) {
-	// 		let a = checkIsThisPodcastInfavorites()
-	// 		if(a && load) {
-	// 			setIsThisPodcastInfavorites(true)
-	// 			setLoad(false)
-	// 		}
-	// 	}
-	// }
 
-	// if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
-	// 	console.info( "This page is reloaded" );
-	// }
-	
 	if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
 		if(session) {
 			let isFavorite = checkIsThisPodcastInfavorites()
@@ -210,7 +176,6 @@ export const FavoriteMobileButton = ({ podcasts, id, users }) => {
 				setLoad(false)
 			}
 		}
-		console.info( "This page is reloaded" );
 	}
 
 	const changeFavorite = () => {
@@ -310,15 +275,11 @@ export const FavoriteMobileButton = ({ podcasts, id, users }) => {
 		</div>
 		{session ? 
 			<div className='favorite-body'>
-				{/* <div className='tooltip flex flex-col absolute top-[-52px] right-[-37px] items-center'>
-					<div className='flex items-center justify-center w-32 h-10 rounded-lg bg-Gray'><p className='text-white'>add to favorite</p></div>
-					<div className='absolute top-[28px] w-4 h-4 bg-Gray rotate-45'></div>
-				</div> */}
 				<div className='flex flex-col justify-center items-center'>
 					<button id='favorite' className='text-xl duration-150 select-none' onClick={changeFavorite}>
 						{isThisPodcastInfavorites ? <BsStarFill className='text-amber-500 sm:text-2xl text-xl'/> : <BsStar className='sm:text-2xl text-xl'/>}
 					</button>
-					<p className='text-xs text-Gray'>add to favorite</p>
+					<p className='text-xs text-Gray mt-[2px]'>add to favorite</p>
 				</div>
 			</div>
 		: ''}
