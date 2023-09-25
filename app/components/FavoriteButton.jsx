@@ -2,7 +2,7 @@
 import { server } from '@/app/lib/server'
 import { useState } from 'react'
 import { useSession } from 'next-auth/react'
-import { MdFavoriteBorder, MdFavorite, BsStar, BsStarFill } from 'react-icons/bs'
+import { BsStar, BsStarFill } from 'react-icons/bs'
 import { IoClose } from 'react-icons/io5'
 
 export const FavoriteDesktopButton = ({ podcasts, id, users }) => {
@@ -282,10 +282,12 @@ export const FavoriteMobileButton = ({ podcasts, id, users }) => {
 					<div className='flex items-center justify-center w-32 h-10 rounded-lg bg-Gray'><p className='text-white'>add to favorite</p></div>
 					<div className='absolute top-[28px] w-4 h-4 bg-Gray rotate-45'></div>
 				</div> */}
-				<button id='favorite' className='sm:bg-white bg-[#f5f6fe] text-xl rounded-xl sm:p-[14px] p-2 duration-150 select-none' onClick={changeFavorite}>
-					{favorite? <BsStarFill className='text-amber-500 sm:text-2xl text-xl'/> : <BsStar className='sm:text-2xl text-xl'/>}
-					<p>add to favorite</p>
-				</button>
+				<div className='flex flex-col justify-center items-center'>
+					<button id='favorite' className='text-xl duration-150 select-none' onClick={changeFavorite}>
+						{isThisPodcastInfavorites ? <BsStarFill className='text-amber-500 sm:text-2xl text-xl'/> : <BsStar className='sm:text-2xl text-xl'/>}
+					</button>
+					<p className='text-xs text-Gray'>add to favorite</p>
+				</div>
 			</div>
 		: ''}
 	</div>
