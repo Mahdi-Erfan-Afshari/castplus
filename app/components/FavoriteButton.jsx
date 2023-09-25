@@ -43,6 +43,13 @@ export const FavoriteDesktopButton = ({ podcasts, id, users }) => {
 
 	
 	if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
+		if(session) {
+			let isFavorite = checkIsThisPodcastInfavorites()
+			if(isFavorite && load) {
+				setIsThisPodcastInfavorites(true)
+				setLoad(false)
+			}
+		}
 		console.info( "This page is reloaded" );
 	}
 
@@ -181,17 +188,28 @@ export const FavoriteMobileButton = ({ podcasts, id, users }) => {
 	const isThisPodcastfavorites = checkIsThisPodcastInfavorites()
 	const [isThisPodcastInfavorites, setIsThisPodcastInfavorites] = useState(isThisPodcastfavorites)
 	
-	if(typeof document !== 'undefined' && !!document.cookie) {
+	// if(typeof document !== 'undefined' && !!document.cookie) {
+	// 	if(session) {
+	// 		let a = checkIsThisPodcastInfavorites()
+	// 		if(a && load) {
+	// 			setIsThisPodcastInfavorites(true)
+	// 			setLoad(false)
+	// 		}
+	// 	}
+	// }
+
+	// if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
+	// 	console.info( "This page is reloaded" );
+	// }
+	
+	if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
 		if(session) {
-			let a = checkIsThisPodcastInfavorites()
-			if(a && load) {
+			let isFavorite = checkIsThisPodcastInfavorites()
+			if(isFavorite && load) {
 				setIsThisPodcastInfavorites(true)
 				setLoad(false)
 			}
 		}
-	}
-
-	if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
 		console.info( "This page is reloaded" );
 	}
 
