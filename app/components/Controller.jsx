@@ -161,7 +161,7 @@ const Controller = ({ url , episode }) => {
 						</div>
 						<div>
 							<h1 className='lg:text-xl md:text-lg sm:text-md text-sm font-bold text-center'>{episode.title}</h1>
-							<span className={`${lalezar.className} ${'flex md:justify-start justify-center'}`}><p className='bg-SupLightBlue shadow-md w-fit px-1 rounded-md pt-1 text-[#666] md:text-xs text-[11px] md:mt-2 sm:mt-2'>{`${episode.published_date} | ${episode.published_time}`}</p></span>
+							<span className={`${lalezar.className} ${'flex md:justify-start justify-center'}`}><p className='w-fit px-1 rounded-md pt-1 text-[#666] md:text-sm text-[12px] md:mt-2 sm:mt-2'>{`${episode.published_date} | ${episode.published_time}`}</p></span>
 						</div>
 					</div>
 					<div className="flex items-center w-full">

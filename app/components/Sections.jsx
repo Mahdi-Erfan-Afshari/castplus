@@ -177,8 +177,8 @@ const Sections = ({data, episodes, isAudioPlay}) => {
 	return (
 		<>
 			<div className="relative bg-white overflow-hidden rounded-xl h-fit mt-5">
-				<span id="scroll-backward-btn" onClick={scrollBackward} className="hover:text-[#382ef3] absolute top-0 left-0 flex justify-between items-center h-full cursor-pointer bg-white text-3xl text-Blue z-50 duration-150"><IoIosArrowBack /></span>
-				<span id="scroll-forward-btn" onClick={scrollForward} className="hover:text-[#382ef3] absolute top-0 right-0 flex justify-between items-center h-full cursor-pointer bg-white text-3xl text-Blue z-50 duration-150"><IoIosArrowForward /></span>
+				<span id="scroll-backward-btn" onClick={scrollBackward} className="hover:text-[#382ef3] absolute top-0 left-0 flex justify-between items-center h-full cursor-pointer bg-white text-3xl text-Blue duration-150"><IoIosArrowBack /></span>
+				<span id="scroll-forward-btn" onClick={scrollForward} className="hover:text-[#382ef3] absolute top-0 right-0 flex justify-between items-center h-full cursor-pointer bg-white text-3xl text-Blue duration-150"><IoIosArrowForward /></span>
 				<div className="relative ms-8 me-8">
 					<div id="section-body" className="snap-x relative bg-white overflow-x-auto px-2 py-4 scroll-smooth">
 						<div className="section-child inline-flex relative">

@@ -92,7 +92,7 @@ const SignInButton = () => {
 					<span className='w-full h-[.5px] bg-[rgba(0,0,0,.12)]'></span>
 				</div>
 				<div className='flex flex-col justify-center space-y-1 px-3'>
-					<div className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100'>
+					{/* <div className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100'>
 						<RxDashboard className='text-xl' />
 						<Link href=''>Dashboard</Link>
 					</div>
@@ -112,7 +112,7 @@ const SignInButton = () => {
 					</div>
 					<div className='flex justify-center'>
 						<span className='w-11/12 h-[.5px] bg-[rgba(0,0,0,.12)]'></span>
-					</div>
+					</div> */}
 					<div className='hover:bg-[#ff1c1c1c] text-Red flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={() => signOut()}>
 						<IoLogOutOutline className='text-xl ms-[2px]' />
 						<Link href=''>Sign Out</Link>

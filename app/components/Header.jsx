@@ -51,7 +51,7 @@ const Header = () => {
 					</button>
 				</div>
 				{session ? 
-				<div id='mobile-menu-body' className='absolute top-0 right-0 lg:hidden w-0 h-full bg-white shadow-xl rounded-s-xl duration-300 z-40'>
+				<div id='mobile-menu-body' className='fixed top-0 right-0 lg:hidden w-0 h-full bg-white shadow-xl rounded-s-xl duration-300 z-40'>
 					<div id="mobile-menu" className="flex flex-col pt-14 p-3 duration-200 hamburger-button-toggle">
 						<div className='flex items-center space-x-2 duration-100 px-4 mt-2'>
 							<div className='min-w-fit min-h-fit w-10 h-10 rounded-full overflow-hidden'>
@@ -77,7 +77,7 @@ const Header = () => {
 							<span className='w-full h-[.5px] bg-[rgba(0,0,0,.12)]'></span>
 						</div>
 						<div className='flex flex-col justify-center space-y-2'>
-							<div className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={toggleHamburgerMenu}>
+							{/* <div className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={toggleHamburgerMenu}>
 								<RxDashboard className='text-xl' />
 								<Link href=''>Dashboard</Link>
 							</div>
@@ -88,7 +88,7 @@ const Header = () => {
 							<div className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={toggleHamburgerMenu}>
 								<MdFavoriteBorder className='text-xl' />
 								<Link href=''>Your Favorites</Link>
-							</div>
+							</div> */}
 							<div className='hover:bg-[#ff1c1c1c] text-Red flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={() => {signOut(); toggleHamburgerMenu()}}>
 								<IoLogOutOutline className='text-xl ms-[2px]' />
 								<Link href=''>Sign Out</Link>
@@ -96,7 +96,7 @@ const Header = () => {
 						</div>
 					</div>
 				</div> : 
-					<div id='mobile-menu-body' className='absolute top-0 right-0 lg:hidden w-0 h-full bg-white shadow-xl rounded-s-xl duration-300 z-40'>
+					<div id='mobile-menu-body' className='fixed top-0 right-0 lg:hidden w-0 h-full bg-white shadow-xl rounded-s-xl duration-300 z-40'>
 						<div id="mobile-menu" className="flex flex-col pt-14 p-3 duration-200 hamburger-button-toggle">
 							<div className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={toggleHamburgerMenu}>
 								<BiHomeAlt2 className='text-xl ms-[2px]' />
