@@ -65,14 +65,14 @@ const Header = () => {
 						<div className='flex justify-center my-4'>
 							<span className='w-full h-[.5px] bg-[rgba(0,0,0,.12)]'></span>
 						</div>
-						<div className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={toggleHamburgerMenu}>
+						<Link href='/' className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={toggleHamburgerMenu}>
 							<BiHomeAlt2 className='text-xl ms-[2px]' />
-							<Link href='/' className='mt-1'>Home</Link>
-						</div>
-						<div className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={toggleHamburgerMenu}>
+							<p className='mt-1'>Home</p>
+						</Link>
+						<Link href='/contactus' className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={toggleHamburgerMenu}>
 							<BsHeadset className='text-xl ms-[2px]' />
-							<Link href='/contactus' className='mt-1'>Contact Us</Link>
-						</div>
+							<p className='mt-1'>Contact Us</p>
+						</Link>
 						<div className='flex justify-center my-4'>
 							<span className='w-full h-[.5px] bg-[rgba(0,0,0,.12)]'></span>
 						</div>
@@ -98,14 +98,14 @@ const Header = () => {
 				</div> : 
 					<div id='mobile-menu-body' className='fixed top-0 right-0 lg:hidden w-0 h-full bg-white shadow-xl rounded-s-xl duration-300 z-40'>
 						<div id="mobile-menu" className="flex flex-col pt-14 p-3 duration-200 hamburger-button-toggle">
-							<div className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={toggleHamburgerMenu}>
+							<Link href='/' className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={toggleHamburgerMenu}>
 								<BiHomeAlt2 className='text-xl ms-[2px]' />
-								<Link href='/' className='mt-1'>Home</Link>
-							</div>
-							<div className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={toggleHamburgerMenu}>
+								<p className='mt-1'>Home</p>
+							</Link>
+							<Link href='/contactus' className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={toggleHamburgerMenu}>
 								<BsHeadset className='text-xl ms-[2px]' />
-								<Link href='/contactus' className='mt-1'>Contact Us</Link>
-							</div>
+								<p className='mt-1'>Contact Us</p>
+							</Link>
 							<Link href='/signin-signup' onClick={() => signIn()}><button className='hover:bg-blue-700 bg-Blue text-white rounded-lg font-semibold shadow-lg shadow-LightBlue py-3 px-5 duration-150 w-full mt-2'>Sign In / Sign Up</button></Link>
 						</div>
 					</div>
