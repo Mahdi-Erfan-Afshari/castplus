@@ -74,7 +74,7 @@ const Podcast = async ({ id, data }) => {
 												<p className='font-semibold text-md'>{podcast.episodes.length}</p>
 												<p className='text-xs text-Gray'>episodes</p>
 											</div>
-											<span className='w-[.8px] h-[30px] bg-[rgb(232,234,237)]'></span>
+											{/* <span className='w-[.8px] h-[30px] bg-[rgb(232,234,237)]'></span> */}
 											<div className='flex flex-col justify-center items-center'>
 												<FavoriteMobileButton podcasts={data} id={id} users={users} />
 											</div>
