@@ -133,7 +133,7 @@ export const FavoriteDesktopButton = ({ podcasts, id, users }) => {
 			</div>
 		</div>
 		{session ? 
-		<>
+		<div className='flex'>
 			<span className='w-[.8px] h-[30px] bg-[rgb(232,234,237)]'></span>
 			<div className='favorite-body'>
 				<div className='flex flex-col justify-center items-center'>
@@ -143,7 +143,7 @@ export const FavoriteDesktopButton = ({ podcasts, id, users }) => {
 					<p className='text-xs text-Gray mt-[2px]'>add to favorite</p>
 				</div>
 			</div>
-		</>
+		</div>
 		: ''}
 	</div>
   )
@@ -277,7 +277,7 @@ export const FavoriteMobileButton = ({ podcasts, id, users }) => {
 			</div>
 		</div>
 		{session ? 
-		<>
+		<div className='flex'>
 			<span className='w-[.8px] h-[30px] bg-[rgb(232,234,237)]'></span>
 			<div className='favorite-body'>
 				<div className='flex flex-col justify-center items-center'>
@@ -287,7 +287,7 @@ export const FavoriteMobileButton = ({ podcasts, id, users }) => {
 					<p className='text-xs text-Gray mt-[2px]'>add to favorite</p>
 				</div>
 			</div>
-		</>
+		</div>
 		: ''}
 	</div>
   )
