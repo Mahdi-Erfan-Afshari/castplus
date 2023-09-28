@@ -10,6 +10,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
+			<head>
+				<link rel="manifest" href="/manifest.json"/>
+				<meta name="theme-color" media="(prefers-color-scheme: light)" content="#2e56f3"></meta>
+			</head>
 			<body className='bg-White'>
 				<Provider>
 					<Header />
