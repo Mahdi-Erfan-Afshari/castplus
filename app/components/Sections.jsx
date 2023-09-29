@@ -84,13 +84,27 @@ const Sections = ({data, episodes, isAudioPlay}) => {
 				nextTimeStart = audio.duration;
 			}
 			
+			let minute = Math.floor((nextTimeStart - timeStart) / 60)
+			let second = Math.floor((nextTimeStart - timeStart) % 60)
+
 			if((nextTimeStart - timeStart) / 60 < 1) {
-				duration = Math.ceil((nextTimeStart - timeStart) / 60) + ' Min';
+				duration = (minute > 9 ? minute :('0' + minute)) + ':' + (second > 9 ? second :('0' + second))
 			} else {
-				duration = Math.floor((nextTimeStart - timeStart) / 60) + ' Min';
+				duration = (minute > 9 ? minute :('0' + minute)) + ':' + (second > 9 ? second :('0' + second))
 			}
 			sectionDurations.push(duration)
 		}
+
+		let remainingNextTimeStart;
+		if (btnIndex !== (sectionBtn.length - 1)) {
+			remainingNextTimeStart = sectionBtn[btnIndex + 1].getAttribute('timeStart');
+		} else {
+			remainingNextTimeStart = audio.duration;
+		}
+		let remainingMinute = Math.floor((remainingNextTimeStart - audio.currentTime) / 60)
+		let remainingSecond = Math.floor((remainingNextTimeStart - audio.currentTime) % 60)
+		let remainingTime = (remainingMinute > 9 ? remainingMinute :('0' + remainingMinute)) + ':' + (remainingSecond > 9 ? remainingSecond :('0' + remainingSecond))
+		sectionDurations[btnIndex] = remainingTime
 	}
 	
 	const [sectionScrollLeft, setSectionScrollLeft] = useState(0)

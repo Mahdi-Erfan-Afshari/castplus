@@ -1,5 +1,5 @@
 'use client'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import {BsPlayFill, BsPauseFill} from 'react-icons/bs'
 import {ImVolumeHigh, ImVolumeMedium, ImVolumeLow, ImVolumeMute2} from 'react-icons/im'
 import {RiForward30Line, RiReplay10Line} from 'react-icons/ri'
@@ -16,6 +16,7 @@ const Controller = ({ url , episode }) => {
 	const [volume, setVolume] = useState(0.7);
 	const [volumeToggle, setVolumeToggle] = useState(false);
 	const [previousVolume, setPreviousVolume] = useState(0);
+	const [loading, setLoading] = useState(true);
 
 	const audio = useRef();
 	
@@ -146,12 +147,15 @@ const Controller = ({ url , episode }) => {
 		}, 100)
 	}
 
+	useEffect(() => {
+		setLoading(false)
+	}, [audio.current])
+
   return (
 	<div className={`${vazir.className}`}>
 		<audio ref={audio} src={url} onTimeUpdate={(e) =>{changeCurrentTime(e)}} onEnded={togglePlay} autoPlay></audio>
-
 		<div className="controller w-full flex flex-row justify-center bg-white rounded-xl p-6 mt-12">
-			{audio.current == undefined ? <AudioLoading /> : <div className='flex flex-col w-full'>
+			{audio.current == undefined && loading ? <AudioLoading /> : <div className='flex flex-col w-full'>
 				<div className="flex flex-col items-center w-full">
 					<div className='relative flex md:flex-row flex-col justify-center items-center md:space-x-4 w-full md:mb-4 mb-8'>
 						<div className='block justify-center mb-4'>

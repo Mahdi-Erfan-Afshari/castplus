@@ -8,6 +8,7 @@ import SignInOrSignUpButton from '@/app/components/SignInOrSignUpButton'
 import { BiHomeAlt2 } from 'react-icons/bi'
 import { BsHeadset } from 'react-icons/bs'
 import {IoLogOutOutline} from 'react-icons/io5'
+import {MdOutlinePodcasts} from 'react-icons/md'
 
 const Header = () => {
 	const { data: session } = useSession()
@@ -30,6 +31,7 @@ const Header = () => {
 					</div>
 					<div className='flex justify-center col-span-3'>
 						<Link href='/'><button className='hover:text-black text-Gray mx-1 py-2 px-4 duration-150'>Home</button></Link>
+						<Link href='/podcasts'><button className='hover:text-black text-Gray mx-1 py-2 px-4 duration-150'>Podcasts</button></Link>
 						<Link href='/contactus'><button className='hover:text-black text-Gray mx-1 py-2 px-4 duration-150'>Contact Us</button></Link>
 					</div>
 					<div className='flex justify-end col-span-1'>
@@ -67,6 +69,10 @@ const Header = () => {
 							<BiHomeAlt2 className='text-xl ms-[2px]' />
 							<p className='mt-1'>Home</p>
 						</Link>
+						<Link href='/podcasts' className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={toggleHamburgerMenu}>
+							<MdOutlinePodcasts className='text-xl ms-[2px]' />
+							<p className='mt-1'>Podcasts</p>
+						</Link>
 						<Link href='/contactus' className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={toggleHamburgerMenu}>
 							<BsHeadset className='text-xl ms-[2px]' />
 							<p className='mt-1'>Contact Us</p>
@@ -87,6 +93,10 @@ const Header = () => {
 							<Link href='/' className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={toggleHamburgerMenu}>
 								<BiHomeAlt2 className='text-xl ms-[2px]' />
 								<p className='mt-1'>Home</p>
+							</Link>
+							<Link href='/podcasts' className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={toggleHamburgerMenu}>
+								<MdOutlinePodcasts className='text-xl ms-[2px]' />
+								<p className='mt-1'>Podcasts</p>
 							</Link>
 							<Link href='/contactus' className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={toggleHamburgerMenu}>
 								<BsHeadset className='text-xl ms-[2px]' />
