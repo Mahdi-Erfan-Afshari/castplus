@@ -10,33 +10,24 @@ import Image from 'next/image'
 
 const Controller = ({ url , episode }) => {
 	const [play, setPlay] = useState(true);
-	const [autoPlay, setAutoPlay] = useState(true)
 	const [currentTime, setCurrentTime] = useState(0);
 	const [duration, setDuration] = useState(0);
 	const [volume, setVolume] = useState(0.7);
 	const [volumeToggle, setVolumeToggle] = useState(false);
+	const [load, setLoad] = useState(true);
 	const [previousVolume, setPreviousVolume] = useState(0);
-	const [loading, setLoading] = useState(true);
 
 	const audio = useRef();
 	
 	const togglePlay = () => {
-		const audio = document.querySelector('audio');
-		!play ? audio.play() : audio.pause();
+		!play ? audio.current.play() : audio.current.pause();
 		setPlay(!play)
 	}
-	
-	if(typeof document !== 'undefined') {
-		if(audio.current !== undefined && autoPlay == true){
-			togglePlay()
-			setAutoPlay(false)
-		}
-	}
-	
-	const changeCurrentTime = (event) => {
-		if(event.target.duration && event.target.currentTime){
-			setCurrentTime(event.target.currentTime)
-			setDuration(event.target.duration)
+
+	const changeCurrentTime = () => {
+		if(audio.current.duration && audio.current.currentTime){
+			setCurrentTime(audio.current.currentTime)
+			setDuration(audio.current.duration)
 		}
 	}
 
@@ -147,15 +138,18 @@ const Controller = ({ url , episode }) => {
 		}, 100)
 	}
 
-	useEffect(() => {
-		setLoading(false)
-	}, [audio.current])
+	const audioLoaded = () => {
+		setLoad(false);
+		togglePlay();
+		setDuration(audio.current.duration);
+	}
 
   return (
 	<div className={`${vazir.className}`}>
-		<audio ref={audio} src={url} onTimeUpdate={(e) =>{changeCurrentTime(e)}} onEnded={togglePlay} autoPlay></audio>
+		<audio ref={audio} src={url} onTimeUpdate={(e) =>{changeCurrentTime(e)}} onEnded={togglePlay} onCanPlayThrough={audioLoaded} autoPlay></audio>
+
 		<div className="controller w-full flex flex-row justify-center bg-white rounded-xl p-6 mt-12">
-			{audio.current == undefined && loading ? <AudioLoading /> : <div className='flex flex-col w-full'>
+			{load ? <AudioLoading /> : <div className='flex flex-col w-full'>
 				<div className="flex flex-col items-center w-full">
 					<div className='relative flex md:flex-row flex-col justify-center items-center md:space-x-4 w-full md:mb-4 mb-8'>
 						<div className='block justify-center mb-4'>
