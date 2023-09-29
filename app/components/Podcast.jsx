@@ -3,7 +3,6 @@ import Image from 'next/image';
 import { vazir, vazirBold, lalezar, nunito } from '../utils/fonts';
 import EpisodeList from '@/app/components/EpisodeList'
 import Banner from '@/app/img/banner.svg'
-import { AiFillStar } from 'react-icons/ai'
 import { FavoriteDesktopButton, FavoriteMobileButton } from './FavoriteButton';
 
 async function fetchPodcast() {
@@ -35,7 +34,7 @@ const Podcast = async ({ id, data }) => {
 						<div className='relative flex flex-row pt-3 px-6'>
 							<div className='relative top-[-60px] block justify-center'>
 								<div className='xl:ms-6 lg:ms-0 md:w-40 md:h-40 h-32'>
-									<Image className='rounded-full border-8 border-white w-full h-full object-cover' src={podcast.thumbnail} alt='podcast logo' width='25' height='25'/>
+									<Image className='rounded-full border-8 border-white w-full h-full object-cover' src={podcast.thumbnail} alt='podcast logo' width='300' height='300'/>
 								</div>
 							</div>
 							<div className='flex lg:flex-row flex-col justify-between w-full h-full mt-2'>
@@ -49,7 +48,6 @@ const Podcast = async ({ id, data }) => {
 											<p className='font-semibold'>{podcast.episodes.length}</p>
 											<p className='text-xs text-Gray'>episodes</p>
 										</div>
-										{/* <span className='w-[.8px] h-[30px] bg-[rgb(232,234,237)]'></span> */}
 										<div className='flex flex-col justify-center items-center'>
 											<FavoriteDesktopButton podcasts={data} id={id} users={users} />
 										</div>
@@ -64,7 +62,7 @@ const Podcast = async ({ id, data }) => {
 							<div className='relative flex md:h-[80px] sm:h-[70px] h-[55px]'>
 								<div className='relative sm:top-[-60px] top-[-30px] block justify-center'>
 									<div className='md:w-32 md:h-32 sm:w-28 sm:h-28 w-20 h-20'>
-										<Image className='rounded-full sm:border-8 border-4 border-white w-full h-full object-cover' src={podcast.thumbnail} alt='podcast logo' width='25' height='25'/>
+										<Image className='rounded-full sm:border-8 border-4 border-white w-full h-full object-cover' src={podcast.thumbnail} alt='podcast logo' width='300' height='300'/>
 									</div>
 								</div>
 								<div className='flex lg:flex-row flex-col justify-between w-full h-full mt-2'>
@@ -74,7 +72,6 @@ const Podcast = async ({ id, data }) => {
 												<p className='font-semibold text-md'>{podcast.episodes.length}</p>
 												<p className='text-xs text-Gray'>episodes</p>
 											</div>
-											{/* <span className='w-[.8px] h-[30px] bg-[rgb(232,234,237)]'></span> */}
 											<div className='flex flex-col justify-center items-center'>
 												<FavoriteMobileButton podcasts={data} id={id} users={users} />
 											</div>

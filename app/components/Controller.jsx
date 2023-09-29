@@ -156,7 +156,7 @@ const Controller = ({ url , episode }) => {
 					<div className='relative flex md:flex-row flex-col justify-center items-center md:space-x-4 w-full md:mb-4 mb-8'>
 						<div className='block justify-center mb-4'>
 							<div className='lg:w-28 lg:h-28 md:w-24 md:h-24 w-28 h-28'>
-								<Image className='rounded-2xl w-full h-full object-cover' src={episode.thumbnail} alt='podcast logo' width='25' height='25'/>
+								<Image className='rounded-2xl w-full h-full object-cover' src={episode.thumbnail} alt='podcast logo' width='250' height='250'/>
 							</div>
 						</div>
 						<div>

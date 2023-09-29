@@ -7,8 +7,6 @@ import Group from '@/app/img/Group.svg'
 import SignInOrSignUpButton from '@/app/components/SignInOrSignUpButton'
 import { BiHomeAlt2 } from 'react-icons/bi'
 import { BsHeadset } from 'react-icons/bs'
-import {RxDashboard} from 'react-icons/rx'
-import {MdOutlinePodcasts,MdFavoriteBorder} from 'react-icons/md'
 import {IoLogOutOutline} from 'react-icons/io5'
 
 const Header = () => {
@@ -77,18 +75,6 @@ const Header = () => {
 							<span className='w-full h-[.5px] bg-[rgba(0,0,0,.12)]'></span>
 						</div>
 						<div className='flex flex-col justify-center space-y-2'>
-							{/* <div className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={toggleHamburgerMenu}>
-								<RxDashboard className='text-xl' />
-								<Link href=''>Dashboard</Link>
-							</div>
-							<div className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={toggleHamburgerMenu}>
-								<MdOutlinePodcasts className='text-xl' />
-								<Link href=''>Your Episodes</Link>
-							</div>
-							<div className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={toggleHamburgerMenu}>
-								<MdFavoriteBorder className='text-xl' />
-								<Link href=''>Your Favorites</Link>
-							</div> */}
 							<div className='hover:bg-[#ff1c1c1c] text-Red flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={() => {signOut(); toggleHamburgerMenu()}}>
 								<IoLogOutOutline className='text-xl ms-[2px]' />
 								<Link href=''>Sign Out</Link>

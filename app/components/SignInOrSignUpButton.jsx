@@ -4,8 +4,6 @@ import Link from 'next/link'
 import { useSession, signIn, signOut } from 'next-auth/react'
 import Image from 'next/image'
 import {IoIosArrowDown} from 'react-icons/io'
-import {RxDashboard} from 'react-icons/rx'
-import {MdOutlinePodcasts,MdFavoriteBorder} from 'react-icons/md'
 import {IoLogOutOutline} from 'react-icons/io5'
 
 
@@ -92,27 +90,6 @@ const SignInButton = () => {
 					<span className='w-full h-[.5px] bg-[rgba(0,0,0,.12)]'></span>
 				</div>
 				<div className='flex flex-col justify-center space-y-1 px-3'>
-					{/* <div className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100'>
-						<RxDashboard className='text-xl' />
-						<Link href=''>Dashboard</Link>
-					</div>
-					<div className='flex justify-center'>
-						<span className='w-11/12 h-[.5px] bg-[rgba(0,0,0,.12)]'></span>
-					</div>
-					<div className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100'>
-						<MdOutlinePodcasts className='text-xl' />
-						<Link href=''>Your Episodes</Link>
-					</div>
-					<div className='flex justify-center'>
-						<span className='w-11/12 h-[.5px] bg-[rgba(0,0,0,.12)]'></span>
-					</div>
-					<div className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100'>
-						<MdFavoriteBorder className='text-xl' />
-						<Link href=''>Your Favorites</Link>
-					</div>
-					<div className='flex justify-center'>
-						<span className='w-11/12 h-[.5px] bg-[rgba(0,0,0,.12)]'></span>
-					</div> */}
 					<div className='hover:bg-[#ff1c1c1c] text-Red flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={() => signOut()}>
 						<IoLogOutOutline className='text-xl ms-[2px]' />
 						<Link href=''>Sign Out</Link>

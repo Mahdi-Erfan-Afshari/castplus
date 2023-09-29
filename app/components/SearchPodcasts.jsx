@@ -2,16 +2,30 @@
 import { useState } from 'react';
 import {vazir } from '@/app/utils/fonts'
 import {CgSearch} from 'react-icons/cg';
+import { server } from '@/app/lib/server'
 
 const SearchPodcasts = ({ getSearchResults, setLoading }) => {
 	const [query, setQuery] = useState('');
 	const handleSubmit = async (e) => {
 		setLoading(true)
 		e.preventDefault();
-		const res = await fetch(`/api/podcasts/search?query=${query}`);
-		const podcasts = await res.json();
-		getSearchResults(podcasts);
-		setLoading(false)
+		fetch(`${server}/api/search`, {
+			method: 'POST',
+			headers: {
+				'Content-type': 'application/json',
+			},
+			body: JSON.stringify({
+				query : query,
+			}),
+		   })
+			.then((response) => response.json())
+			.then((data) => {
+				setLoading(false)
+				getSearchResults(data);
+			})
+			.catch((error) => {
+				console.error(error);
+		});
 	}
 	
 	return (
