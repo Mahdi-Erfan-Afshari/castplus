@@ -27,7 +27,7 @@ const Header = () => {
 			<nav className='container mx-auto w-full '>
 				<div className='lg:grid hidden grid-cols-5 items-center py-6'>
 					<div className='flex justify-start col-span-1'>
-						<Link href='/'><h1 className='relative flex items-center text-2xl font-semibold'><Image className="inline-block pe-2" src={Group} alt='Logo'/>CastPlus</h1></Link>
+						<Link href='/'><h1 className='relative flex items-center text-2xl font-semibold text-[#0030eb]'><Image className="inline-block pe-2" width={40} height={40} src={Group} alt='Logo'/>CastPlus</h1></Link>
 					</div>
 					<div className='flex justify-center col-span-3'>
 						<Link href='/'><button className='hover:text-black text-Gray mx-1 py-2 px-4 duration-150'>Home</button></Link>
@@ -41,7 +41,7 @@ const Header = () => {
 				
 				{/* Mobile Menu */}
 				<div className='flex justify-between items-center w-full relative lg:hidden pt-6'>
-					<Link href='/'><h1 className='relative flex items-center text-2xl font-semibold z-10'><Image className="inline-block pe-2" src={Group} alt='Logo'/>CastPlus</h1></Link>
+					<Link href='/'><h1 className='relative flex items-center text-2xl font-semibold z-10 text-[#0030eb]'><Image className="inline-block pe-2" width={40} height={40} src={Group} alt='Logo'/>CastPlus</h1></Link>
 					<button id="menu-btn" className="flex items-center lg:hidden hover:bg-gray-100 w-10 h-10 rounded-lg duration-200 z-50" onClick={(e) => toggleHamburgerMenu(e)}>
 						<div className="flex flex-col mx-auto space-y-1 hamburger-button">
 							<span className="hamburger-top w-5 h-0.5 bg-black rounded-full duration-200"></span>
