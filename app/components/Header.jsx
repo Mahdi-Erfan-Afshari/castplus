@@ -41,7 +41,7 @@ const Header = () => {
 				
 				{/* Mobile Menu */}
 				<div className='flex justify-between items-center w-full relative lg:hidden pt-6'>
-					<Link href='/'><h1 className='relative flex items-center text-2xl font-semibold z-10'><Image className="inline-block pe-1" width={36} height={36} src={Group} alt='Logo'/><div className='flex flex-col justify-center items-center'><p className='flex flex-col text-[19px] font-bold mb-[-18px] mt-[2px] justify-center'>CastPlus</p><p className='flex flex-col text-[10px] text-black justify-center'>The Podcast App</p></div></h1></Link>
+					<Link href='/'><h1 className='relative flex items-center text-2xl font-semibold z-10'><Image className="inline-block mb-[2px]" width={32} height={32} src={Group} alt='Logo'/><div className='flex flex-col justify-center items-center'><p className='flex flex-col text-[19px] font-bold mb-[-18px] mt-[2px] justify-center'>CastPlus</p><p className='flex flex-col text-[10px] text-black justify-center'>The Podcast App</p></div></h1></Link>
 					<button id="menu-btn" className="flex items-center lg:hidden hover:bg-gray-100 w-10 h-10 rounded-lg duration-200 z-50" onClick={(e) => toggleHamburgerMenu(e)}>
 						<div className="flex flex-col mx-auto space-y-1 hamburger-button">
 							<span className="hamburger-top w-5 h-0.5 bg-black rounded-full duration-200"></span>
