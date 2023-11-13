@@ -27,7 +27,7 @@ const Header = () => {
 			<nav className='container mx-auto w-full '>
 				<div className='lg:grid hidden grid-cols-5 items-center py-6'>
 					<div className='flex justify-start col-span-1'>
-						<Link href='/'><h1 className='relative flex items-center text-2xl font-semibold '><Image className="inline-block pe-2" width={40} height={40} src={Group} alt='Logo'/><div className='flex flex-col justify-center items-center'><p className='flex flex-col text-[21px] font-bold mb-[-17px] mt-1 justify-center'>CastPlus</p><p className='flex flex-col text-[11px] text-black justify-center'>The Podcast App</p></div></h1></Link>
+						<Link href='/'><h1 className='relative flex items-center text-2xl font-semibold '><Image className="inline-block" width={35} height={35} src={Group} alt='Logo'/><div className='flex flex-col justify-center items-center'><p className='flex flex-col text-[21px] font-bold mb-[-17px] mt-1 justify-center'>CastPlus</p><p className='flex flex-col text-[11px] text-black justify-center'>The Podcast App</p></div></h1></Link>
 					</div>
 					<div className='flex justify-center col-span-3'>
 						<Link href='/'><button className='hover:text-black text-Gray mx-1 py-2 px-4 duration-150'>Home</button></Link>
