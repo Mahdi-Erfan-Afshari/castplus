@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { vazir, lalezar, nunito } from "../utils/fonts";
-import {MdOutlinePodcasts} from 'react-icons/md'
+import { MdOutlinePodcasts } from 'react-icons/md'
 
 const EpisodeList = ({data}) => {
 	const episodes = data.episodes

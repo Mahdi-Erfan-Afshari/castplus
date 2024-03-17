@@ -165,8 +165,8 @@ const Controller = ({ url , episode }) => {
 					<div className="flex items-center w-full">
 						<div className='lg:flex hidden items-center volume-handler sm:w-full md:w-24 mt-3 md:mt-0'>
 							<div className='volume-body flex relative'>
-								<div className='volume-input flex items-center absolute bottom-[110px] right-[-85px] w-48 bg-white rotate-[-90deg] h-10 p-4 rounded-md shadow-md duration-100' onMouseEnter={volumeFadeIn} onMouseLeave={volumeFadeOut}>
-									<input id='volume-range' className='w-full' type="range" min='0' max='100' onChange={(e) => volumeHandler(e)} value={volumeValueProgress()} onMouseEnter={volumeFadeIn}/>
+								<div className='volume-input flex items-center absolute bottom-[30px] right-[-170px] w-48 bg-white h-10 p-4 rounded-md shadow-md duration-100' onMouseEnter={volumeFadeIn} onMouseLeave={volumeFadeOut}>
+									<input id='progressBar' className='w-full controller-input md:mx-3' type="range" min='0' max='100' onChange={(e) => volumeHandler(e)} value={volumeValueProgress()} onMouseEnter={volumeFadeIn}/>
 								</div>
 								<span className='volume-icon w-fit h-fit rounded-full p-2 duration-150 me-[-10px]' onMouseEnter={volumeFadeIn} onMouseLeave={volumeFadeOut} onClick={toggleVolume}>
 									{volume == 0 ? <ImVolumeMute2 className='text-lg text-[#333444]'/> : volume > 0 && volume <= .33 ? <ImVolumeLow className='text-lg text-[#333444]'/> : volume > .33 && volume <= .66 ? <ImVolumeMedium className='text-lg text-[#333444]'/> : <ImVolumeHigh className='text-lg text-[#333444]' />}
