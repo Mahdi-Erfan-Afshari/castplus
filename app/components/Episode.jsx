@@ -3,14 +3,9 @@ import Controller from '@/app/components/Controller'
 import Image from 'next/image';
 import { vazir, lalezar } from '../utils/fonts';
 
-async function fetchPodcast() {
-  const response = await fetch(`${server}/api/podcasts`, { cache: 'no-cache' });
-  const podcasts = await response.json();
-  return podcasts;
-}
 
-const Episode = async ({ episodeRoute, id }) => {
-  const podcasts = await fetchPodcast();
+const Episode = async ({ data, episodeRoute, id }) => {
+  const podcasts = data;
   const podcast = podcasts.filter((podcast) => {
     return podcast.id === id
   })
