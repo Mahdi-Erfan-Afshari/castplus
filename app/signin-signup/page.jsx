@@ -5,7 +5,7 @@ import { useState , useEffect} from 'react';
 import {VscEye, VscEyeClosed} from 'react-icons/vsc'
 import GoogleSignInButton from '../components/GoogleSignInButton';
 import Image from 'next/image';
-import LogoWhite from '@/app/img/logo CastPlus white.svg'
+import LogoWhite from '@/app/img/logo CastPlus white blue.svg'
 
 const LoginSignUpPage = () => {
   return (

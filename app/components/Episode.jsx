@@ -4,15 +4,19 @@ import Image from 'next/image';
 import { vazir, lalezar } from '../utils/fonts';
 
 async function fetchPodcast() {
-  const response = await fetch(`${server}/api/podcasts`, { cache: 'no-store' });
+  const response = await fetch(`${server}/api/podcasts`, { next: { revalidate: 60 }});
   const podcasts = await response.json();
   return podcasts;
 }
 
-const Episode = async ({ episodeRoute }) => {
+const Episode = async ({ episodeRoute, id }) => {
   const podcasts = await fetchPodcast();
-  const episodes = podcasts[0].episodes
-  const episode = episodes.filter((episode) => episode.id == episodeRoute);
+  const podcast = podcasts.filter((podcast) => {
+    return podcast.id === id
+  })
+  const episode = podcast[0].episodes.filter((episode) => {
+    return episode.id === episodeRoute
+  })
 
   return (
 	<>
