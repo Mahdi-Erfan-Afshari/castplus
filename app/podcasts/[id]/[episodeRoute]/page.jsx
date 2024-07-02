@@ -1,3 +1,4 @@
+import {server} from '../api/podcasts/route';
 import Episode from '@/app/components/Episode'
 
 async function fetchPodcast() {
