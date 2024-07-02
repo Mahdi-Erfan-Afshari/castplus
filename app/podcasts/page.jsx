@@ -1,3 +1,4 @@
+import {server} from '@/app/api/podcasts/route';
 import PodcastsList from '@/app/components/PodcastsList'
 
 const fetchPodcasts = async () => {

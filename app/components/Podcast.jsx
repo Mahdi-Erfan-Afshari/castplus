@@ -17,10 +17,10 @@ import { FavoriteDesktopButton, FavoriteMobileButton } from './FavoriteButton';
 // 	return users;
 // }
 
-const Podcast = async ({ id, data, users }) => {
+const Podcast = async ({ id, data, usersData }) => {
 	const podcasts =  data;
-	const podcast =  podcasts.filter((podcast) => podcast.id == id);
-	const users =  users;
+	const podcast = podcasts.filter((podcast) => podcast.id == id);
+	const users = usersData;
 
   return (
 	<div>

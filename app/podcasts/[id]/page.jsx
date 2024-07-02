@@ -18,7 +18,7 @@ const PodcastPage = async ({params: { id }}) => {
 	const podcasts = await fetchPodcasts();
   return (
 	<div>
-	 	<Podcast data={podcasts} users={users} id={id} />
+	 	<Podcast data={podcasts} usersData={users} id={id} />
 	</div>
   )
 }
