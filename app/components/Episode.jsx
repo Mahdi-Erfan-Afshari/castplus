@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { vazir, lalezar } from '../utils/fonts';
 
 async function fetchPodcast() {
-  const response = await fetch(`${server}/api/podcasts`, { next: { revalidate: 60 }});
+  const response = await fetch(`${server}/api/podcasts`, { cache: 'no-cache' });
   const podcasts = await response.json();
   return podcasts;
 }
