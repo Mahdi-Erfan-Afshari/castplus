@@ -1,26 +1,26 @@
-import {server} from '@/app/api/podcasts/route';
+// import {server} from '@/app/api/podcasts/route';
 import Image from 'next/image';
 import { vazir, vazirBold, lalezar, nunito } from '../utils/fonts';
 import EpisodeList from '@/app/components/EpisodeList'
 import Banner from '@/app/img/banner.svg'
 import { FavoriteDesktopButton, FavoriteMobileButton } from './FavoriteButton';
 
-async function fetchPodcast() {
-	const response = await fetch(`${server}/api/podcasts`, { cache: 'no-store' });
-	const podcasts = await response.json();
-	return podcasts;
-}
+// async function fetchPodcast() {
+// 	const response = await fetch(`${server}/api/podcasts`, { cache: 'no-store' });
+// 	const podcasts = await response.json();
+// 	return podcasts;
+// }
 
-async function fetchUsers() {
-	const response = await fetch(`${server}/api/user_profiles`);
-	const users = await response.json();
-	return users;
-}
+// async function fetchUsers() {
+// 	const response = await fetch(`${server}/api/user_profiles`);
+// 	const users = await response.json();
+// 	return users;
+// }
 
-const Podcast = async ({ id, data }) => {
-	const podcasts = await fetchPodcast();
-	const podcast = await podcasts.filter((podcast) => podcast.id == id);
-	const users = await fetchUsers()
+const Podcast = async ({ id, data, users }) => {
+	const podcasts =  data;
+	const podcast =  podcasts.filter((podcast) => podcast.id == id);
+	const users =  users;
 
   return (
 	<div>
