@@ -11,6 +11,7 @@ const fetchPodcasts = async () => {
 const PodcastsPage = async () => {
 	const podcasts = await fetchPodcasts();
 	console.log(podcasts);
+
 	return (
 	<>
 	  <PodcastsList podcasts={podcasts} />

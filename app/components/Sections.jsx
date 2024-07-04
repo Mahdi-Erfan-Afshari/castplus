@@ -106,6 +106,7 @@ const Sections = ({data, episodes, isAudioPlay}) => {
 		let remainingTime = (remainingMinute > 9 ? remainingMinute :('0' + remainingMinute)) + ':' + (remainingSecond > 9 ? remainingSecond :('0' + remainingSecond))
 		sectionDurations[btnIndex] = remainingTime
 	}
+
 	
 	const [sectionScrollLeft, setSectionScrollLeft] = useState(0)
 	const removeScrollBtn = () => {
