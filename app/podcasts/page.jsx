@@ -1,4 +1,4 @@
-import {server} from '@/app/api/podcasts/route';
+import {server} from '@/app/lib/server';
 import PodcastsList from '@/app/components/PodcastsList'
 
 const fetchPodcasts = async () => {
@@ -7,9 +7,10 @@ const fetchPodcasts = async () => {
 	return data
 }
 
+
 const PodcastsPage = async () => {
 	const podcasts = await fetchPodcasts();
-
+	console.log(podcasts);
 	return (
 	<>
 	  <PodcastsList podcasts={podcasts} />

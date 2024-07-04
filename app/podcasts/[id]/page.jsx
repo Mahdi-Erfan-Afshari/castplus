@@ -1,5 +1,5 @@
 import Podcast from '@/app/components/Podcast'
-import { server } from '@/app/api/podcasts/route';
+import { server } from '@/app/lib/server';
 
 const fetchPodcasts = async () => {
 	const res = await fetch(`${server}/api/podcasts`, { cache: 'no-store' });
@@ -8,7 +8,7 @@ const fetchPodcasts = async () => {
 }
 
 async function fetchUsers() {
-	const response = await fetch(`${server}/api/user_profiles`);
+	const response = await fetch(`${server}/api/user_profiles`, { cache: 'no-store' });
 	const users = await response.json();
 	return users;
 }
