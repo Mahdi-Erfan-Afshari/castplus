@@ -18,6 +18,7 @@ const Controller = ({ url , episode }) => {
 	const [volumeToggle, setVolumeToggle] = useState(false);
 	const [load, setLoad] = useState(true);
 	const [previousVolume, setPreviousVolume] = useState(0);
+	const [audioFirstLoad, setAudioFirstLoad] = useState(true);
 
 	const audio = useRef();
 	
@@ -25,7 +26,7 @@ const Controller = ({ url , episode }) => {
 		!play ? audio.current.play() : audio.current.pause();
 		setPlay(!play)
 	}
-	// console.log(play);
+
 	const changeCurrentTime = () => {
 		if(audio.current.duration && audio.current.currentTime){
 			setCurrentTime(audio.current.currentTime)
@@ -118,10 +119,14 @@ const Controller = ({ url , episode }) => {
 
 	const forwardCurrentTime = () => {
 		audio.current.currentTime += 30
+		setPlay(true);
+		audio.current.play();
 	}
 
 	const backwardCurrentTime = () => {
 		audio.current.currentTime -= 10
+		setPlay(true);
+		audio.current.play();
 	}
 
 	const volumeFadeIn = () => {
@@ -141,10 +146,13 @@ const Controller = ({ url , episode }) => {
 	}
 
 	const audioLoaded = () => {
-		setLoad(false);
-		audio.current.pause();
-		setPlay(false)
-		setDuration(audio.current.duration);
+		if(audioFirstLoad) {
+			setLoad(false);
+			audio.current.pause();
+			setPlay(false);
+			setDuration(audio.current.duration);
+			setAudioFirstLoad(false);
+		}
 	}
 
   return (

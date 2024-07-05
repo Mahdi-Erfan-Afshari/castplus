@@ -63,14 +63,19 @@ const SectionsPage = ({data, episodes, isAudioPlay}) => {
 			Button.classList.remove('btn-active');
 		});
 
-		if (e.target.tagName === 'SPAN') {
+		if (e.target.tagName === 'SPAN' && e.target.id === 'section-progressbar') {
 			e.target.parentElement.classList.add('btn-active');
 			audio.currentTime = e.target.parentElement.getAttribute('timeStart');
+		} else if (e.target.tagName === 'SPAN') {
+			e.target.parentElement.parentElement.firstElementChild.classList.add('btn-active');
+			audio.currentTime = e.target.parentElement.parentElement.firstElementChild.getAttribute('timeStart');
+		} else if (e.target.tagName === 'P') {
+			e.target.parentElement.firstElementChild.classList.add('btn-active');
+			audio.currentTime = e.target.parentElement.firstElementChild.getAttribute('timeStart');
 		} else {
 			e.target.classList.add('btn-active');
 			audio.currentTime = e.target.getAttribute('timeStart');
 		}
-		
 		isAudioPlay(true);
 		audio.play();
 	}
@@ -191,9 +196,9 @@ const SectionsPage = ({data, episodes, isAudioPlay}) => {
 									<div className="">
 										<button id="section-btn" className="overflow-hidden relative rounded-lg bg-White py-4 px-3 md:w-[180px] w-[160px] sm:text-md vazir text-sm mx-1 duration-150 inline-block select-none truncate" timeStart={section.timeStart} sectionNumber={sections.indexOf(section)} onClick={changeCurrentTime}>
 											{section.title}
-											<span className="inline-block absolute top-0 left-0 bg-[#b8c7ff26] w-0 h-full z-10" ></span>
+											<span id="section-progressbar" className="inline-block absolute top-0 left-0 bg-[#b8c7ff26] w-0 h-full z-10" ></span>
 										</button>
-										<p className={`${lalezar.className} ${"section-duration absolute top-[2px] left-[12px] text-xs text-[#bbb] select-none"}`}>
+										<p className={`${lalezar.className} ${"section-duration absolute top-[2px] left-[12px] text-xs text-[#bbb] select-none"}`} onClick={changeCurrentTime}>
 											<span>{ Math.round(section.duration / 60) < 10 ? '0' + Math.round(section.duration / 60).toString() : Math.round(section.duration / 60).toString()}</span>:
 											<span>{ section.duration % 60 < 10 ? '0' + (section.duration % 60).toString() : (section.duration % 60).toString()}</span>
 										</p>
