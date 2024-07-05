@@ -4,6 +4,8 @@ import {BsPlayFill, BsPauseFill} from 'react-icons/bs'
 import {ImVolumeHigh, ImVolumeMedium, ImVolumeLow, ImVolumeMute2} from 'react-icons/im'
 import {RiForward30Line, RiReplay10Line} from 'react-icons/ri'
 import {vazir , lalezar} from '@/app/utils/fonts'
+import { TbRewindBackward10, TbRewindForward30 } from "react-icons/tb";
+
 import Sections from './Sections'
 import AudioLoading from './AudioLoading'
 import Image from 'next/image'
@@ -23,7 +25,7 @@ const Controller = ({ url , episode }) => {
 		!play ? audio.current.play() : audio.current.pause();
 		setPlay(!play)
 	}
-
+	// console.log(play);
 	const changeCurrentTime = () => {
 		if(audio.current.duration && audio.current.currentTime){
 			setCurrentTime(audio.current.currentTime)
@@ -140,7 +142,8 @@ const Controller = ({ url , episode }) => {
 
 	const audioLoaded = () => {
 		setLoad(false);
-		togglePlay();
+		audio.current.pause();
+		setPlay(false)
 		setDuration(audio.current.duration);
 	}
 
@@ -148,7 +151,7 @@ const Controller = ({ url , episode }) => {
 	<div className={`${vazir.className}`}>
 		<audio ref={audio} src={url} onTimeUpdate={(e) =>{changeCurrentTime(e)}} onEnded={togglePlay} onCanPlayThrough={audioLoaded} autoPlay></audio>
 
-		<div className="controller w-full flex flex-row justify-center bg-white rounded-xl p-6 mt-12">
+		<div className="controller w-full flex flex-row justify-center bg-white border-[1px] border-border-gray rounded-xl p-6 mt-12">
 			{load ? <AudioLoading /> : <div className='flex flex-col w-full'>
 				<div className="flex flex-col items-center w-full">
 					<div className='relative flex md:flex-row flex-col justify-center items-center md:space-x-4 w-full md:mb-4 mb-8'>
@@ -180,21 +183,20 @@ const Controller = ({ url , episode }) => {
 								<p className='hidden md:block md:text-md text-sm mt-3 md:mt-0'> {showTime(duration)} </p>
 							</div>
 						</div>
-						<div className="grid grid-cols-1 md:grid-cols-3 justify-center items-center w-full mt-3">
-
+						<div className="grid grid-cols-1 md:grid-cols-3 justify-center items-center w-full mt-1">
 							<div className='col-span-1'>
-								<div className="flex justify-between md:hidden mt-1">
-									<p className='md:text-md text-sm md:mt-auto'> {showTime(currentTime)} </p>
-									<p className='md:text-md text-sm md:mt-auto'> {showTime(duration)} </p>
+								<div className="flex justify-between md:hidden">
+									<p className='text-xs'> {showTime(currentTime)} </p>
+									<p className='text-xs'> {showTime(duration)} </p>
 								</div>
 
 							</div>
 							<div className='flex justify-center items-center col-span-1 space-x-2 mt-2'>
-								<span onClick={backwardCurrentTime} className='bg-white p-2 rounded-full shadow-md text-2xl text-[#555]'><RiReplay10Line /></span>
-								<div className='bg-Blue rounded-full w-fit p-2 shadow-md shadow-LightBlue hover:bg-[#382ef3] mt-2 md:mt-0 duration-150' onClick={togglePlay}>
+								<span onClick={backwardCurrentTime} className='bg-white p-1 rounded-full border-[1px] border-border-gray text-2xl text-[#555]'><TbRewindBackward10 className='text-md text-gray-500' /></span>
+								<div className='bg-Blue rounded-full w-fit p-2 hover:bg-[#382ef3] md:mt-0 duration-150' onClick={togglePlay}>
 									{!play ? <BsPlayFill className='text-white text-3xl' /> : <BsPauseFill  className='text-white text-3xl'/>}
 								</div>
-								<span onClick={forwardCurrentTime} className='bg-white p-2 rounded-full shadow-md text-2xl text-[#555]'><RiForward30Line /></span>
+								<span onClick={forwardCurrentTime} className='bg-white p-1 rounded-full border-[1px] border-border-gray text-2xl text-[#555]'><TbRewindForward30 className='text-md text-gray-500' /></span>
 							</div>
 						</div>
 					</div>

@@ -11,6 +11,5 @@ export async function GET(req) {
 export async function POST(req) {
 	const client = await clientPromise
 	var db = client.db('castplus')
-
 	return NextResponse.json(user)
 }

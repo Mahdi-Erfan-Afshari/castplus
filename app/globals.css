@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+	font-family: nunito;
+	src: url('C:\Users\Jon\Desktop\zz\nunito.ttf')  format('truetype');
+}
+@font-face {
+	font-family: vazir;
+	src: url('C:\Users\Jon\Desktop\zz\vazir.ttf')  format('truetype');
+}
+
+.nunito {
+	font-family: nunito;
+}
+
+.vazir {
+	font-family: vazir;
+}
+
 body{
     background-color: #f5f6fe;
 }
@@ -107,7 +124,7 @@ body{
     border-radius: 100%;
     margin-bottom: 1px;
     transition: .2s;
-	box-shadow: -500px 0 0 500px #2e56f3;
+	box-shadow: -1000px 0 0 1000px #2e56f3;
 }
 
 #progressBar::-moz-range-thumb{
@@ -135,7 +152,7 @@ body{
 
 .btn-active{
     background-color: #2e56f3 !important;
-    box-shadow: 0px 1px 5px 1px #2e56f37a;
+    /* box-shadow: 0px 1px 5px 1px #2e56f37a; */
     color: #fff;
     transition: 150ms;
 }
@@ -187,6 +204,15 @@ body{
 
 .overflow-y-auto::-webkit-scrollbar-thumb:hover{
     background-color: #b9b9b9;
+}
+
+.no-scrollbar {
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+	display: none;
 }
 
 .hamburger-button-toggle{

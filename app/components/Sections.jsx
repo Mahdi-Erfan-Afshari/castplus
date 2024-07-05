@@ -4,111 +4,89 @@ import Info from "./Info"
 import {IoIosArrowForward, IoIosArrowBack} from 'react-icons/io'
 import { useEffect, useState } from "react";
 
-const Sections = ({data, episodes, isAudioPlay}) => {
-	var audio = data;
-	var episodeSections = episodes.sections;
-	const sectionBtn = document.querySelectorAll('#section-btn');
-	var btnIndex = 0;
-
-	const changeActiveBtn = () => {
-		var latestTimeStart = Number(sectionBtn[(sectionBtn.length - 1)].getAttribute('timeStart'));
-		var nextTimeStart;
-		var i = 0;
-		while(i < sectionBtn.length) {			
-			var timeStart = Number(sectionBtn[btnIndex].getAttribute('timeStart'));
-			
-			if(btnIndex < (sectionBtn.length - 1)) {
-				nextTimeStart = Number(sectionBtn[btnIndex + 1].getAttribute('timeStart'));
-			} else if(btnIndex == (sectionBtn.length - 1)) {
-				btnIndex--;
-				nextTimeStart = Number(sectionBtn[btnIndex].getAttribute('timeStart'));
-			}
-			
-			if(audio.currentTime > latestTimeStart && audio.currentTime <= audio.duration) {
-				sectionBtn[i].classList.remove('btn-active');
-				sectionBtn[(sectionBtn.length - 1)].classList.add('btn-active');
-				btnIndex = (sectionBtn.length - 1);
-			} else if (audio.currentTime >= timeStart && audio.currentTime < nextTimeStart) {
-				sectionBtn[i].classList.remove('btn-active');
-				sectionBtn[btnIndex].classList.add('btn-active');
-			} else {
-				sectionBtn[i].classList.remove('btn-active');
-				btnIndex++;
-			}
-			i++
-		}
-
-		var activeBtn;
-		var sectionProgressBar;
-		var progressBarWidth;
-		var progressBarRange;
-		var progressBarRangeWidth;
-		
-		if(audio.currentTime > latestTimeStart && audio.currentTime <= audio.duration) {
-			activeBtn = sectionBtn[(sectionBtn.length - 1)]
-			sectionProgressBar = document.querySelector('.btn-active').lastElementChild;
-			progressBarWidth = activeBtn.offsetWidth;
-			progressBarRange = (audio.currentTime - timeStart) * (progressBarWidth / (audio.duration - timeStart));
-			progressBarRangeWidth = progressBarRange + 'px'
-			sectionProgressBar.style.width = progressBarRangeWidth
-
-		} else if (audio.currentTime >= timeStart && audio.currentTime < nextTimeStart) {
-			activeBtn = document.querySelector('.btn-active');
-			sectionProgressBar = document.querySelector('.btn-active').lastElementChild;
-			progressBarWidth = activeBtn.offsetWidth;
-			progressBarRange = (audio.currentTime - timeStart) * (progressBarWidth / (nextTimeStart - timeStart));
-			progressBarRangeWidth = progressBarRange + 'px'
-			sectionProgressBar.style.width = progressBarRangeWidth
-		}
-	}
-
-	const changeCurrentTime = (e) => {
-		var timeStart = Number(e.target.getAttribute('timeStart'));
-		audio.currentTime = timeStart;
-		audio.play();
-		isAudioPlay(true);
-		sectionBtn.forEach((button) => {
-			button.classList.remove('btn-active')
-		})
-	}
-
-	var sectionDurations = []
-	const sectionDuration = () => {
-		var duration;
-		for(var i = 0; i < sectionBtn.length; i++) {
-			var timeStart = Number(sectionBtn[i].getAttribute('timeStart'));
-			var nextTimeStart;
-			if (i !== (sectionBtn.length - 1)) {
-				nextTimeStart = sectionBtn[i + 1].getAttribute('timeStart');
-			} else {
-				nextTimeStart = audio.duration;
-			}
-			
-			let minute = Math.floor((nextTimeStart - timeStart) / 60)
-			let second = Math.floor((nextTimeStart - timeStart) % 60)
-
-			if((nextTimeStart - timeStart) / 60 < 1) {
-				duration = (minute > 9 ? minute :('0' + minute)) + ':' + (second > 9 ? second :('0' + second))
-			} else {
-				duration = (minute > 9 ? minute :('0' + minute)) + ':' + (second > 9 ? second :('0' + second))
-			}
-			sectionDurations.push(duration)
-		}
-
-		let remainingNextTimeStart;
-		if (btnIndex !== (sectionBtn.length - 1)) {
-			remainingNextTimeStart = sectionBtn[btnIndex + 1].getAttribute('timeStart');
-		} else {
-			remainingNextTimeStart = audio.duration;
-		}
-		let remainingMinute = Math.floor((remainingNextTimeStart - audio.currentTime) / 60)
-		let remainingSecond = Math.floor((remainingNextTimeStart - audio.currentTime) % 60)
-		let remainingTime = (remainingMinute > 9 ? remainingMinute :('0' + remainingMinute)) + ':' + (remainingSecond > 9 ? remainingSecond :('0' + remainingSecond))
-		sectionDurations[btnIndex] = remainingTime
-	}
-
-	
+const SectionsPage = ({data, episodes, isAudioPlay}) => {
 	const [sectionScrollLeft, setSectionScrollLeft] = useState(0)
+	const [isCheckNumberOfSections, setIsCheckNumberOfSections] = useState(false)
+	var audio = data;
+	var sections = episodes.sections;
+	const sectionBtn = document.querySelectorAll('#section-btn');
+
+	const sectionBeingPlayIndex = () => {
+		if(audio) {
+			let firstIndex = sections.filter((section) => {
+				return section.timeStart <= audio.currentTime;
+			});
+
+			let sectionIndex = firstIndex.length > 0 ? firstIndex[firstIndex.length - 1].number : 0;
+			return sectionIndex;
+		}
+	}
+	const sectionIndex = sectionBeingPlayIndex();
+
+	const autoChangeActiveBtn = () => {
+		if(sectionBtn[sectionIndex]) {
+			sectionBtn.forEach((Button) => {
+				Button.classList.remove('btn-active')
+			})
+			sectionBtn[sectionIndex].classList.add('btn-active')
+		}
+	}
+
+	const sectionProgressBarHandler = () => {
+		let timeStart = sections[sectionIndex].timeStart;
+		let nextTimeStart = null;
+		let activeButton = sectionBtn[sectionIndex];
+		let sectionProgressBar = activeButton.getElementsByTagName('span')[0];
+		let progressBarWidth = activeButton.offsetWidth;
+		let progressBarRange = null;
+		let progressBarRangeWidth = null;
+
+		if(sectionIndex < (sectionBtn.length - 1)) {
+			nextTimeStart = sections[sectionIndex + 1].timeStart;
+		} else if(sectionIndex == (sectionBtn.length - 1)) {
+			nextTimeStart = sections[sectionIndex].timeStart;
+		}
+		
+		if(audio.currentTime > sections[sections.length - 1].timeStart && audio.currentTime <= audio.duration) {
+			progressBarRange = (audio.currentTime - timeStart) * (progressBarWidth / (audio.duration - timeStart));
+			progressBarRangeWidth = progressBarRange + 'px';
+			sectionProgressBar.style.width = progressBarRangeWidth;
+		} else if (audio.currentTime >= timeStart && audio.currentTime < nextTimeStart) {
+			progressBarRange = (audio.currentTime - timeStart) * (progressBarWidth / (nextTimeStart - timeStart));
+			progressBarRangeWidth = progressBarRange + 'px';
+			sectionProgressBar.style.width = progressBarRangeWidth;
+		}
+	}
+	
+	const changeCurrentTime = (e) => {
+		sectionBtn.forEach((Button) => {
+			Button.classList.remove('btn-active');
+		});
+
+		if (e.target.tagName === 'SPAN') {
+			e.target.parentElement.classList.add('btn-active');
+			audio.currentTime = e.target.parentElement.getAttribute('timeStart');
+		} else {
+			e.target.classList.add('btn-active');
+			audio.currentTime = e.target.getAttribute('timeStart');
+		}
+		
+		isAudioPlay(true);
+		audio.play();
+	}
+	
+	useEffect(() => {
+		if(audio) {
+			autoChangeActiveBtn();
+		}
+	}, [sectionIndex]);
+
+	useEffect(() => {
+		if(audio) {
+			sectionProgressBarHandler()
+		}
+	})
+
 	const removeScrollBtn = () => {
 		var sectionBody = document.getElementById('section-body')
 		var scrollWidth = document.getElementById('section-btn').scrollWidth
@@ -126,9 +104,32 @@ const Sections = ({data, episodes, isAudioPlay}) => {
 			scrollForwardBtn.style.color = '#2e56f3'
 		}
 	}
+
+	const checkNumberOfSection = () => {
+		if(!isCheckNumberOfSections) {
+			let buttonWidth = document.getElementById('section-btn').scrollWidth;
+			let sectionBody = document.getElementById('section-body');
+			let sectionBodyWidth = document.getElementById('section-body').offsetWidth;
+			let scrollForwardBtn = document.getElementById('scroll-forward-btn');
+			let scrollBackwardBtn = document.getElementById('scroll-backward-btn');
+	
+			if (buttonWidth * sections.length < sectionBodyWidth) {
+				sectionBody.classList.add('flex');
+				sectionBody.classList.add('justify-center');
+				scrollForwardBtn.classList.add('hidden');
+				scrollBackwardBtn.classList.add('hidden');
+			} else {
+				sectionBody.classList.remove('flex');
+				sectionBody.classList.remove('justify-center');
+			}
+
+			setIsCheckNumberOfSections(true);
+		}
+	}
 	
 	useEffect(() => {
 		removeScrollBtn()
+		checkNumberOfSection()
 	});
 		
 	const scrollForward = () => {
@@ -146,68 +147,57 @@ const Sections = ({data, episodes, isAudioPlay}) => {
 		setSectionScrollLeft(sectionBody.scrollLeft -= (scrollWidth + 10))
 		removeScrollBtn();
 	}
-	
-	if(audio) {
-		changeActiveBtn();
-		sectionDuration();
-		var activeButton;
-		var activeBtnIndex;
-
-		if(btnIndex < (sectionBtn.length - 1)) {
-			activeButton = document.querySelector('.btn-active');
-			activeBtnIndex = Number(activeButton.getAttribute('sectionnumber'))
-		} else if(btnIndex == (sectionBtn.length - 1)) {
-			activeBtnIndex = sectionBtn.length - 1
-		}
-	}
 
 	useEffect(() => {
 		var scrollWidth = document.getElementById('section-btn').scrollWidth;
 		var sectionBody = document.getElementById('section-body');
 
-		sectionBody.scrollTo(Number((activeBtnIndex - Math.trunc((sectionBody.clientWidth / scrollWidth) - 2)) * scrollWidth) , 0);
-		setSectionScrollLeft(Number((activeBtnIndex - Math.trunc((sectionBody.clientWidth / scrollWidth) - 2)) * scrollWidth));
-	}, [activeBtnIndex])
+		sectionBody.scrollTo(Number((sectionIndex - Math.trunc((sectionBody.clientWidth / scrollWidth) - 2)) * scrollWidth) , 0);
+		setSectionScrollLeft(Number((sectionIndex - Math.trunc((sectionBody.clientWidth / scrollWidth) - 2)) * scrollWidth));
+	}, [sectionIndex]);
 	
-	const getTitle = () => {
-		return episodeSections[btnIndex].title;
+	if (audio) {
+		const getTitle = () => {
+			return sections[sectionIndex].title;
+		}
+		var title = getTitle();
+		
+		const getSummary = () => {
+			return sections[sectionIndex].summary;
+		}
+		var summary = getSummary();
+		
+		const getTranscript = () => {
+			return sections[sectionIndex].transcript;
+		}
+		var transcript = getTranscript();
+		
+		const getRefrences = () => {
+			return sections[sectionIndex].refrences;
+		}
+		var refrences = getRefrences();
 	}
-	var title = getTitle();
-	
-	const getSummary = () => {
-		return episodeSections[btnIndex].summary;
-	}
-	var summary = getSummary();
-	
-	const getTranscript = () => {
-		return episodeSections[btnIndex].transcript;
-	}
-	var transcript = getTranscript();
-	
-	const getRefrences = () => {
-		return episodeSections[btnIndex].refrences;
-	}
-	var refrences = getRefrences();
 
 	return (
 		<>
-			<div className="relative bg-white overflow-hidden rounded-xl h-fit mt-5">
-				<span id="scroll-backward-btn" onClick={scrollBackward} className="hover:text-[#382ef3] absolute top-0 left-0 flex justify-between items-center h-full cursor-pointer bg-white text-3xl text-Blue duration-150"><IoIosArrowBack /></span>
-				<span id="scroll-forward-btn" onClick={scrollForward} className="hover:text-[#382ef3] absolute top-0 right-0 flex justify-between items-center h-full cursor-pointer bg-white text-3xl text-Blue duration-150"><IoIosArrowForward /></span>
+			<div className="relative bg-white border-[1px] border-border-gray overflow-hidden rounded-xl h-fit mt-5">
+				<span id="scroll-backward-btn" className="hover:text-[#382ef3] absolute top-0 left-0 flex justify-between items-center h-full cursor-pointer bg-white text-3xl text-Blue duration-150" onClick={scrollBackward}><IoIosArrowBack /></span>
+				<span id="scroll-forward-btn" className="hover:text-[#382ef3] absolute top-0 right-0 flex justify-between items-center h-full cursor-pointer bg-white text-3xl text-Blue duration-150" onClick={scrollForward}><IoIosArrowForward /></span>
 				<div className="relative ms-8 me-8">
-					<div id="section-body" className="snap-x relative bg-white overflow-x-auto px-2 py-4 scroll-smooth">
+					<div id="section-body" className="snap-x relative bg-white overflow-x-auto px-2 py-2 scroll-smooth">
 						<div className="section-child inline-flex relative">
- 							{episodeSections.map((section) => (
+ 							{sections.map((section) => (
 								 <div className="snap-end relative">
-									<button id="section-btn" className="overflow-hidden relative rounded-lg bg-White md:py-8 py-7 px-3 md:w-[210px] w-[170px] sm:text-md md:text-[16px] text-sm mx-1 duration-150 inline-block select-none" timeStart={section.timeStart} sectionNumber={episodeSections.indexOf(section)} onClick={(e) => changeCurrentTime(e)}>
-										<span className="inline-block absolute top-0 left-0 w-full h-full z-20">
-											<span className="flex items-center justify-center w-full h-full" timeStart={section.timeStart} sectionNumber={episodeSections.indexOf(section)} onClick={(e) => changeCurrentTime(e)}>
-												{section.title}
-											</span>
-										</span>
-										<span className="inline-block absolute top-0 left-0 bg-[#b8c7ff26] w-0 h-full z-10" ></span>
-									</button>
-									<p className={`${lalezar.className} ${"section-duration absolute top-[4px] left-[12px] text-sm text-[#bbb] select-none"}`}>{sectionDurations[episodeSections.indexOf(section)]}</p>
+									<div className="">
+										<button id="section-btn" className="overflow-hidden relative rounded-lg bg-White py-4 px-3 md:w-[180px] w-[160px] sm:text-md vazir text-sm mx-1 duration-150 inline-block select-none truncate" timeStart={section.timeStart} sectionNumber={sections.indexOf(section)} onClick={changeCurrentTime}>
+											{section.title}
+											<span className="inline-block absolute top-0 left-0 bg-[#b8c7ff26] w-0 h-full z-10" ></span>
+										</button>
+										<p className={`${lalezar.className} ${"section-duration absolute top-[2px] left-[12px] text-xs text-[#bbb] select-none"}`}>
+											<span>{ Math.round(section.duration / 60) < 10 ? '0' + Math.round(section.duration / 60).toString() : Math.round(section.duration / 60).toString()}</span>:
+											<span>{ section.duration % 60 < 10 ? '0' + (section.duration % 60).toString() : (section.duration % 60).toString()}</span>
+										</p>
+									</div>
 								</div>
 							))}
 						</div>
@@ -219,4 +209,4 @@ const Sections = ({data, episodes, isAudioPlay}) => {
 	)
 }
 
-export default Sections
+export default SectionsPage

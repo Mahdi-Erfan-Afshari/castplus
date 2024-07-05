@@ -13,7 +13,7 @@ import {MdOutlinePodcasts} from 'react-icons/md'
 const Header = () => {
 	const { data: session } = useSession()
 
-	const toggleHamburgerMenu = (e) => {
+	const toggleHamburgerMenu = () => {
 		let hamburgerButton = document.getElementById('menu-btn');
 		let mobileMenu = document.getElementById('mobile-menu');
 		let mobileMenuBody = document.getElementById('mobile-menu-body');
@@ -24,8 +24,8 @@ const Header = () => {
 	}
 	return (
 		<div className={nunito.className}>
-			<nav className='container mx-auto w-full '>
-				<div className='lg:grid hidden grid-cols-5 items-center py-6'>
+			<nav className='container mx-auto w-full'>
+				<div className='lg:grid hidden grid-cols-5 items-center py-3'>
 					<div className='flex justify-start col-span-1'>
 						<Link href='/'><h1 className='relative flex items-center text-2xl font-semibold '><Image className="inline-block" width={120} height={120} src={Group} alt='Logo'/></h1></Link>
 					</div>
@@ -40,7 +40,7 @@ const Header = () => {
 				</div>
 				
 				{/* Mobile Menu */}
-				<div className='flex justify-between items-center w-full relative lg:hidden pt-6'>
+				<div className='flex justify-between items-center w-full relative lg:hidden pt-3'>
 					<Link href='/'><h1 className='relative flex items-center text-2xl font-semibold z-10'><Image className="inline-block mb-[2px]" width={100} height={100} src={Group} alt='Logo'/></h1></Link>
 					<button id="menu-btn" className="flex items-center lg:hidden hover:bg-gray-100 w-10 h-10 rounded-lg duration-200 z-50" onClick={(e) => toggleHamburgerMenu(e)}>
 						<div className="flex flex-col mx-auto space-y-1 hamburger-button">
@@ -51,7 +51,7 @@ const Header = () => {
 					</button>
 				</div>
 				{session ? 
-				<div id='mobile-menu-body' className='fixed top-0 right-0 lg:hidden w-0 h-full bg-white shadow-xl rounded-s-xl duration-300 z-40'>
+				<div id='mobile-menu-body' className='fixed top-0 right-0 lg:hidden w-0 h-full bg-white shadow-xl rounded-s-xl overflow-y-scroll no-scrollbar duration-300 z-40'>
 					<div id="mobile-menu" className="flex flex-col pt-14 p-3 duration-200 hamburger-button-toggle">
 						<div className='flex items-center space-x-2 duration-100 px-4 mt-2'>
 							<div className='min-w-fit min-h-fit w-10 h-10 rounded-full overflow-hidden'>

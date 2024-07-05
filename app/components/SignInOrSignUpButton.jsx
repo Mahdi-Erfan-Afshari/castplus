@@ -63,7 +63,7 @@ const SignInButton = () => {
     <>
       {session ? (
 		<div>
-			<div className='hover:bg-blue-700 flex items-center space-x-2 bg-Blue shadow-lg shadow-LightBlue rounded-lg cursor-pointer px-4 py-2 duration-100 select-none' onClick={toggleDropDown}>
+			<div className='hover:bg-blue-700 flex items-center space-x-2 bg-Blue rounded-lg cursor-pointer px-4 py-2 duration-100 select-none' onClick={toggleDropDown}>
 				<div id='drop-down-arrow' className='duration-300'>
 					<IoIosArrowDown className='text-white text-xl' />
 				</div>
