@@ -2,10 +2,11 @@
 import { useState } from "react"
 import { vazir } from "../utils/fonts"
 
-const Info = ({title, summary, transcript, refrences}) => {
+const Info = ({title, summary, transcript, refrences, tags}) => {
 	const [displaySummery, setDisplaySummary] = useState(false)
 	const [displayTranscript, setDisplayTranscript] = useState(true)
 	const [displayRefrences, setDisplayRefrences] = useState(false)
+	const [displayTags, setDisplayTags] = useState(false)
 
 	const changeInfoLable = (e) => {
 		let infoBtn = document.querySelectorAll('#info-btn')
@@ -14,6 +15,7 @@ const Info = ({title, summary, transcript, refrences}) => {
 		})
 		e.target.classList.add('info-active');
 	}
+	console.log(tags);
 
   return (
 	<div>
@@ -24,19 +26,29 @@ const Info = ({title, summary, transcript, refrences}) => {
 			setDisplaySummary(true) 
 			setDisplayTranscript(false)
 			setDisplayRefrences(false)
+			setDisplayTags(false)
 			}}>Summary</button>
 		  <button id="info-btn" className="info-active md:pt-5 sm:text-md text-sm pb-2 md:px-8 sm:px-4 py-2 px-3 duration-150 border-b-[3px] border-transparent" onClick={(e) =>{
 			changeInfoLable(e)
 			setDisplaySummary(false) 
 			setDisplayTranscript(true)
 			setDisplayRefrences(false)
+			setDisplayTags(false)
 			}}>Transcript</button>
 		  <button id="info-btn" className="md:pt-5 sm:text-md text-sm pb-2 md:px-8 sm:px-4 py-2 px-3 duration-150 border-b-[3px] border-transparent" onClick={(e) =>{
 			changeInfoLable(e)
 			setDisplaySummary(false) 
 			setDisplayTranscript(false)
 			setDisplayRefrences(true)
+			setDisplayTags(false)
 			}}>Refrences</button>
+		  <button id="info-btn" className="md:pt-5 sm:text-md text-sm pb-2 md:px-8 sm:px-4 py-2 px-3 duration-150 border-b-[3px] border-transparent" onClick={(e) =>{
+			changeInfoLable(e)
+			setDisplaySummary(false) 
+			setDisplayTranscript(false)
+			setDisplayRefrences(false)
+			setDisplayTags(true)
+			}}>Tags</button>
 		</div>
 
 		<hr className="w-full" />
@@ -64,6 +76,17 @@ const Info = ({title, summary, transcript, refrences}) => {
 		  <pre className={`${vazir.className} ${"leading-loose"}`}>
 				{refrences}
 			</pre>
+		  </span>
+		</div>
+
+		<div className="w-full h-auto rounded-md py-3 px-6 mt-8 mb-4 max-h-[500px] overflow-y-auto"  style={{display: displayTags ? "block" : 'none'}} >
+			<span className="flex justify-start text-gray-800 lg:mx-36">
+			<div className={`${vazir.className} ${"space-y-1 space-x-1 "}`}>
+				{tags ? tags.map((tag) => (
+					<div className="inline-block text-blue-500 bg-blue-100 text-sm px-2 pt-1 rounded-md">{tag.name}</div>
+
+				)) : ''}
+			</div>
 		  </span>
 		</div>
 	  </div>

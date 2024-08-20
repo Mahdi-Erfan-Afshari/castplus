@@ -27,12 +27,12 @@ const Header = () => {
 			<nav className='container mx-auto w-full'>
 				<div className='lg:grid hidden grid-cols-5 items-center py-3'>
 					<div className='flex justify-start col-span-1'>
-						<Link href='/'><h1 className='relative flex items-center text-2xl font-semibold '><Image className="inline-block" width={120} height={120} src={Group} alt='Logo'/></h1></Link>
+						<Link href='/'><h1 className='relative flex items-center text-2xl font-semibold '><Image className="inline-block" width={100} height={100} src={Group} alt='Logo'/></h1></Link>
 					</div>
 					<div className='flex justify-center col-span-3'>
-						<Link href='/'><button className='hover:text-black text-Gray mx-1 py-2 px-4 duration-150'>Home</button></Link>
-						<Link href='/podcasts'><button className='hover:text-black text-Gray mx-1 py-2 px-4 duration-150'>Podcasts</button></Link>
-						<Link href='/contactus'><button className='hover:text-black text-Gray mx-1 py-2 px-4 duration-150'>Contact Us</button></Link>
+						<Link href='/'><button className='hover:text-black text-sm text-Gray mx-1 py-2 px-4 duration-150'>Home</button></Link>
+						<Link href='/podcasts'><button className='hover:text-black text-sm text-Gray mx-1 py-2 px-4 duration-150'>Podcasts</button></Link>
+						<Link href='/contactus'><button className='hover:text-black text-sm text-Gray mx-1 py-2 px-4 duration-150'>Contact Us</button></Link>
 					</div>
 					<div className='flex justify-end col-span-1'>
 						<SignInOrSignUpButton />
@@ -91,15 +91,15 @@ const Header = () => {
 					<div id='mobile-menu-body' className='fixed top-0 right-0 lg:hidden w-0 h-full bg-white shadow-xl rounded-s-xl duration-300 z-40'>
 						<div id="mobile-menu" className="flex flex-col pt-14 p-3 duration-200 hamburger-button-toggle">
 							<Link href='/' className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={toggleHamburgerMenu}>
-								<BiHomeAlt2 className='text-xl ms-[2px]' />
+								<BiHomeAlt2 className='text-lg ms-[2px]' />
 								<p className='mt-1'>Home</p>
 							</Link>
 							<Link href='/podcasts' className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={toggleHamburgerMenu}>
-								<MdOutlinePodcasts className='text-xl ms-[2px]' />
+								<MdOutlinePodcasts className='text-lg ms-[2px]' />
 								<p className='mt-1'>Podcasts</p>
 							</Link>
 							<Link href='/contactus' className='hover:bg-[#1c85ff1c] hover:text-Blue flex items-center space-x-3 cursor-pointer rounded-lg px-6 py-2 duration-100' onClick={toggleHamburgerMenu}>
-								<BsHeadset className='text-xl ms-[2px]' />
+								<BsHeadset className='text-lg ms-[2px]' />
 								<p className='mt-1'>Contact Us</p>
 							</Link>
 							<Link href='/signin-signup' onClick={() => signIn()}><button className='hover:bg-blue-700 bg-Blue text-white rounded-lg font-semibold shadow-lg shadow-LightBlue py-3 px-5 duration-150 w-full mt-2'>Sign In / Sign Up</button></Link>

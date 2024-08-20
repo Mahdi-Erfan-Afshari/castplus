@@ -1,6 +1,4 @@
-// import {server} from '../api/podcasts/route';
 import Controller from '@/app/components/Controller'
-// import Image from 'next/image';
 import { vazir, lalezar } from '../utils/fonts';
 
 

@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { BsStar, BsStarFill } from 'react-icons/bs'
 import { IoClose } from 'react-icons/io5'
+import { GrStatusGood } from "react-icons/gr";
 
 export const FavoriteDesktopButton = ({ podcasts, id, users }) => {
 	const podcast = podcasts.filter((podcast) => podcast.id == id)[0];
@@ -96,7 +97,6 @@ export const FavoriteDesktopButton = ({ podcasts, id, users }) => {
 	const hideModal = () => {
 		let favoritModal = document.getElementById('favorite-modal');
 		favoritModal.classList.add('hidden');
-		favoritModal.classList.remove('flex');
 	}
 
 	const showModal = () => {
@@ -104,7 +104,6 @@ export const FavoriteDesktopButton = ({ podcasts, id, users }) => {
 			let favoritModal = document.getElementById('favorite-modal');
 			let favoritModalText = document.getElementById('favorite-modal-text');
 			favoritModal.classList.remove('hidden')
-			favoritModal.classList.add('flex')
 			favoritModalText.innerHTML = 'Added to your favorites list. You can go to your favorites page to view.'
 		}
 
@@ -112,8 +111,7 @@ export const FavoriteDesktopButton = ({ podcasts, id, users }) => {
 			let favoritModal = document.getElementById('favorite-modal');
 			let favoritModalText = document.getElementById('favorite-modal-text');
 			favoritModal.classList.remove('hidden')
-			favoritModal.classList.add('flex')
-			favoritModalText.innerHTML = 'This podcast has been removed from your favorites list'
+			favoritModalText.innerHTML = 'This podcast has been removed from your favorites list.'
 		}
 
 		setTimeout(() => {
@@ -122,25 +120,24 @@ export const FavoriteDesktopButton = ({ podcasts, id, users }) => {
 	}
 
   return (
-	<div className='relative flex flex-col justify-center items-center'>
-		<div id='favorite-modal' className='favorite-modal z-50 hidden justify-center fixed top-[24px] left-0 w-full'>
-			<div className='flex flex-col rounded-lg bg-Blue w-96 shadow-lg shadow-LightBlue pt-2 pb-4 px-4'>
-				<span className='flex justify-end w-full h-fit'><IoClose className='text-xl text-white cursor-pointer w-fit h-fit p-1' onClick={hideModal}/></span>
-				<p id='favorite-modal-text' className='text-white'>Added to your favorites list. You can go to your favorites page to view.</p>
-				<div className='flex justify-end mt-1'>
-					<button className='rounded-md px-4 py-1 border-2 border-white text-white font-medium w-fit' onClick={hideModal}>ok</button>
+	<div className='flex flex-col justify-center items-center'>
+		<div id='favorite-modal' className="favorite-modal hidden fixed top-0 left-0 flex justify-center w-full z-10">
+			<div className="flex flex-col justify-center items-end section-modal bg-transparent-black-10 backdrop-blur-sm px-5 py-2 m-5 w-fit mt-[72px] shadow-md rounded-full">
+				<div className="flex items-center space-x-2 text-gray-600">
+					<GrStatusGood className="text-gray-600 text-lg" />
+					<p id='favorite-modal-text' className="sm:text-md text-sm text-gray-600">Added to your favorites list. You can go to your favorites page to view.</p>
 				</div>
 			</div>
 		</div>
 		{session ? 
 		<div className='flex'>
-			<span className='w-[.8px] h-[30px] bg-[rgb(232,234,237)] me-3'></span>
+			<span className='w-[.8px] h-[35px] bg-[rgb(232,234,237)] me-2'></span>
 			<div className='favorite-body'>
 				<div className='flex flex-col justify-center items-center'>
-					<button id='favorite' className='text-xl duration-150 select-none' onClick={changeFavorite}>
-						{isThisPodcastInfavorites ? <BsStarFill className='text-amber-500 sm:text-2xl text-xl'/> : <BsStar className='sm:text-2xl text-xl'/>}
+					<button id='favorite' className='text-xl duration-150 select-none py-[2px]' onClick={changeFavorite}>
+						{isThisPodcastInfavorites ? <BsStarFill className='text-amber-500 text-xl'/> : <BsStar className='sm:text-xl text-lg'/>}
 					</button>
-					<p className='text-xs text-Gray mt-[2px]'>add to favorite</p>
+					<p className='text-[11px] text-Gray'>add to favorite</p>
 				</div>
 			</div>
 		</div>
@@ -240,7 +237,6 @@ export const FavoriteMobileButton = ({ podcasts, id, users }) => {
 	const hideModal = () => {
 		let favoritModal = document.getElementById('favorite-mobile-modal');
 		favoritModal.classList.add('hidden');
-		favoritModal.classList.remove('flex');
 	}
 
 	const showModal = () => {
@@ -248,7 +244,6 @@ export const FavoriteMobileButton = ({ podcasts, id, users }) => {
 			let favoritModal = document.getElementById('favorite-mobile-modal');
 			let favoritModalText = document.getElementById('favorite-mobile-modal-text');
 			favoritModal.classList.remove('hidden')
-			favoritModal.classList.add('flex')
 			favoritModalText.innerHTML = 'Added to your favorites list. You can go to your favorites page to view.'
 		}
 
@@ -256,7 +251,6 @@ export const FavoriteMobileButton = ({ podcasts, id, users }) => {
 			let favoritModal = document.getElementById('favorite-mobile-modal');
 			let favoritModalText = document.getElementById('favorite-mobile-modal-text');
 			favoritModal.classList.remove('hidden')
-			favoritModal.classList.add('flex')
 			favoritModalText.innerHTML = 'This podcast has been removed from your favorites list'
 		}
 
@@ -267,24 +261,23 @@ export const FavoriteMobileButton = ({ podcasts, id, users }) => {
 
   return (
 	<div className='relative flex flex-col justify-center items-center'>
-		<div id='favorite-mobile-modal' className='favorite-mobile-modal z-50 hidden justify-center fixed top-[24px] left-0 w-full'>
-			<div className='flex flex-col rounded-lg bg-Blue w-80 shadow-lg shadow-LightBlue pt-2 pb-4 px-4'>
-				<span className='flex justify-end w-full h-fit'><IoClose className='text-xl text-white cursor-pointer w-fit h-fit p-1' onClick={hideModal}/></span>
-				<p id='favorite-mobile-modal-text' className='text-white'>Added to your favorites list. You can go to your favorites page to view.</p>
-				<div className='flex justify-end mt-1'>
-					<button className='rounded-md px-4 py-1 border-2 border-white text-white font-medium w-fit' onClick={hideModal}>ok</button>
+		<div id='favorite-mobile-modal' className="favorite-mobile-modal hidden fixed top-0 left-0 flex justify-center w-full z-10">
+			<div className="flex flex-col justify-center items-end section-modal bg-transparent-black-10 backdrop-blur-sm px-5 py-2 m-5 w-fit mt-[72px] shadow-md rounded-full">
+				<div className="flex items-center space-x-2 text-gray-600">
+					<GrStatusGood className="text-gray-600 text-lg" />
+					<p id='favorite-mobile-modal-text' className="sm:text-md text-xs text-gray-600">Added to your favorites list. You can go to your favorites page to view.</p>
 				</div>
 			</div>
 		</div>
 		{session ? 
 		<div className='flex'>
-			<span className='w-[.8px] h-[30px] bg-[rgb(232,234,237)] me-3'></span>
+			<span className='w-[.8px] h-[30px] bg-[rgb(232,234,237)] me-1'></span>
 			<div className='favorite-body'>
 				<div className='flex flex-col justify-center items-center'>
 					<button id='favorite' className='text-xl duration-150 select-none' onClick={changeFavorite}>
 						{isThisPodcastInfavorites ? <BsStarFill className='text-amber-500 sm:text-2xl text-xl'/> : <BsStar className='sm:text-2xl text-xl'/>}
 					</button>
-					<p className='text-xs text-Gray mt-[2px]'>add to favorite</p>
+					<p className='text-xs text-Gray mt-1'>add to favorite</p>
 				</div>
 			</div>
 		</div>

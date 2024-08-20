@@ -1,8 +1,9 @@
 'use client'
-import { lalezar } from "../utils/fonts";
+import { lalezar, vazir } from "../utils/fonts";
 import Info from "./Info"
 import {IoIosArrowForward, IoIosArrowBack} from 'react-icons/io'
 import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 const SectionsPage = ({data, episodes, isAudioPlay}) => {
 	const [sectionScrollLeft, setSectionScrollLeft] = useState(0)
@@ -10,6 +11,7 @@ const SectionsPage = ({data, episodes, isAudioPlay}) => {
 	var audio = data;
 	var sections = episodes.sections;
 	const sectionBtn = document.querySelectorAll('#section-btn');
+	const searchParams = useSearchParams();
 
 	const sectionBeingPlayIndex = () => {
 		if(audio) {
@@ -181,20 +183,33 @@ const SectionsPage = ({data, episodes, isAudioPlay}) => {
 			return sections[sectionIndex].refrences;
 		}
 		var refrences = getRefrences();
+
+		const getTags = () => {
+			return sections[sectionIndex].tags;
+		}
+		var tags = getTags();
 	}
+
+	useEffect(() => {
+		if(audio) {
+			audio.currentTime = searchParams.get('timeStart')
+			autoChangeActiveBtn()
+		}
+		console.log('log');
+	}, [audio])
 
 	return (
 		<>
-			<div className="relative bg-white border-[1px] border-border-gray overflow-hidden rounded-xl h-fit mt-5">
+			<div className={`${vazir.className} ${"relative bg-white border-[1px] border-border-gray overflow-hidden rounded-xl h-fit mt-5"}`}>
 				<span id="scroll-backward-btn" className="hover:text-[#382ef3] absolute top-0 left-0 flex justify-between items-center h-full cursor-pointer bg-white text-3xl text-Blue duration-150" onClick={scrollBackward}><IoIosArrowBack /></span>
 				<span id="scroll-forward-btn" className="hover:text-[#382ef3] absolute top-0 right-0 flex justify-between items-center h-full cursor-pointer bg-white text-3xl text-Blue duration-150" onClick={scrollForward}><IoIosArrowForward /></span>
 				<div className="relative ms-8 me-8">
 					<div id="section-body" className="snap-x relative bg-white overflow-x-auto px-2 py-2 scroll-smooth">
 						<div className="section-child inline-flex relative">
  							{sections.map((section) => (
-								 <div className="snap-end relative">
+								<div className="snap-end relative">
 									<div className="">
-										<button id="section-btn" className="overflow-hidden relative rounded-lg bg-White py-4 px-3 md:w-[180px] w-[160px] sm:text-md vazir text-sm mx-1 duration-150 inline-block select-none truncate" timeStart={section.timeStart} sectionNumber={sections.indexOf(section)} onClick={changeCurrentTime}>
+										<button id="section-btn" className={`${vazir.className} ${"overflow-hidden relative rounded-lg bg-White py-4 px-3 md:w-[180px] w-[160px] sm:text-md vazir text-sm mx-1 duration-150 inline-block select-none truncate"}`} timeStart={section.timeStart} sectionNumber={sections.indexOf(section)} onClick={changeCurrentTime}>
 											{section.title}
 											<span id="section-progressbar" className="inline-block absolute top-0 left-0 bg-[#b8c7ff26] w-0 h-full z-10" ></span>
 										</button>
@@ -209,7 +224,7 @@ const SectionsPage = ({data, episodes, isAudioPlay}) => {
 					</div>
 				</div>
 			</div>
-			<Info title={title} summary={summary} transcript={transcript} refrences={refrences}/>
+			<Info title={title} summary={summary} transcript={transcript} refrences={refrences} tags={tags} />
 		</>
 	)
 }
