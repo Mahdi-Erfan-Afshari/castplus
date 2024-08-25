@@ -7,7 +7,7 @@ import { vazir } from '../utils/fonts';
 import { usePathname } from 'next/navigation';
 
 
-const SearchEpisodeSectionByTags = ({ tagsData, selectedTag, searchTagModalRefrence, episodeData, setSearchSection }) => {
+const SearchEpisodeSectionByTags = ({ tags, searchTagModalRefrence, episodeData }) => {
 	const episode = episodeData;
 	const pathName = usePathname();
 	const [filteredSections, setFilteredSections] = useState([])
@@ -36,7 +36,6 @@ const SearchEpisodeSectionByTags = ({ tagsData, selectedTag, searchTagModalRefre
 	
 	useEffect(() => {
 		searchTagModalRefrence(searchTagModalRef.current);
-		setSearchSection({changeInputValue})
 	}, [episode])
 	return (
 		<div ref={searchTagModalRef} className={`${vazir.className} ${"hidden fixed top-0 left-0 flex justify-center items-center w-full h-full bg-transparent-black-50 ms-0 z-50"}`}>
@@ -45,13 +44,13 @@ const SearchEpisodeSectionByTags = ({ tagsData, selectedTag, searchTagModalRefre
 					<IoCloseOutline className='hover:text-gray-500 text-xl text-gray-400 duration-75' />
 				</div>
 				<div className="flex justify-between items-center w-full px-2 sm:py-1 py-2 rounded-md bg-gray-100">
-					<input ref={searchTagInputRef} className="w-full outline-none border-none bg-gray-100 items-center text-sm" type="text" placeholder="Search Tag..." defaultValue={selectedTag} onKeyUpCapture={filterSections}/>
+					<input ref={searchTagInputRef} className="w-full outline-none border-none bg-gray-100 items-center text-sm" type="text" placeholder="Search Tag..." onKeyUpCapture={filterSections}/>
 					<CiSearch className='text-xl text-gray-400' />
 				</div>
 				<div className='overflow-y-scroll sm:max-h-72 h-[calc(100%_-_62px)] no-scrollbar'>
 					<div className='mt-6'>
 						<p className='text-gray-400 text-sm mb-1 mt-3'>episode tags</p>
-						{tagsData.tags.map((tag) => (
+						{tags.map((tag) => (
 							<div className='hover:text-blue-600 inline-block text-blue-500 bg-blue-100 text-xs px-2 py-[2px] mx-0.5 rounded-md cursor-pointer duration-75' onClick={(e) =>changeInputValue(e.target.innerHTML)}>{tag}</div>
 						))}
 					</div>
@@ -64,14 +63,17 @@ const SearchEpisodeSectionByTags = ({ tagsData, selectedTag, searchTagModalRefre
 							<>
 								{filteredSections.map((section) => (
 									<>
-										<Link href={`${pathName}/${episode.id}?timeStart=${section.timeStart}`} className='cursor-pointer'>
+										<Link href={`${pathName}?timeStart=${section.timeStart}`} className='cursor-pointer' onClick={hideSearchTagModal}>
 											<div className='hover:bg-gray-100 grid grid-cols-12 p-1 rounded-md cursor-pointer duration-75'>
 												<div className='col-span-10 space-y-1'>
 													<h1 className='text-sm'>{section.title}</h1>
 													<p className='text-xs text-gray-600 truncate'>{section.summary}</p>
 												</div>
 												<div className='flex justify-end items-center col-span-2'>
-													<p className='text-gray-600 text-xs'>{Math.floor(section.duration / 3600) + ':' + Math.floor(section.duration / 60) + ':' + Math.floor(section.duration % 60)}</p>
+													<p className='text-gray-600 text-xs'>{Math.floor(section.duration / 3600) >= 10 ? Math.floor(section.duration / 3600) : '0' +  Math.floor(section.duration / 3600).toString()}:</p>
+													<p className='text-gray-600 text-xs'>{Math.floor(section.duration % 3600 / 60) >= 10 ? Math.floor(section.duration % 3600 / 60) : '0' +  Math.floor(section.duration % 3600 / 60).toString()}:</p>
+													<p className='text-gray-600 text-xs'>{Math.floor(section.duration % 60) >= 10 ? Math.floor(section.duration % 60) : '0' +  Math.floor(section.duration % 60).toString()}</p>
+													{/* <p className='text-gray-600 text-xs'>{Math.floor(section.duration / 3600) + ':' + Math.floor(section.duration % 3600 / 60) + ':' + Math.floor(section.duration % 60)}</p> */}
 												</div>
 											</div>
 										</Link>

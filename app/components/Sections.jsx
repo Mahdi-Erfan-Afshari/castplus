@@ -195,8 +195,7 @@ const SectionsPage = ({data, episodes, isAudioPlay}) => {
 			audio.currentTime = searchParams.get('timeStart')
 			autoChangeActiveBtn()
 		}
-		console.log('log');
-	}, [audio])
+	}, [searchParams.get('timeStart')])
 
 	return (
 		<>
@@ -214,7 +213,7 @@ const SectionsPage = ({data, episodes, isAudioPlay}) => {
 											<span id="section-progressbar" className="inline-block absolute top-0 left-0 bg-[#b8c7ff26] w-0 h-full z-10" ></span>
 										</button>
 										<p className={`${lalezar.className} ${"section-duration absolute top-[2px] left-[12px] text-xs text-[#bbb] select-none"}`} onClick={changeCurrentTime}>
-											<span>{ Math.round(section.duration / 60) < 10 ? '0' + Math.round(section.duration / 60).toString() : Math.round(section.duration / 60).toString()}</span>:
+											<span>{ Math.floor(section.duration / 60) < 10 ? '0' + Math.floor(section.duration / 60).toString() : Math.floor(section.duration / 60).toString()}</span>:
 											<span>{ section.duration % 60 < 10 ? '0' + (section.duration % 60).toString() : (section.duration % 60).toString()}</span>
 										</p>
 									</div>

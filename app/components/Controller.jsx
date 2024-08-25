@@ -159,7 +159,7 @@ const Controller = ({ url , episode }) => {
 	<div className={`${vazir.className}`}>
 		<audio ref={audio} src={url} onTimeUpdate={(e) =>{changeCurrentTime(e)}} onEnded={togglePlay} onCanPlayThrough={audioLoaded} autoPlay></audio>
 
-		<div className="controller w-full flex flex-row justify-center bg-white border-[1px] border-border-gray rounded-xl p-6 mt-12">
+		<div className="controller w-full flex flex-row justify-center bg-white border-[1px] border-border-gray rounded-xl p-6 mt-3">
 			{load ? <AudioLoading /> : <div className='flex flex-col w-full'>
 				<div className="flex flex-col items-center w-full">
 					<div className='relative flex md:flex-row flex-col justify-center items-center md:space-x-4 w-full md:mb-4 mb-8'>
