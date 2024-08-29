@@ -4,33 +4,38 @@ const nextConfig = {
 		appDir: true,
 	},
 	images: {
-		domains: ['github.com', 'lh3.googleusercontent.com', 'deow9bq0xqvbj.cloudfront.net', 'cdn-arch.shenoto.com']
-		// remotePatterns: [
-		// 	{
-		// 		protocol: 'https',
-		// 		hostname: 'github.com',
-		// 		port: '',
-		// 		pathname: '/**',
-		// 	},
-		// 	{
-		// 		protocol: 'https',
-		// 		hostname: 'lh3.googleusercontent.com',
-		// 		port: '',
-		// 		pathname: '/**',
-		// 	},
-		// 	{
-		// 		protocol: 'https',
-		// 		hostname: 'deow9bq0xqvbj.cloudfront.net',
-		// 		port: '',
-		// 		pathname: '/**',
-		// 	},
-		// 	{
-		// 		protocol: 'https',
-		// 		hostname: 'cdn-arch.shenoto.com',
-		// 		port: '',
-		// 		pathname: '/**',
-		// 	},
-		// ],
+		remotePatterns: [
+			{
+				protocol: 'https',
+				hostname: 'github.com',
+				port: '',
+				pathname: '/**',
+			},
+			{
+				protocol: 'https',
+				hostname: 'lh3.googleusercontent.com',
+				port: '',
+				pathname: '/**',
+			},
+			{
+				protocol: 'https',
+				hostname: 'deow9bq0xqvbj.cloudfront.net',
+				port: '',
+				pathname: '/**',
+			},
+			{
+				protocol: 'https',
+				hostname: 'cdn-arch.shenoto.com',
+				port: '',
+				pathname: '/shenoto-channel/**',
+			},
+			{
+				protocol: 'https',
+				hostname: 'cdn-arch.shenoto.com',
+				port: '',
+				pathname: '/**',
+			},
+		],
 	}
 }
 
