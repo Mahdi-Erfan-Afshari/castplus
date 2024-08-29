@@ -35,6 +35,12 @@ const nextConfig = {
 				port: '',
 				pathname: '/**',
 			},
+			{
+				protocol: 'https',
+				hostname: 'assets.pippa.io',
+				port: '',
+				pathname: '/**',
+			},
 		],
 	}
 }
