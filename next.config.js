@@ -25,9 +25,9 @@ const nextConfig = {
 			},
 			{
 				protocol: 'https',
-				hostname: 'cdn-arch.shenoto.com',
+				hostname: 'pbcdn1.podbean.com',
 				port: '',
-				pathname: '/shenoto-channel/**',
+				pathname: '/**',
 			},
 			{
 				protocol: 'https',
