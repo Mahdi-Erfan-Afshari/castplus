@@ -211,7 +211,7 @@ const Controller = ({ url , episode }) => {
 			</div>}
 		</div>
 		
-		<Sections isAudioPlay={setPlay} data={audio.current} episodes={episode}/>
+		{episode.sections.length === 0 ? '' : <Sections isAudioPlay={setPlay} data={audio.current} episodes={episode}/>}
 	</div>
   )
 }
